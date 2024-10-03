@@ -1,0 +1,3 @@
+return {
+  { "edgedb/edgedb-vim" },
+}
