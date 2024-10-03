@@ -19,7 +19,6 @@
     uv
     unzip
     signal-desktop
-    (nerdfonts.override {fonts = ["CascadiaCode"];})
     ripgrep
     arandr
     feh
@@ -28,18 +27,16 @@
     btop
     ripgrep
     fd
+    cascadia-code
     zip
     unzip
   ];
+  fonts.fontconfig.enable = true;
   home.file = {
     ".tmux.conf" = {source = ./tmux.conf;};
+    ".config/alacritty/alacritty.toml" = {source = ./alacritty.toml;};
     ".config/nvim" = {
       source = ./nvim;
-      recursive = true;
-    };
-
-    ".local/bin/" = {
-      source = ./scripts;
       recursive = true;
     };
     ".config/starship.toml" = {source = ./starship.toml;};
