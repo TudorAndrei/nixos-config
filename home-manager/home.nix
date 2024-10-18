@@ -1,15 +1,21 @@
 {
+  inputs,
+  outputs,
+  lib,
   config,
   pkgs,
   ...
 }: {
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+  };
   home.username = "tudor";
   home.homeDirectory = "/home/tudor";
 
-  home.stateVersion = "23.11"; # Please read the comment before changing.
+  home.stateVersion = "23.11";
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
   home.packages = with pkgs; [
     kanata
     alacritty
@@ -27,22 +33,38 @@
     btop
     ripgrep
     fd
-    cascadia-code
     zip
     unzip
+    cargo
+    strawberry-qt6
+    discord
+    slack
+    nerdfonts
+    lutris
+    protonup-qt
+    wofi
+    tmux
+    pavucontrol
+    zotero
   ];
   fonts.fontconfig.enable = true;
   home.file = {
     ".tmux.conf" = {source = ./tmux.conf;};
     ".config/alacritty/alacritty.toml" = {source = ./alacritty.toml;};
+    ".config/waybar/config.jsonc" = {source = ./waybar.config;};
     ".config/nvim" = {
       source = ./nvim;
       recursive = true;
     };
     ".config/starship.toml" = {source = ./starship.toml;};
+    # ".config/hypr" = {
+    #   source = ./hypr;
+    #   recursive = true;
+    # };
   };
 
   programs.starship.enable = true;
+  programs.waybar.enable = true;
 
   programs.neovim = {
     enable = true;

@@ -4,28 +4,28 @@ size = 12.0
 [font.normal]
 # family = "Hack Nerd Font Mono"
 # family = "MonaspiceKr NFP"
-# family = "CaskaydiaCove NF"
-family = "IosevkaTerm NF"
+family = "CaskaydiaCove NF"
+# family = "IosevkaTerm NF"
 style = "Regular"
 
 [font.bold]
 # family = "Hack Nerd Font Mono"
-# family = "CaskaydiaCove NF"
+family = "CaskaydiaCove NF"
 # family = "MonaspiceKr NF"
-family = "IosevkaTerm NF"
+# family = "IosevkaTerm NF"
 style = "Regular"
 
 [font.bold_italic]
-# family = "CaskaydiaCove NF"
+family = "CaskaydiaCove NF"
 # family = "Hack Nerd Font Mono"
 # family = "MonaspiceKr Nerf Font"
-family = "IosevkaTerm NF"
+# family = "IosevkaTerm NF"
 style = "BoldItalic"
 
 [font.italic]
-# family = "CaskaydiaCove NF"
+family = "CaskaydiaCove NF"
 # family = "MonaspiceKr Nerf Font"
-family = "IosevkaTerm NF"
+# family = "IosevkaTerm NF"
 # family = "Hack Nerd Font Mono"
 style = "Italic"
 
