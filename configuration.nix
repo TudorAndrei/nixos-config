@@ -2,6 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
+  inputs,
   config,
   pkgs,
   ...
@@ -77,7 +78,13 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    # set the flake package
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    # make sure to also set the portal package, so that they are in sync
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
   programs.nh = {
     enable = true;
     clean.enable = true;
@@ -86,6 +93,7 @@
   };
   # Optional, hint electron apps to use wayland:
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -101,15 +109,27 @@
   };
 
   # Install firefox.
-  programs.firefox.enable = true;
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox;
+    nativeMessagingHosts.packages = [pkgs.firefoxpwa];
+  };
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile
+  #
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
   environment.systemPackages = with pkgs; [
+    pkgs.firefoxpwa
+    kitty
     wget
     curl
     easyeffects
@@ -128,7 +148,31 @@
     ripgrep
     fd
     gcc
+    # hyrpland
+    hyprpicker
+    hyprcursor
+    hyprlock
+    hypridle
+    hyprpaper
+    steam
+    nautilus
+    killall
   ];
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Steam Remote Play.
+    dedicatedServer.openFirewall = true; # Source Dedicated Server.
+  };
+
+  programs.gamemode = {
+    enable = true;
+    enableRenice = true;
+    settings = {
+      general = {
+        renice = -19;
+      };
+    };
+  };
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc

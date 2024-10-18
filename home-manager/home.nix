@@ -46,16 +46,21 @@
     tmux
     pavucontrol
     zotero
+    pamixer
+    tree
   ];
   fonts.fontconfig.enable = true;
   home.file = {
     ".tmux.conf" = {source = ./tmux.conf;};
     ".config/alacritty/alacritty.toml" = {source = ./alacritty.toml;};
-    ".config/waybar/config.jsonc" = {source = ./waybar.config;};
     ".config/nvim" = {
       source = ./nvim;
       recursive = true;
     };
+    # ".config/waybar" = {
+    #   source = ./waybar;
+    #   recursive = true;
+    # };
     ".config/starship.toml" = {source = ./starship.toml;};
     # ".config/hypr" = {
     #   source = ./hypr;
