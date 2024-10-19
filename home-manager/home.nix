@@ -99,7 +99,6 @@
         {name = "dominik-schwabe/zsh-fnm";}
       ];
     };
-
     shellAliases = {
       ll = "ls -l";
       update = "sudo nixos-rebuild switch --flake .#sparta";
@@ -111,4 +110,13 @@
       path = "${config.xdg.dataHome}/zsh/history";
     };
   };
+  # TODO: ssh config
+  # programs.ssh.matchBlocks = {
+  #     "lassul.us" = {
+  #       identityFile = "~/.ssh/card_rsa.pub";
+  #       identitiesOnly = true;
+  #       user = "download";
+  #       port = 45621;
+  #     };
+  # };
 }
