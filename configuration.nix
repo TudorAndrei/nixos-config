@@ -12,7 +12,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   networking.hostName = "sparta"; # Define your hostname.
   #networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
@@ -65,7 +65,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -79,10 +78,8 @@
     #media-session.enable = true;
   };
   programs.hyprland = {
-    enable = true;
-    # set the flake package
+    enable = true; 
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    # make sure to also set the portal package, so that they are in sync
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
   programs.nh = {
@@ -105,6 +102,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "audio"
     ];
   };
 
@@ -129,6 +127,8 @@
   ];
   environment.systemPackages = with pkgs; [
     pkgs.firefoxpwa
+    alsa-utils
+    asusctl
     kitty
     wget
     curl
@@ -197,8 +197,7 @@
   # services.openssh.enable = true;
   #
   hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot =
-    true; # powers up the default Bluetooth controller on boot
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   services.blueman.enable = true;
 
   # Open ports in the firewall.
@@ -225,6 +224,14 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.production;
   };
+
+  hardware.nvidia.prime = {
+    sync.enable = true;
+    nvidiaBusId = "PCI:1:0:0";
+    amdgpuBusId = "PCI:8:0:0";
+  };
+
+  hardware.opengl.driSupport32Bit = true;
   services.kanata = {
     enable = true;
     keyboards = {

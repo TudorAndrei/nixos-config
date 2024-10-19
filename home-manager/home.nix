@@ -48,6 +48,7 @@
     zotero
     pamixer
     tree
+    fastfetch
   ];
   fonts.fontconfig.enable = true;
   home.file = {
@@ -57,15 +58,15 @@
       source = ./nvim;
       recursive = true;
     };
-    # ".config/waybar" = {
-    #   source = ./waybar;
-    #   recursive = true;
-    # };
+    ".config/waybar" = {
+      source = ./waybar;
+      recursive = true;
+    };
     ".config/starship.toml" = {source = ./starship.toml;};
-    # ".config/hypr" = {
-    #   source = ./hypr;
-    #   recursive = true;
-    # };
+    ".config/hypr" = {
+      source = ./hypr;
+      recursive = true;
+    };
   };
 
   programs.starship.enable = true;

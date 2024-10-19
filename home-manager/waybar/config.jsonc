@@ -21,11 +21,9 @@
     "group/misc",
     "pulseaudio",
     "battery",
-    "custom/logout_menu"
+    "custom/logout_menu",
+    "custom/power"
   ],
-  "hyprland/window": {
-    "format": "{}"
-  },
   "hyprland/workspaces": {
     "all-outputs": true,
     "on-click": "activate",

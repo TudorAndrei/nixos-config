@@ -16,7 +16,14 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-
+  # hardware.firmware = [
+  #   (pkgs.runCommand "jack-retask" { } ''
+  #     install -D ${./hda-jack-retask.fw} $out/lib/firmware/hda-jack-retask.fw
+  #   '')
+  # ];
+  # boot.extraModprobeConfig = ''
+  #   options snd-hda-intel patch=hda-jack-retask.fw
+  # '';
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/8b9f33fc-7d86-4ea9-9777-06e175993942";
     fsType = "ext4";
