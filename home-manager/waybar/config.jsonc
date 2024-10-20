@@ -17,6 +17,7 @@
   "modules-right": [
     "bluetooth",
     "network",
+    "temperature",
     "pulseaudio",
     "battery",
     "tray",
@@ -24,6 +25,7 @@
     // "custom/power",
   ],
   "hyprland/workspaces": {
+    "active-only": true,
     "all-outputs": true,
     "on-click": "activate",
     "sort-by-number": true,
@@ -126,6 +128,13 @@
   //   "format": "<b>󰥔 {:%I:%M 󰃭 %d/%m}</b>",
   //   "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   // },
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C ",
+    "format": "{temperatureC}°C "
+  },
   "bluetooth": {
     "format": "󰂯",
     "format-disabled": "󰂲",

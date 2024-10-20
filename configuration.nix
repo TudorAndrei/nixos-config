@@ -127,6 +127,7 @@
   ];
   environment.systemPackages = with pkgs; [
     pkgs.firefoxpwa
+    wl-clipboard
     alsa-utils
     asusctl
     kitty
