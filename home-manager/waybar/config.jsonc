@@ -8,21 +8,20 @@
   "height": 0,
   "modules-left": [
     "hyprland/workspaces",
-    "hyprland/submap"
   ],
   "modules-center": [
     "clock#calendar",
+    "custom/separator",
     "clock#time"
   ],
   "modules-right": [
-    "tray",
     "bluetooth",
     "network",
-    "group/misc",
     "pulseaudio",
     "battery",
-    "custom/logout_menu",
-    "custom/power"
+    "tray",
+    "custom/logout_menu"
+    // "custom/power",
   ],
   "hyprland/workspaces": {
     "all-outputs": true,
@@ -144,7 +143,7 @@
   },
   "network": {
     "format": "󰤭",
-    "format-wifi": "{icon}({signalStrength}%)",
+    "format-wifi": "{icon}({signalStrength}%) {essid}",
     "format-icons": [
       "󰤯",
       "󰤟",
