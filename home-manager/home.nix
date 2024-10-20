@@ -49,6 +49,7 @@
     pamixer
     tree
     fastfetch
+    strawberry-qt6
   ];
   fonts.fontconfig.enable = true;
   home.file = {
