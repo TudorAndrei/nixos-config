@@ -12,12 +12,6 @@
         privateDefault = "DuckDuckGo";
         order = [ "Google" "DuckDuckGo"];
       };
-      bookmarks = {};
-      extensions = with pkgs.inputs.firefox-addons; [
-        ublock-origin
-        browserpass
-      ];
-      bookmarks = {};
       settings = {
         "browser.startup.homepage" = "about:home";
 
@@ -110,12 +104,6 @@
     };
   };
 
-  home = {
-    persistence = {
-      # Not persisting is safer
-      # "/persist/${config.home.homeDirectory}".directories = [ ".mozilla/firefox" ];
-    };
-  };
 
   xdg.mimeApps.defaultApplications = {
     "text/html" = ["firefox.desktop"];

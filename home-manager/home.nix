@@ -51,6 +51,7 @@
     tree
     fastfetch
     strawberry-qt6
+    lazydocker
   ];
   fonts.fontconfig.enable = true;
   home.file = {
@@ -91,21 +92,29 @@
 
   programs.zsh = {
     enable = true;
-    zplug = {
+    antidote = {
       enable = true;
-      plugins = [
-        {name = "zsh-users/zsh-autosuggestions";}
-        {name = "zsh-users/zsh-history-substring-search";}
-        {name = "rimraf/k";}
-        {name = "agkozak/zsh-z";}
-        {name = "dominik-schwabe/zsh-fnm";}
+      plugins = [''
+        "zsh-users/zsh-autosuggestions"
+        "zsh-users/zsh-history-substring-search"
+        "rimraf/k"
+        "agkozak/zsh-z"
+        "dominik-schwabe/zsh-fnm"
+      ''
       ];
     };
     shellAliases = {
-      ll = "ls -l";
       update = "sudo nixos-rebuild switch --flake .#sparta";
-      hmu = "home-manager switch --flake .#tudor@sparta";
+      nhs = "nh home switch";
+      nos = "nh os switch";
       n = "nvim";
+      afz = "alias | fzf";
+      speedtest = "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -";
+      bigfiles="du -hs $(ls -A) | sort -rh | head -5";
+      # GPU
+      gput="python -c 'import torch;print(torch.cuda.is_available())'";
+      gputf="python -c 'import tensorflow as tf;tf.config.list_physical_devices()'";
+
     };
     history = {
       size = 10000;
