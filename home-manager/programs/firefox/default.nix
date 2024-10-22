@@ -1,11 +1,22 @@
 {
-  pkgs,
   lib,
+  home,
   ...
 }: {
+  home.file = {
+    "mozilla/firefox/tudor/chrome/firefox-custom" = {
+      source = ./userChrome;
+      recursive = true;
+    };
   programs.firefox = {
     enable = true;
     profiles.tudor = {
+      userChrome = ''
+          @import "firefox-custom/userChrome.css";
+      '';
+       userContent = ''
+    @import "firefox-custom/userContent.css";
+    '';
       search = {
         force = true;
         default = "Google";
@@ -77,9 +88,10 @@
         "toolkit.telemetry.unified" = false;
         "toolkit.telemetry.unifiedIsOptIn" = false;
         "toolkit.telemetry.updatePing.enabled" = false;
+        "toolkit.legacyUserProfileCustomizations.stylesheets"=true;
 
         # Disable fx accounts
-        "identity.fxaccounts.enabled" = false;
+        "identity.fxaccounts.enabled" = true;
         # Disable "save password" prompt
         "signon.rememberSignons" = false;
         # Harden
