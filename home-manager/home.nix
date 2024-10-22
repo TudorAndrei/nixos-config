@@ -18,6 +18,8 @@
   home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
+    swaynotificationcenter
+    libnotify
     hyperfine
     alacritty
     fnm
@@ -39,7 +41,6 @@
     strawberry-qt6
     discord
     slack
-    nerdfonts
     lutris
     protonup-qt
     wofi
@@ -52,6 +53,7 @@
     strawberry-qt6
     eza
     lazydocker
+    overskride
   ];
   fonts.fontconfig.enable = true;
   home.file = {
@@ -98,12 +100,13 @@
     syntaxHighlighting.enable = true;
     antidote = {
       enable = true;
-      plugins = [''
-        "zsh-users/zsh-history-substring-search"
-      ''
+      plugins = [
+        ''
+          "zsh-users/zsh-history-substring-search"
+        ''
       ];
     };
-    completionInit = '' 
+    completionInit = ''
       if [[ -n $(print ~/.zcompdump(Nmh+24)) ]] {
         compinit
       } else {
@@ -129,16 +132,16 @@
       n = "nvim";
       afz = "alias | fzf";
       speedtest = "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -";
-      bigfiles="du -hs $(ls -A) | sort -rh | head -5";
-      k="eza --long --git";
-      sv="source .venv/bin/activate";
-      dcu="docker compose up";
-      dcud="docker compose up -d";
-      dcd="docker compose down";
+      bigfiles = "du -hs $(ls -A) | sort -rh | head -5";
+      k = "eza --long --git";
+      sv = "source .venv/bin/activate";
+      dcu = "docker compose up";
+      dcud = "docker compose up -d";
+      dcd = "docker compose down";
+      rwb = "killall -SIGUSR2 .waybar-wrapped";
       # GPU
-      gput="python -c 'import torch;print(torch.cuda.is_available())'";
-      gputf="python -c 'import tensorflow as tf;tf.config.list_physical_devices()'";
-
+      gput = "python -c 'import torch;print(torch.cuda.is_available())'";
+      gputf = "python -c 'import tensorflow as tf;tf.config.list_physical_devices()'";
     };
     history = {
       size = 10000;

@@ -136,7 +136,6 @@
     easyeffects
     vim
     home-manager
-    floorp
     nvitop
     btop
     kanata
@@ -197,8 +196,16 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
   #
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware = {
+    pulseaudio = {
+      enable = false;
+      extraModules = [pkgs.pulseaudio-modules-bt];
+    };
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+  };
   services.blueman.enable = true;
 
   # Open ports in the firewall.
@@ -257,4 +264,17 @@
   };
 
   programs.zsh.enable = true;
+  fonts.packages = with pkgs; [
+    (nerdfonts.override {fonts = ["FiraCode" "CascadiaCode"];})
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    font-awesome
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+  ];
 }
