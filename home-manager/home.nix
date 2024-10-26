@@ -54,6 +54,7 @@
     eza
     lazydocker
     overskride
+    wdisplays
   ];
   fonts.fontconfig.enable = true;
   home.file = {

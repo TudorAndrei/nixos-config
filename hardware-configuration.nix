@@ -14,16 +14,12 @@
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
+  boot.kernelModules = ["kvm-amd"  "hid-apple" ];
   boot.extraModulePackages = [];
-  # hardware.firmware = [
-  #   (pkgs.runCommand "jack-retask" { } ''
-  #     install -D ${./hda-jack-retask.fw} $out/lib/firmware/hda-jack-retask.fw
-  #   '')
-  # ];
-  # boot.extraModprobeConfig = ''
-  #   options snd-hda-intel patch=hda-jack-retask.fw
-  # '';
+    boot.extraModprobeConfig = ''
+    options hid_apple fnmode=0
+  '';
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/8b9f33fc-7d86-4ea9-9777-06e175993942";
     fsType = "ext4";

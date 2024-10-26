@@ -226,12 +226,13 @@
 
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.production;
   };
+  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
   hardware.nvidia.prime = {
     sync.enable = true;
@@ -276,8 +277,4 @@
     dina-font
     proggyfonts
   ];
-  boot.extraModprobeConfig = ''
-    options hid_apple fnmode=0
-  '';
-  boot.kernelModules = [ "hid-apple" ];
 }
