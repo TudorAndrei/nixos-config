@@ -25,8 +25,7 @@
   networking.nameservers = [
     "1.1.1.1"
     "1.0.0.1"
-    "8.8.8.8"
-    "8.8.4.4"
+    "8.8.8.8" "8.8.4.4"
   ];
   networking.networkmanager.wifi.powersave = true;
   users.defaultUserShell = pkgs.zsh;
@@ -277,4 +276,8 @@
     dina-font
     proggyfonts
   ];
+  boot.extraModprobeConfig = ''
+    options hid_apple fnmode=0
+  '';
+  boot.kernelModules = [ "hid-apple" ];
 }
