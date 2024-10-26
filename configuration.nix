@@ -80,6 +80,7 @@
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    xwayland.enable = true;
   };
   programs.nh = {
     enable = true;
@@ -87,7 +88,6 @@
     clean.extraArgs = "--keep-since 4d --keep 3";
     flake = "/home/tudor/nixos-config";
   };
-  # Optional, hint electron apps to use wayland:
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
@@ -267,7 +267,7 @@
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "CascadiaCode"];})
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     liberation_ttf
     fira-code
