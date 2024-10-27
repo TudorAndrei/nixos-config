@@ -56,6 +56,8 @@
     overskride
     wdisplays
     localsend
+    spotify
+    wttrbar
   ];
   fonts.fontconfig.enable = true;
   home.file = {
@@ -141,6 +143,7 @@
       dcud = "docker compose up -d";
       dcd = "docker compose down";
       rwb = "killall -SIGUSR2 .waybar-wrapped";
+      rhl = "hyprctl reload";
       # GPU
       gput = "python -c 'import torch;print(torch.cuda.is_available())'";
       gputf = "python -c 'import tensorflow as tf;tf.config.list_physical_devices()'";
