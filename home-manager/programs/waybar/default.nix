@@ -17,6 +17,8 @@
           "clock#calendar"
           "custom/separator"
           "clock#time"
+          "custom/separator"
+          "custom/weather"
         ];
         modules-right = [
           "tray"
@@ -26,7 +28,7 @@
           "temperature"
           "pulseaudio"
           "battery"
-          "custom/weather"
+          "cpu"
           # // "custom/notification",
           # // "custom/logout_menu",
           "custom/power"
@@ -64,9 +66,6 @@
           format = "•";
           tooltip = false;
         };
-        "clock#week" = {
-          format = "{:%a}";
-        };
         "battery" = {
           states = {
             warning = 30;
@@ -81,9 +80,11 @@
           # // "format-full": "",
           # // "format-icons": [ "", "", "", "", "" ]
         };
-        "clock#month" = {
-          format = "{:%h}";
-        };
+"cpu"= {
+    "interval"= 10;
+    "format"= "{}% ";
+    "max-length"= 10;
+};
         "clock#calendar" = {
           format = "{:%F}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";

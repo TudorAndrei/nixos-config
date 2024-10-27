@@ -93,6 +93,7 @@
       "$mainMod, Return, exec, $terminal"
       "$mainMod_SHIFT, Q, killactive,"
       "$mainMod, M, exit,"
+      "$mainMod, D, exec, $menu"
       "$mainMod, E, exec, $fileManager"
 
       "$mainMod_SHIFT, H, movewindow, l"
