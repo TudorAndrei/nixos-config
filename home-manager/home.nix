@@ -71,7 +71,7 @@
     #   source = ./waybar;
     #   recursive = true;
     # };
-    ".config/starship.toml" = {source = ./starship.toml;};
+    # ".config/starship.toml" = {source = ./starship.toml;};
     ".config/hypr" = {
       source = ./hypr;
       recursive = true;

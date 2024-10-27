@@ -1,3 +1,7 @@
 {
-  imports = [./firefox ./waybar];
+  imports = [
+  ./firefox 
+  ./waybar
+  ./starship
+  ];
 }
