@@ -1,7 +1,8 @@
 {
   imports = [
-  ./firefox 
-  ./waybar
-  ./starship
+    ./firefox
+    ./waybar
+    ./starship
+    ./alacritty
   ];
 }
