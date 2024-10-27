@@ -10,8 +10,40 @@
   imports = [./hardware-configuration.nix];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    plymouth = {
+      enable = true;
+      theme = "rings";
+      themePackages = with pkgs; [
+        # By default we would install all themes
+        (adi1090x-plymouth-themes.override {
+          selected_themes = ["rings"];
+        })
+      ];
+    };
+
+    # Enable "Silent Boot"
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    ];
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    loader = {
+      systemd-boot.enable = true;
+      timeout = 0;
+      efi.canTouchEfiVariables = true;
+    };
+  };
   boot.kernelPackages = pkgs.linuxPackages_latest;
   networking.hostName = "sparta"; # Define your hostname.
   #networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
@@ -240,7 +272,6 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.production;
   };
-  boot.kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
 
   hardware.nvidia.prime = {
     sync.enable = true;
@@ -309,6 +340,11 @@
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
       };
+    };
+    targets = {
+      # Disable this so I can set the theme from the system and specify a custom one
+      # stylix doesn't have a theme option
+      plymouth = {enable = false;};
     };
   };
 }
