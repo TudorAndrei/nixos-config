@@ -55,6 +55,7 @@
     lazydocker
     overskride
     wdisplays
+    localsend
   ];
   fonts.fontconfig.enable = true;
   home.file = {

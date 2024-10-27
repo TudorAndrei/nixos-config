@@ -14,9 +14,9 @@
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"  "hid-apple" ];
+  boot.kernelModules = ["kvm-amd" "hid-apple"];
   boot.extraModulePackages = [];
-    boot.extraModprobeConfig = ''
+  boot.extraModprobeConfig = ''
     options hid_apple fnmode=0
   '';
 

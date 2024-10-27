@@ -25,7 +25,8 @@
   networking.nameservers = [
     "1.1.1.1"
     "1.0.0.1"
-    "8.8.8.8" "8.8.4.4"
+    "8.8.8.8"
+    "8.8.4.4"
   ];
   networking.networkmanager.wifi.powersave = true;
   users.defaultUserShell = pkgs.zsh;
@@ -156,6 +157,7 @@
     steam
     nautilus
     killall
+    ghostscript
   ];
   programs.steam = {
     enable = true;
@@ -203,6 +205,13 @@
     bluetooth = {
       enable = true;
       powerOnBoot = true;
+      settings = {
+        General = {
+          Experimental = "true";
+          FastConnectable = "true";
+
+        };
+      };
     };
   };
   services.blueman.enable = true;
@@ -232,7 +241,7 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.production;
   };
-  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+  boot.kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
 
   hardware.nvidia.prime = {
     sync.enable = true;
