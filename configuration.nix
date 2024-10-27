@@ -180,6 +180,7 @@
     btop
     kanata
     go
+    nodejs_20
     stdenv.cc.cc
     luajitPackages.luarocks
     zlib
