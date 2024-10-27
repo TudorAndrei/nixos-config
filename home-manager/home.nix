@@ -59,7 +59,8 @@
     spotify
     wttrbar
     jq
-     yt-dlp
+    yt-dlp
+    imagemagick
   ];
   fonts.fontconfig.enable = true;
   home.file = {

@@ -329,25 +329,17 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     polarity = "dark";
     fonts = {
-      serif = {
-        package = pkgs.nerdfonts;
-        name = "CaskaydiaCove NF";
-      };
+      serif.package = pkgs.nerdfonts;
+      serif.name = "CaskaydiaCove NF";
 
-      sansSerif = {
-        package = pkgs.nerdfonts;
-        name = "CaskaydiaCove NF";
-      };
+      sansSerif.package = pkgs.nerdfonts;
+      sansSerif.name = "CaskaydiaCove NF";
 
-      monospace = {
-        package = pkgs.nerdfonts;
-        name = "CaskaydiaCove NF";
-      };
+      monospace.package = pkgs.nerdfonts;
+      monospace.name = "CaskaydiaCove NF";
 
-      emoji = {
-        package = pkgs.noto-fonts-emoji;
-        name = "Noto Color Emoji";
-      };
+      emoji.package = pkgs.noto-fonts-emoji;
+      emoji.name = "Noto Color Emoji";
     };
     targets = {
       # Disable this so I can set the theme from the system and specify a custom one
