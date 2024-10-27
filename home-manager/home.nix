@@ -58,11 +58,13 @@
     localsend
     spotify
     wttrbar
+    jq
+     yt-dlp
   ];
   fonts.fontconfig.enable = true;
   home.file = {
     ".tmux.conf" = {source = ./tmux.conf;};
-    ".config/alacritty/alacritty.toml" = {source = ./alacritty.toml;};
+    # ".config/alacritty/alacritty.toml" = {source = ./alacritty.toml;};
     ".config/nvim" = {
       source = ./nvim;
       recursive = true;
