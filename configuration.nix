@@ -347,4 +347,8 @@
       plymouth = {enable = false;};
     };
   };
+  services.gnome.gnome-keyring.enable = true;
+  # Docker
+  virtualisation.docker.enable = true;
+  virtualisation.oci-containers.backend = "docker";
 }

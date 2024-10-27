@@ -5,7 +5,7 @@ change (#navigator-toolbox) with your top bar (in this case #nav-bar) and use
 */
 :root[tabsintitlebar][sizemode="maximized"] #navigator-toolbox {
     -moz-appearance: none !important;
-    padding-top: 12px !important;
+    /*padding-top: 12px !important;*/
 }
 /* Fix the FUllscreen changing padding on other bars. */
 :root[tabsintitlebar][sizemode="maximized"] #titlebar {

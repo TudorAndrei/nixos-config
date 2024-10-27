@@ -8,12 +8,16 @@
   programs.firefox = {
     enable = true;
     profiles.tudor = {
+        # @import "firefox-custom/userChrome.css";
       userChrome = ''
-        @import "firefox-custom/userChrome.css";
+        #TabsToolbar
+{
+    visibility: collapse;
+}
       '';
-      userContent = ''
-        @import "firefox-custom/userContent.css";
-      '';
+      # userContent = ''
+      #   @import "firefox-custom/userContent.css";
+      # '';
       search = {
         force = true;
         default = "Google";
