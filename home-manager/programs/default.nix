@@ -5,5 +5,6 @@
     ./starship
     ./alacritty
     ./tmux
+    ./hyprland
   ];
 }

@@ -75,10 +75,10 @@
     #   recursive = true;
     # };
     # ".config/starship.toml" = {source = ./starship.toml;};
-    ".config/hypr" = {
-      source = ./hypr;
-      recursive = true;
-    };
+    # ".config/hypr" = {
+    #   source = ./hypr;
+    #   recursive = true;
+    # };
   };
 
   programs.starship.enable = true;
