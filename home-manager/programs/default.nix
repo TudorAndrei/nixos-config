@@ -4,5 +4,6 @@
     ./waybar
     ./starship
     ./alacritty
+    ./tmux
   ];
 }

@@ -1,3 +1,24 @@
+{ pkgs, ... }:
+{
+  programs.tmux = {
+    enable = true;
+    shell = "${pkgs.fish}/bin/fish";
+    terminal = "tmux-256color";
+    historyLimit = 100000;
+    plugins = with pkgs;
+      [
+        tmuxPlugins.tmux-sensible
+
+        tmuxPlugins.tmux-resurrect
+        tmuxPlugins.tmux-prefix-highlight
+        tmuxPlugins.tmux-yank
+        tmuxPlugins.tmux-open
+        tmuxPlugins.tmux-mode-indicator
+        tmuxPlugins.vim-tmux-navigator
+        tmuxPlugins.tmux-continuum
+# pschmitt/tmux-ssh-split
+      ];
+    extraConfig = ''
 BACKGROUND="#282a36"
 SELECTION="#44475a"
 COMMENT="#6272a4"
@@ -11,9 +32,6 @@ set -g renumber-windows on    # renumber windows when a window is closed
 unbind C-b
 set -g prefix C-Space
 unbind r
-# bind r source-file ~/.config/tmux/.tmux.conf; display "Reloaded"
-# set-option -g status-position top
-# Mouse mode on
 set -g mouse on
 
 # set -g default-terminal /usr/bin/alacritty
@@ -21,11 +39,7 @@ set -g mouse on
 
 set -g default-terminal "screen-256color"
 set -g terminal-overrides ',xterm-256color:Tc'
-# set -as terminal-overrides ',xterm*:sitm=\E[3m'
-#
- # skip "kill-pane 1? (y/n)" prompt
 bind-key x kill-pane
-# don't exit from tmux when closing a session
 set -g detach-on-destroy off  
 
 
@@ -38,16 +52,6 @@ unbind h
 bind v split-window -h -c "#{pane_current_path}"
 bind h split-window -v -c "#{pane_current_path}"
 
-# Move pane
-
-# bind -n M-h select-pane -L
-# bind -n M-j select-pane -D
-# bind -n M-k select-pane -U
-# bind -n M-l select-pane -R
-#
-#
-# Smart pane switching with awareness of Vim splits.
-# See: https://github.com/christoomey/vim-tmux-navigator
 
 # decide whether we're in a Vim process
 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
@@ -58,28 +62,6 @@ bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j' 'select-pane -D'
 bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k' 'select-pane -U'
 bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l' 'select-pane -R'
 
-# is_vim="ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?\.?(view|n?vim?x?)(-wrapped)?(diff)?$'"
-#
-# # new navigation
-# bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h' { if -F '#{pane_at_left}' '' 'select-pane -L' }
-# bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j' { if -F '#{pane_at_bottom}' '' 'select-pane -D' }
-# bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k' { if -F '#{pane_at_top}' '' 'select-pane -U' }
-# bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l' { if -F '#{pane_at_right}' '' 'select-pane -R' }
-#
-# bind-key -T copy-mode-vi 'C-h' if -F '#{pane_at_left}' '' 'select-pane -L'
-# bind-key -T copy-mode-vi 'C-j' if -F '#{pane_at_bottom}' '' 'select-pane -D'
-# bind-key -T copy-mode-vi 'C-k' if -F '#{pane_at_top}' '' 'select-pane -U'
-# bind-key -T copy-mode-vi 'C-l' if -F '#{pane_at_right}' '' 'select-pane -R'
-# # resize
-# bind -n 'M-h' if-shell "$is_vim" 'send-keys M-h' 'resize-pane -L 1'
-# bind -n 'M-j' if-shell "$is_vim" 'send-keys M-j' 'resize-pane -D 1'
-# bind -n 'M-k' if-shell "$is_vim" 'send-keys M-k' 'resize-pane -U 1'
-# bind -n 'M-l' if-shell "$is_vim" 'send-keys M-l' 'resize-pane -R 1'
-#
-# bind-key -T copy-mode-vi M-h resize-pane -L 1
-# bind-key -T copy-mode-vi M-j resize-pane -D 1
-# bind-key -T copy-mode-vi M-k resize-pane -U 1
-# bind-key -T copy-mode-vi M-l resize-pane -R 1
 
 tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
 
@@ -109,18 +91,17 @@ set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
 
 # List of plugins
 
-set-option -g @ssh-split-keep-cwd "true"
-set-option -g @ssh-split-fail "false"
-set-option -g @ssh-split-no-shell "false"
-# set-option -g @ssh-split-strip-cmd "true"
-set-option -g @ssh-split-verbose "false"
-set-option -g @ssh-split-h-key "h"
-set-option -g @ssh-split-v-key "v"
+# set-option -g @ssh-split-keep-cwd "true"
+# set-option -g @ssh-split-fail "false"
+# set-option -g @ssh-split-no-shell "false"
+# # set-option -g @ssh-split-strip-cmd "true"
+# set-option -g @ssh-split-verbose "false"
+# set-option -g @ssh-split-h-key "h"
+# set-option -g @ssh-split-v-key "v"
 
 
 # Plugin settings
 set -g @continuum-restore 'on'
-set-environment -g TMUX_PLUGIN_MANAGER_PATH '~/.tmux/plugins/'
 set -g @resurrect-strategy-nvim 'session'
 set -g @resurrect-capture-pane-contents 'on'
 set -g @resurrect-processes 'ssh'
@@ -150,5 +131,6 @@ set -g window-status-current-format "#[fg=$BACKGROUND,bg=blue,nobold,noitalics,n
 # set -g window-status-format "#[fg=$BACKGROUND,bg=$COMMENT,nobold,noitalics,nounderscore]#[fg=brightwhite,bg=$COMMENT]#I#[fg=$BACKGROUND,bg=$COMMENT,nobold,noitalics,nounderscore] #[fg=brightwhite,bg=$COMMENT]#W #[fg=$COMMENT,bg=$BACKGROUND,nobold,noitalics,nounderscore] "
 # set -g window-status-current-format "#[fg=$BACKGROUND,bg=blue,nobold,noitalics,nounderscore] #[fg=$BACKGROUND,bg=blue]#I#[fg=$BACKGROUND,bg=blue,nobold,noitalics,nounderscore] #[fg=$BACKGROUND,bg=blue]#W #[fg=blue,bg=$BACKGROUND,nobold,noitalics,nounderscore] "
 set -g window-status-separator ""
-
-run -b '~/.tmux/plugins/tpm/tpm'
+    '';
+  };
+}

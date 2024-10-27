@@ -64,7 +64,7 @@
   ];
   fonts.fontconfig.enable = true;
   home.file = {
-    ".tmux.conf" = {source = ./tmux.conf;};
+    # ".tmux.conf" = {source = ./tmux.conf;};
     # ".config/alacritty/alacritty.toml" = {source = ./alacritty.toml;};
     ".config/nvim" = {
       source = ./nvim;
