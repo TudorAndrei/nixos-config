@@ -115,6 +115,14 @@
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
   };
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+      xdg-desktop-portal-gtk
+    ];
+  };
   programs.nh = {
     enable = true;
     clean.enable = true;
@@ -348,7 +356,6 @@
     };
   };
   services.gnome.gnome-keyring.enable = true;
-  # Docker
-  virtualisation.docker.enable = true;
+  # Docker virtualisation.docker.enable = true;
   virtualisation.oci-containers.backend = "docker";
 }

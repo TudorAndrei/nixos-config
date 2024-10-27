@@ -8,12 +8,12 @@
   programs.firefox = {
     enable = true;
     profiles.tudor = {
-        # @import "firefox-custom/userChrome.css";
+      # @import "firefox-custom/userChrome.css";
       userChrome = ''
-        #TabsToolbar
-{
-    visibility: collapse;
-}
+                #TabsToolbar
+        {
+            visibility: collapse;
+        }
       '';
       # userContent = ''
       #   @import "firefox-custom/userContent.css";

@@ -169,7 +169,7 @@
   "tray": {
     "icon-size": 14,
     "tooltip": false,
-    "spacing": 100
+    "spacing": 10,
   },
   "custom/power": {
     "format": "⏻ ",
