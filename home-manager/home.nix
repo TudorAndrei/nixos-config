@@ -61,6 +61,7 @@
     jq
     yt-dlp
     imagemagick
+    anydesk
   ];
   fonts.fontconfig.enable = true;
   home.file = {
