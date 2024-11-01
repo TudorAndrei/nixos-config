@@ -62,6 +62,7 @@
     yt-dlp
     imagemagick
     anydesk
+    pika-backup
   ];
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
