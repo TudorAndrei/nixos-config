@@ -63,6 +63,7 @@
     imagemagick
     anydesk
   ];
+  # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
   home.file = {
     # ".tmux.conf" = {source = ./tmux.conf;};
