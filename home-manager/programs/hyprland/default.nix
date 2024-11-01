@@ -18,6 +18,7 @@
       "waybar"
       "hyprpaper "
       "firefox"
+      "easyeffects"
     ];
 
     general = {
