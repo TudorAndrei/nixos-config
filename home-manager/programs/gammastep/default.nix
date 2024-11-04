@@ -3,7 +3,7 @@
 
 services.gammastep = {
   enable = true;
-  profivder = "manual"
+  provider = "manual";
   latitude = 44.426765;
   longitude = 26.102537;
   
