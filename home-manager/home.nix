@@ -63,7 +63,6 @@
     imagemagick
     anydesk
     pika-backup
-    redshift
   ];
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;

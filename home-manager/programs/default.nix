@@ -6,6 +6,6 @@
     ./alacritty
     ./tmux
     ./hyprland
-    ./redshift
+    ./gammastep
   ];
 }
