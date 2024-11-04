@@ -80,11 +80,11 @@
           # // "format-full": "",
           # // "format-icons": [ "", "", "", "", "" ]
         };
-"cpu"= {
-    "interval"= 10;
-    "format"= "{}% ";
-    "max-length"= 10;
-};
+        "cpu" = {
+          "interval" = 10;
+          "format" = "{}% ";
+          "max-length" = 10;
+        };
         "clock#calendar" = {
           format = "{:%F}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";

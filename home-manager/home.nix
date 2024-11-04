@@ -72,16 +72,7 @@
     ".config/nvim" = {
       source = ./nvim;
       recursive = true;
-    };
-    # ".config/waybar" = {
-    #   source = ./waybar;
-    #   recursive = true;
-    # };
-    # ".config/starship.toml" = {source = ./starship.toml;};
-    # ".config/hypr" = {
-    #   source = ./hypr;
-    #   recursive = true;
-    # };
+    }; "~/.ssh/config" = { source = "./ssh/ssh_config"; };
   };
 
   programs.starship.enable = true;
@@ -163,13 +154,4 @@
     enable = true;
     enableZshIntegration = true;
   };
-  # TODO: ssh config
-  # programs.ssh.matchBlocks = {
-  #     "lassul.us" = {
-  #       identityFile = "~/.ssh/card_rsa.pub";
-  #       identitiesOnly = true;
-  #       user = "download";
-  #       port = 45621;
-  #     };
-  # };
 }

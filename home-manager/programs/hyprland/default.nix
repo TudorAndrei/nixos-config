@@ -27,7 +27,6 @@
 
       border_size = 2;
 
-
       resize_on_border = false;
 
       # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
@@ -42,7 +41,6 @@
       # Change transparency of focused and unfocused windows
       active_opacity = 1.0;
       inactive_opacity = 1.0;
-
 
       # https://wiki.hyprland.org/Configuring/Variables/#blur
       blur = {
