@@ -91,8 +91,8 @@
         "toolkit.telemetry.updatePing.enabled" = false;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 
-        # Disable fx accounts
-        "identity.fxaccounts.enabled" = true;
+        "media.ffmpeg.vaapi.enabled" = true;
+
         # Disable "save password" prompt
         "signon.rememberSignons" = false;
         # Harden
