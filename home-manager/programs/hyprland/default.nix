@@ -83,10 +83,15 @@
       workspace_swipe = false;
     };
     windowrulev2 = [
-      "workspace 1, class:(firefox)"
-      "workspace 1, title:(Spotify), initialTitle:(Spotify)"
-      "workspace 7,  class:(steam)"
-      "workspace 9,  class:(signal), class:(discord)"
+      "workspace 1, class:^firefox$"
+      "workspace 7, class:^steam$"
+      # chat
+      "workspace 9, class:^signal$"
+      "workspace 9, class:^discord$"
+      # music
+      "workspace 0, class:^com.github.wwmm.easyeffects$"
+      "workspace 0, class:Spotify.*$"
+      "workspace 0, class:^strawberry$"
       "suppressevent maximize, class:.*"
     ];
 
