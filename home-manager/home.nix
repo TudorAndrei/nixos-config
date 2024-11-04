@@ -72,7 +72,7 @@
     ".config/nvim" = {
       source = ./nvim;
       recursive = true;
-    }; "~/.ssh/config" = { source = "./ssh/ssh_config"; };
+    }; 
   };
 
   programs.starship.enable = true;
