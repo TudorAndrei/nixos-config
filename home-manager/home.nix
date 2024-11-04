@@ -72,7 +72,7 @@
     ".config/nvim" = {
       source = ./nvim;
       recursive = true;
-    }; 
+    };
   };
 
   programs.starship.enable = true;
@@ -153,5 +153,87 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+  home.file.".gitconfig" = {
+    text = ''
+      [user]
+          name = TudorAndrei
+          email = tudorandrei.dumitrascu@gmail.com
+
+      [includeIf "gitdir:~/pythia/"]
+          path = ~/pythia/.gitconfig-pythia
+
+      [includeIf "gitdir:~/cave/"]
+          path = ~/cave/.gitconfig-cave
+
+      [init]
+          defaultBranch = main
+
+      [push]
+          autoSetupRemote = true
+
+      [filter "lfs"]
+          clean = git-lfs clean -- %f
+          smudge = git-lfs smudge -- %f
+          process = git-lfs filter-process
+          required = true
+
+      [core]
+          excludesfile = /home/tudor/.gitignore_global
+
+      [github]
+          user = "TudorAndrei"
+
+      [url "personal"]
+          insteadOf = github.com
+
+    '';
+    onChange = "git config --global --replace-all";
+  };
+
+  home.file."/home/tudor/pythia/.gitconfig-pythia" = {
+    text = ''
+      [user]
+          name = TudorAndrei-Pythia
+          email = tudor@pythia.social
+    '';
+  };
+
+  home.file."/home/tudor/cave/.gitconfig-cave" = {
+    text = ''
+      [user]
+          email = tudorandrei.dumitrascu@gmail.com
+          name = TudorAndrei
+      [github]
+          user = "TudorAndrei"
+      [url "personal"]
+          insteadOf = github.com
+    '';
+  };
+
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode.fhs;
+  };
+
+  stylix = {
+    enable = true;
+    image = ../bigsun.jpg;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    polarity = "dark";
+    fonts = {
+      serif.package = pkgs.nerdfonts;
+      serif.name = "CaskaydiaCove NF";
+
+      sansSerif.package = pkgs.nerdfonts;
+      sansSerif.name = "CaskaydiaCove NF";
+
+      monospace.package = pkgs.nerdfonts;
+      monospace.name = "CaskaydiaCove NF";
+
+      emoji.package = pkgs.noto-fonts-emoji;
+      emoji.name = "Noto Color Emoji";
+    };
   };
 }

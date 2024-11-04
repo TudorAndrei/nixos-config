@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
   tmux-ssh-split =
     pkgs.tmuxPlugins.mkTmuxPlugin
     {
@@ -14,10 +18,30 @@
 in {
   programs.tmux = {
     enable = true;
-    terminal = "tmux-256color";
+    terminal = "screen-256color";
+    keyMode = "vi";
     historyLimit = 100000;
     plugins = with pkgs; [
       tmuxPlugins.sensible
+      tmuxPlugins.prefix-highlight
+      tmuxPlugins.yank
+      tmuxPlugins.open
+      tmuxPlugins.mode-indicator
+      tmuxPlugins.vim-tmux-navigator
+      {
+        plugin = tmux-ssh-split;
+        extraConfig = ''
+          set-option -ga terminal-overrides ",*:Tc"
+
+            # set-option -g @ssh-split-keep-cwd "true"
+            # set-option -g @ssh-split-fail "false"
+            # set-option -g @ssh-split-no-shell "false"
+            # # set-option -g @ssh-split-strip-cmd "true"
+            # set-option -g @ssh-split-verbose "false"
+            # set-option -g @ssh-split-h-key "h"
+            # set-option -g @ssh-split-v-key "v"
+        '';
+      }
       {
         plugin = tmuxPlugins.resurrect;
         extraConfig = ''
@@ -27,40 +51,21 @@ in {
           set -g @resurrect-processes 'ssh'
         '';
       }
-      tmuxPlugins.prefix-highlight
-      tmuxPlugins.yank
-      tmuxPlugins.open
-      tmuxPlugins.mode-indicator
-      tmuxPlugins.vim-tmux-navigator
       {
         plugin = tmuxPlugins.continuum;
         extraConfig = ''
           set -g @continuum-restore 'on'
-        '';
-      }
-      {
-        plugin = tmux-ssh-split;
-        extraConfig = ''
-
-          # set-option -g @ssh-split-keep-cwd "true"
-          # set-option -g @ssh-split-fail "false"
-          # set-option -g @ssh-split-no-shell "false"
-          # # set-option -g @ssh-split-strip-cmd "true"
-          # set-option -g @ssh-split-verbose "false"
-          # set-option -g @ssh-split-h-key "h"
-          # set-option -g @ssh-split-v-key "v"
+          set -g @continuum-save-interval '1'
         '';
       }
     ];
     extraConfig = ''
-      BACKGROUND="#282a36"
-      SELECTION="#44475a"
-      COMMENT="#6272a4"
-
+      BACKGROUND="#${config.lib.stylix.colors.base00}"
+      SELCTION="#${config.lib.stylix.colors.base02}"
+      COMMENT="#${config.lib.stylix.colors.base03}"
       set -g base-index 1           # start windows numbering at 1
       setw -g pane-base-index 1     # make pane numbering consistent with windows
 
-      setw -g automatic-rename on   # rename window to reflect current program
       set -g renumber-windows on    # renumber windows when a window is closed
 
       unbind C-b
@@ -109,22 +114,14 @@ in {
 
       # Vi mode
       set-window-option -g status-keys vi
-      set-window-option -g mode-keys vi
 
       # Neovim fix cursor
       set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
 
-      # List of plugins
-
-
-
-      # Plugin settings
-
-
-      # DRACULA
       set -g focus-events on
       set -g status-justify absolute-centre
 
+      # DRACULA
       set -g status-interval 0
       set -g status on
       set -g status-left-length 80
