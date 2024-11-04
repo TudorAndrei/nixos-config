@@ -6,5 +6,6 @@
     ./alacritty
     ./tmux
     ./hyprland
+    ./redshift
   ];
 }
