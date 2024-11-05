@@ -99,6 +99,7 @@
       "$mainMod, M, exit,"
       "$mainMod, D, exec, $menu"
       "$mainMod, E, exec, $fileManager"
+      "$mainMod, F, fullscreen"
 
       "$mainMod_SHIFT, H, movewindow, l"
       "$mainMod_SHIFT, L, movewindow, r"

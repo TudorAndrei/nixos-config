@@ -248,4 +248,10 @@ return {
       enable_check_bracket_line = false,
     },
   },
+  {
+    "NvChad/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup({ "*" })
+    end,
+  },
 }

@@ -97,6 +97,7 @@ return {
         python = { "ruff_lsp" },
         lua = { "stylua" },
         yaml = { "yamlfmt" },
+        nix = { "nix-fmt" },
       },
     },
   },

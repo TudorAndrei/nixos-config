@@ -3,18 +3,16 @@
   config,
   ...
 }: let
-  tmux-ssh-split =
-    pkgs.tmuxPlugins.mkTmuxPlugin
-    {
-      pluginName = "tmux-ssh-split";
-      version = "unstable-2024-10-27";
-      src = pkgs.fetchFromGitHub {
-        owner = "pschmitt";
-        repo = "tmux-ssh-split";
-        rev = "4c5f1476fe214a25ecc7d2701e8c08a3a3014d93";
-        sha256 = "sha256-KuVHkuF13WZAS3NU0WSaPBZytY78wV0Ti1Va7+LXXoQ=";
-      };
+  tmux-ssh-split = pkgs.tmuxPlugins.mkTmuxPlugin {
+    pluginName = "tmux-ssh-split";
+    version = "unstable-2024-10-27";
+    src = pkgs.fetchFromGitHub {
+      owner = "pschmitt";
+      repo = "tmux-ssh-split";
+      rev = "4c5f1476fe214a25ecc7d2701e8c08a3a3014d93";
+      sha256 = "sha256-KuVHkuF13WZAS3NU0WSaPBZytY78wV0Ti1Va7+LXXoQ=";
     };
+  };
 in {
   programs.tmux = {
     enable = true;
@@ -32,20 +30,11 @@ in {
         plugin = tmux-ssh-split;
         extraConfig = ''
           set-option -ga terminal-overrides ",*:Tc"
-
-            # set-option -g @ssh-split-keep-cwd "true"
-            # set-option -g @ssh-split-fail "false"
-            # set-option -g @ssh-split-no-shell "false"
-            # # set-option -g @ssh-split-strip-cmd "true"
-            # set-option -g @ssh-split-verbose "false"
-            # set-option -g @ssh-split-h-key "h"
-            # set-option -g @ssh-split-v-key "v"
         '';
       }
       {
         plugin = tmuxPlugins.resurrect;
         extraConfig = ''
-
           set -g @resurrect-strategy-nvim 'session'
           set -g @resurrect-capture-pane-contents 'on'
           set -g @resurrect-processes 'ssh'
@@ -60,14 +49,13 @@ in {
       }
     ];
     extraConfig = ''
-      BACKGROUND="#${config.lib.stylix.colors.base00}"
-      SELCTION="#${config.lib.stylix.colors.base02}"
-      COMMENT="#${config.lib.stylix.colors.base03}"
+      bind-key R run-shell ' \
+              tmux source-file ~/.config/tmux/tmux.conf > /dev/null; \
+              tmux display-message "sourced ~/.config/tmux/tmux.conf"'
 
-      set -g base-index 1           # start windows numbering at 1
-      setw -g pane-base-index 1     # make pane numbering consistent with windows
-
-      set -g renumber-windows on    # renumber windows when a window is closed
+      set -g base-index 1
+      setw -g pane-base-index 1
+      set -g renumber-windows on
 
       unbind C-b
       set -g prefix C-Space
@@ -77,16 +65,15 @@ in {
       set -g detach-on-destroy off
 
       # Split pane
-      unbind % # Split vertically
-      unbind '"' # Split horizontally
+      unbind %
+      unbind '"'
       unbind v
       unbind h
 
       bind v split-window -h -c "#{pane_current_path}"
       bind h split-window -v -c "#{pane_current_path}"
 
-
-      # decide whether we're in a Vim process
+      # Vim navigation
       is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
           | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
 
@@ -95,54 +82,57 @@ in {
       bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k' 'select-pane -U'
       bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l' 'select-pane -R'
 
-
-      # fzf session selector
+      # Session management
       bind l display-popup -E "\
           tmux list-sessions -F '#{?session_attached,,#{session_name}}' |\
           sed '/^$/d' |\
           fzf --reverse --header jump-to-session --preview 'tmux capture-pane -pt {}'  |\
           xargs tmux switch-client -t"
 
-      # move to last session
       bind Tab switch-client -l
 
-      # Cycle panes
+      # Window management
+      unbind n
+      unbind w
+      bind n command-prompt "rename-window '%%'"
+      bind w new-window -c "#{pane_current_path}"
 
-      unbind n  #DEFAULT KEY: Move to next window
-      unbind w  #DEFAULT KEY: change current window interactively
-      bind n command-prompt "rename-window '%%'" # rename window
-      bind w new-window -c "#{pane_current_path}" # make new window
-
-      # Vi mode
+      # Vi mode and terminal settings
       set-window-option -g status-keys vi
-
-      # Neovim fix cursor
       set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
-
       set -g focus-events on
-      set -g status-justify absolute-centre
 
-      # DRACULA
+      # Status bar styling
       set -g status-interval 0
       set -g status on
+      set -g status-justify absolute-centre
       set -g status-left-length 80
       set -g status-right-length 80
-      set -g status-style "fg=brightwhite, bg=$BACKGROUND,none"
-      set -g pane-border-style "fg=$SELECTION, bg=$BACKGROUND"
-      set -g pane-active-border-style "fg=$COMMENT, bg=$BACKGROUND"
-      set -g display-panes-colour black
-      set -g display-panes-active-colour brightblack
-      setw -g clock-mode-colour blue
-      set -g message-style "fg=brightwhite, bg=$COMMENT"
-      set -g message-command-style "fg=brightwhite, bg=$COMMENT"
 
-      # Window format
-      set -g window-status-format "#[fg=$BACKGROUND,bg=$COMMENT,nobold,noitalics,nounderscore] #[fg=brightwhite,bg=$COMMENT]#I#[fg=$BACKGROUND,bg=$COMMENT,nobold,noitalics,nounderscore] #[fg=brightwhite,bg=$COMMENT]#W "
-      set -g window-status-current-format "#[fg=$BACKGROUND,bg=blue,nobold,noitalics,nounderscore] #[fg=$BACKGROUND,bg=blue]#I#[fg=$BACKGROUND,bg=blue,nobold,noitalics,nounderscore] #[fg=$BACKGROUND,bg=blue]#W "
+      # Stylix color definitions
+      BG="#282A36"
+      FG="#F8F8F2"
+      SELECTION="#44475A"
+      COMMENT="#6272A4"
+      PURPLE="#BD93F9"
 
-      # set -g window-status-format "#[fg=$BACKGROUND,bg=$COMMENT,nobold,noitalics,nounderscore]#[fg=brightwhite,bg=$COMMENT]#I#[fg=$BACKGROUND,bg=$COMMENT,nobold,noitalics,nounderscore] #[fg=brightwhite,bg=$COMMENT]#W #[fg=$COMMENT,bg=$BACKGROUND,nobold,noitalics,nounderscore] "
-      # set -g window-status-current-format "#[fg=$BACKGROUND,bg=blue,nobold,noitalics,nounderscore] #[fg=$BACKGROUND,bg=blue]#I#[fg=$BACKGROUND,bg=blue,nobold,noitalics,nounderscore] #[fg=$BACKGROUND,bg=blue]#W #[fg=blue,bg=$BACKGROUND,nobold,noitalics,nounderscore] "
+      # Colors and styles
+      set -g status-style "fg=$FG,bg=$BG,none"
+      set -g pane-border-style "fg=$SELECTION,bg=$BG"
+      set -g pane-active-border-style "fg=$COMMENT,bg=$BG"
+      set -g display-panes-colour "$COMMENT"
+      set -g display-panes-active-colour "$PURPLE"
+      setw -g clock-mode-colour "$PURPLE"
+      set -g message-style "fg=$FG,bg=$SELECTION"
+      set -g message-command-style "fg=$FG,bg=$SELECTION"
+
+      set -g window-status-format "#[fg=$BG,bg=$COMMENT,nobold,noitalics,nounderscore] #[fg=$FG,bg=$COMMENT]#I#[fg=$BACKGROUND,bg=$COMMENT,nobold,noitalics,nounderscore] #[fg=$FG,bg=$COMMENT]#W "
+      set -g window-status-current-format "#[fg=$BG,bg=$PURPLE,nobold,noitalics,nounderscore] #[fg=$BG,bg=$PURPLE]#I#[fg=$BACKGROUND,bg=$PURPLE,nobold,noitalics,nounderscore] #[fg=$BG,bg=$PURPLE]#W "
       set -g window-status-separator ""
+
+      set -g status-left "#[fg=$BG,bg=$PURPLE,bold] #S #[fg=$PURPLE,bg=$COMMENT,nobold]"
+      set -g status-right "#[fg=$FG,bg=$COMMENT] #H #[fg=$COMMENT,bg=$BG,nobold]#[fg=$COMMENT,bg=$BG]#[fg=$FG,bg=$COMMENT] %Y-%m-%d #[fg=$PURPLE,bg=$COMMENT]#[fg=$BG,bg=$PURPLE,bold] %H:%M "
+    
     '';
   };
 }
