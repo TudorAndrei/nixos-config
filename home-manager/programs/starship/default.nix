@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs.starship = {
     enable = true;
     settings = {
@@ -10,11 +14,17 @@
       hostname.style = "bold #bd93f9";
 
       username = {
-        format = "\[[$user]($style)\]";
+        format = "\\[[$user]($style)\\]";
         style_user = "bold #8be9fd";
       };
       battery = {
         disabled = true;
+      };
+
+      directory = {
+        truncation_length = 5;
+        style = "bold #50fa7b";
+        format = "[$path]($style)[$lock_symbol]($lock_style) ";
       };
 
       custom = {

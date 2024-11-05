@@ -16,7 +16,7 @@
 in {
   programs.tmux = {
     enable = true;
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
     keyMode = "vi";
     historyLimit = 100000;
     plugins = with pkgs; [
@@ -132,7 +132,7 @@ in {
 
       set -g status-left "#[fg=$BG,bg=$PURPLE,bold] #S #[fg=$PURPLE,bg=$COMMENT,nobold]"
       set -g status-right "#[fg=$FG,bg=$COMMENT] #H #[fg=$COMMENT,bg=$BG,nobold]#[fg=$COMMENT,bg=$BG]#[fg=$FG,bg=$COMMENT] %Y-%m-%d #[fg=$PURPLE,bg=$COMMENT]#[fg=$BG,bg=$PURPLE,bold] %H:%M "
-    
+
     '';
   };
 }

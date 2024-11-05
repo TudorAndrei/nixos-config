@@ -27,13 +27,10 @@
     uv
     unzip
     signal-desktop
-    ripgrep
     arandr
     feh
     mpv
     libreoffice
-    btop
-    ripgrep
     fd
     zip
     unzip
@@ -63,12 +60,13 @@
     imagemagick
     anydesk
     pika-backup
+    grim
+    slurp
+    stremio
   ];
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
   home.file = {
-    # ".tmux.conf" = {source = ./tmux.conf;};
-    # ".config/alacritty/alacritty.toml" = {source = ./alacritty.toml;};
     ".config/nvim" = {
       source = ./nvim;
       recursive = true;
@@ -236,5 +234,8 @@
       emoji.package = pkgs.noto-fonts-emoji;
       emoji.name = "Noto Color Emoji";
     };
+  };
+  programs.btop = {
+    enable = true;
   };
 }

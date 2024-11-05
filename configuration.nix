@@ -34,17 +34,34 @@
       "rd.udev.log_level=3"
       "udev.log_priority=3"
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+      "nvidia-drm.modeset=1"
+      "nvidia.NVreg_UsePageAttributeTable=1"
+      "acpi_osi=Linux"
+      "acpi_osi=!Windows2020" # Prevents ACPI from using Windows-specific features
+      "acpi_backlight=vendor"
+      "nvidia-drm.modeset=1"
+      "amd_pstate=active" # Better AMD CPU power management
+      "pcie_aspm=off"
+      "iommu=pt"
+      "module_blacklist=nouveau"
     ];
     # Hide the OS choice for bootloaders.
     # It's still possible to open the bootloader list by pressing any key
     # It will just not appear on screen unless a key is pressed
+    kernelModules = [
+      "asus-nb-wmi"
+      "asus-wmi"
+      "btusb"
+    ];
+    extraModprobeConfig = ''
+      options btusb enable_autosuspend=n
+    '';
     loader = {
       systemd-boot.enable = true;
       timeout = 0;
       efi.canTouchEfiVariables = true;
     };
   };
-  boot.kernelPackages = pkgs.linuxPackages_latest;
   networking.hostName = "sparta"; # Define your hostname.
   #networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
@@ -129,8 +146,14 @@
     clean.extraArgs = "--keep-since 4d --keep 3";
     flake = "/home/tudor/nixos-config";
   };
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
+    # Add these for better NVIDIA Wayland support
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    LIBVA_DRIVER_NAME = "nvidia"; # For VAAPI
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -166,7 +189,7 @@
     "flakes"
   ];
   environment.systemPackages = with pkgs; [
-    pkgs.firefoxpwa
+    firefoxpwa
     wl-clipboard
     alsa-utils
     asusctl
@@ -201,6 +224,9 @@
     ghostscript
     clang
     graphviz
+    # ASUS
+    asusctl # ROG laptop controls
+    supergfxctl # Graphics switching utility
   ];
   programs.steam = {
     enable = true;
@@ -274,9 +300,17 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-  hardware.graphics.enable32Bit = true;
-  hardware.graphics.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
+  hardware.cpu.amd.updateMicrocode = true; # If you're using AMD CPU
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      vaapiVdpau
+      libvdpau-va-gl
+      nvidia-vaapi-driver
+    ];
+  };
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -285,12 +319,12 @@
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.production;
-  };
-
-  hardware.nvidia.prime = {
-    sync.enable = true;
-    nvidiaBusId = "PCI:1:0:0";
-    amdgpuBusId = "PCI:8:0:0";
+    forceFullCompositionPipeline = true; # Can help with tearing
+    prime = {
+      sync.enable = true;
+      nvidiaBusId = "PCI:1:0:0";
+      amdgpuBusId = "PCI:8:0:0";
+    };
   };
 
   services.kanata = {
@@ -332,8 +366,7 @@
   ];
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/atlas.yaml";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     polarity = "dark";
     fonts = {
       serif.package = pkgs.nerdfonts;
@@ -357,4 +390,26 @@
   services.gnome.gnome-keyring.enable = true;
   # Docker virtualisation.docker.enable = true;
   virtualisation.oci-containers.backend = "docker";
+  # ASUS
+  services.asusd = {
+    enable = true;
+    enableUserService = true; # Enable per-user control
+  };
+  services.power-profiles-daemon.enable = true;
+  services.thermald.enable = true;
+  services.acpid = {
+    enable = true;
+    logEvents = true;
+    handlers = {
+      # Add custom ACPI event handlers if needed
+      brightness-up = {
+        event = "video/brightnessup";
+        action = "${pkgs.asusctl}/bin/asusctl --brightness-up";
+      };
+      brightness-down = {
+        event = "video/brightnessdown";
+        action = "${pkgs.asusctl}/bin/asusctl --brightness-down";
+      };
+    };
+  };
 }

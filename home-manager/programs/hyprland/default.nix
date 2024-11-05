@@ -16,7 +16,6 @@
     exec-once = [
       "nm-applet"
       "waybar"
-      "hyprpaper "
       "firefox"
       "easyeffects"
     ];

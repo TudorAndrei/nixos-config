@@ -34,8 +34,8 @@
       sparta = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          stylix.nixosModules.stylix
           ./configuration.nix
+          stylix.nixosModules.stylix
         ];
       };
     };
@@ -44,8 +44,8 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          stylix.homeManagerModules.stylix
           ./home-manager/home.nix
+          stylix.homeManagerModules.stylix
         ];
       };
     };
