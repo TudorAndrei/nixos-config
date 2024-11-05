@@ -63,6 +63,7 @@ in {
       BACKGROUND="#${config.lib.stylix.colors.base00}"
       SELCTION="#${config.lib.stylix.colors.base02}"
       COMMENT="#${config.lib.stylix.colors.base03}"
+
       set -g base-index 1           # start windows numbering at 1
       setw -g pane-base-index 1     # make pane numbering consistent with windows
 

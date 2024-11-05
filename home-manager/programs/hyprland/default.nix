@@ -87,7 +87,7 @@
       "workspace 9, class:^signal$"
       "workspace 9, class:^discord$"
       # music
-      "workspace 0, class:^com.github.wwmm.easyeffects$"
+      "workspace 0, class:easyeffects"
       "workspace 0, class:Spotify.*$"
       "workspace 0, class:^strawberry$"
       "suppressevent maximize, class:.*"

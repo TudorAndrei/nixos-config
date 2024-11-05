@@ -164,6 +164,9 @@
       [includeIf "gitdir:~/pythia/"]
           path = ~/pythia/.gitconfig-pythia
 
+      [includeIf "gitdir:~/nixos-config//"]
+          path = ~/pythia/.gitconfig-pythia
+
       [includeIf "gitdir:~/cave/"]
           path = ~/cave/.gitconfig-cave
 
@@ -197,6 +200,8 @@
       [user]
           name = TudorAndrei-Pythia
           email = tudor@pythia.social
+      [url "work"]
+          insteadOf = github.com
     '';
   };
 
@@ -205,10 +210,6 @@
       [user]
           email = tudorandrei.dumitrascu@gmail.com
           name = TudorAndrei
-      [github]
-          user = "TudorAndrei"
-      [url "personal"]
-          insteadOf = github.com
     '';
   };
 
