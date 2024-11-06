@@ -1,6 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   inputs,
   config,
@@ -22,7 +19,6 @@
       ];
     };
 
-    # Enable "Silent Boot"
     consoleLogLevel = 0;
     initrd.verbose = false;
     kernelParams = [
@@ -33,21 +29,18 @@
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
-      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-      "nvidia-drm.modeset=1"
-      "nvidia.NVreg_UsePageAttributeTable=1"
-      "acpi_osi=Linux"
-      "acpi_osi=!Windows2020" # Prevents ACPI from using Windows-specific features
-      "acpi_backlight=vendor"
-      "nvidia-drm.modeset=1"
-      "amd_pstate=active" # Better AMD CPU power management
+      "amd_pstate=active"
       "pcie_aspm=off"
       "iommu=pt"
+      "acpi=force"
+      "acpi_backlight=vendor"
+      "acpi_enforce_resources=lax"
+
       "module_blacklist=nouveau"
+      "nvidia-drm.modeset=1"
+      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+      "nvidia.NVreg_UsePageAttributeTable=1"
     ];
-    # Hide the OS choice for bootloaders.
-    # It's still possible to open the bootloader list by pressing any key
-    # It will just not appear on screen unless a key is pressed
     kernelModules = [
       "asus-nb-wmi"
       "asus-wmi"
@@ -101,9 +94,13 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm = {
+    enable = true;
+    wayland = true;
+    debug = false;
+  };
   services.xserver.desktopManager.gnome.enable = true;
-
+  security.pam.services.gdm.enableGnomeKeyring = true;
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -269,23 +266,6 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
   #
-  hardware = {
-    pulseaudio = {
-      enable = false;
-      extraModules = [pkgs.pulseaudio-modules-bt];
-    };
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-      settings = {
-        General = {
-          Experimental = "true";
-          FastConnectable = "true";
-        };
-      };
-    };
-  };
-  services.blueman.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -301,29 +281,48 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
   services.xserver.videoDrivers = ["nvidia"];
-  hardware.cpu.amd.updateMicrocode = true; # If you're using AMD CPU
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    extraPackages = with pkgs; [
-      vaapiVdpau
-      libvdpau-va-gl
-      nvidia-vaapi-driver
-    ];
-  };
+  services.blueman.enable = true;
+  # hardware.cpu.amd.updateMicrocode = true; # If you're using AMD CPU
+  hardware = {
+    pulseaudio = {
+      enable = false;
+      extraModules = [pkgs.pulseaudio-modules-bt];
+    };
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings = {
+        General = {
+          Experimental = "true";
+          FastConnectable = "true";
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
+    };
 
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-    forceFullCompositionPipeline = true; # Can help with tearing
-    prime = {
-      sync.enable = true;
-      nvidiaBusId = "PCI:1:0:0";
-      amdgpuBusId = "PCI:8:0:0";
+    firmware = [pkgs.linux-firmware];
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+        nvidia-vaapi-driver
+      ];
+    };
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = true;
+      powerManagement.finegrained = false;
+      open = false;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
+      forceFullCompositionPipeline = true; # Can help with tearing
+      prime = {
+        sync.enable = true;
+        nvidiaBusId = "PCI:1:0:0";
+        amdgpuBusId = "PCI:8:0:0";
+      };
     };
   };
 

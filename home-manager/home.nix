@@ -128,6 +128,7 @@
       nhs = "nh home switch";
       nos = "nh os switch";
       n = "nvim";
+      ff = "fastfetch";
       afz = "alias | fzf";
       speedtest = "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -";
       bigfiles = "du -hs $(ls -A) | sort -rh | head -5";
