@@ -71,6 +71,18 @@
     "8.8.4.4"
   ];
   networking.networkmanager.wifi.powersave = true;
+  networking.wireless.iwd.enable = true;
+  {
+    networking.wireless.iwd.settings = {
+      IPv6 = {
+        Enabled = true;
+      };
+      Settings = {
+        AutoConnect = true;
+      };
+    };
+  }
+  networking.networkmanager.wifi.backend = "iwd";
   users.defaultUserShell = pkgs.zsh;
   # Set your time zone.
   time.timeZone = "Europe/Bucharest";
