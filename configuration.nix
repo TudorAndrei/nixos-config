@@ -56,33 +56,20 @@
     };
   };
   networking.hostName = "sparta"; # Define your hostname.
-  #networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-  networking.nameservers = [
-    "1.1.1.1"
-    "1.0.0.1"
-    "8.8.8.8"
-    "8.8.4.4"
-  ];
-  networking.networkmanager.wifi.powersave = true;
-  networking.wireless.iwd.enable = true;
-  {
-    networking.wireless.iwd.settings = {
-      IPv6 = {
-        Enabled = true;
-      };
-      Settings = {
-        AutoConnect = true;
-      };
+  # Networking
+  networking = {
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+      "8.8.8.8"
+      "8.8.4.4"
+    ];
+    networkmanager = {
+      enable = true;
+      wifi.powersave = false;
     };
-  }
-  networking.networkmanager.wifi.backend = "iwd";
+  };
   users.defaultUserShell = pkgs.zsh;
   # Set your time zone.
   time.timeZone = "Europe/Bucharest";

@@ -50,7 +50,6 @@
     strawberry-qt6
     eza
     lazydocker
-    overskride
     wdisplays
     localsend
     spotify
@@ -63,6 +62,7 @@
     grim
     slurp
     stremio
+    networkmanagerapplet
   ];
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
