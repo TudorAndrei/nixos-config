@@ -63,6 +63,15 @@
     slurp
     stremio
     networkmanagerapplet
+    pandoc
+    transmission_4-gtk
+    mongodb-compass
+    (pkgs.obsidian.override {
+      electron = pkgs.electron.overrideAttrs (oldAttrs: {
+        meta = oldAttrs.meta // {flags = ["--enable-features=UseOzonePlatform" "--ozone-platform=wayland"];};
+      });
+    })
+    libsForQt5.okular
   ];
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
@@ -239,4 +248,13 @@
   programs.btop = {
     enable = true;
   };
+
+  home.sessionVariables = {
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    OBSIDIAN_USE_WAYLAND = "1";
+  };
+
+  programs.texlive = {
+      enable = true;
+    };
 }

@@ -25,6 +25,7 @@
         order = ["Google" "DuckDuckGo"];
       };
       settings = {
+        "gfx.webrender.all" = true;
         "browser.startup.homepage" = "about:home";
 
         # Disable irritating first-run stuff

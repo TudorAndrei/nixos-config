@@ -145,10 +145,13 @@
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
-    # Add these for better NVIDIA Wayland support
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    LIBVA_DRIVER_NAME = "nvidia"; # For VAAPI
+    LIBVA_DRIVER_NAME = "nvidia";
+    EGL_PLATFORM = "wayland";
+    MOZ_DISABLE_RDD_SANDBOX = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    OBSIDIAN_USE_WAYLAND = "1";
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -223,6 +226,7 @@
     # ASUS
     asusctl # ROG laptop controls
     supergfxctl # Graphics switching utility
+    ffmpeg
   ];
   programs.steam = {
     enable = true;
@@ -294,7 +298,9 @@
         General = {
           Experimental = "true";
           FastConnectable = "true";
-          Enable = "Source,Sink,Media,Socket";
+          ReconnectAttempts = "7";
+          ReconnectIntervals= "1, 2, 3";
+          AutoEnable = "true";
         };
       };
     };
@@ -302,12 +308,6 @@
     firmware = [pkgs.linux-firmware];
     graphics = {
       enable = true;
-      enable32Bit = true;
-      extraPackages = with pkgs; [
-        vaapiVdpau
-        libvdpau-va-gl
-        nvidia-vaapi-driver
-      ];
     };
     nvidia = {
       modesetting.enable = true;

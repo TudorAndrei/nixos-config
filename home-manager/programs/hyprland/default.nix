@@ -86,9 +86,9 @@
       "workspace 9, class:^signal$"
       "workspace 9, class:^discord$"
       # music
-      "workspace 0, title:^Easy Effects$"
-      "workspace 0, class:Spotify.*$"
-      "workspace 0, class:^strawberry$"
+      "workspace 10, initialClass:easyeffects"
+      "workspace 10, class:Spotify"
+      "workspace 10, class:^strawberry$"
       "suppressevent maximize, class:.*"
     ];
 
@@ -148,6 +148,9 @@
       ", XF86AudioPause, exec, playerctl play-pause"
       ", XF86AudioPlay, exec, playerctl play-pause"
       ", XF86AudioPrev, exec, playerctl previous"
+    ];
+    bindm = [
+    "$mainMod, mouse:272, movewindow"
     ];
   };
 }
