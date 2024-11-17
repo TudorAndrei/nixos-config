@@ -6,9 +6,9 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       setup = {
-        ruff_lsp = function()
+        ruff = function()
           LazyVim.lsp.on_attach(function(client, _)
-            if client.name == "ruff_lsp" then
+            if client.name == "ruff" then
               -- Disable hover in favor of Pyright
               client.server_capabilities.hoverProvider = false
             end
@@ -46,8 +46,8 @@ return {
         tsserver = {},
         yamlls = {},
         biome = {},
-        ruff_lsp = {
-          -- ruff = {
+        -- ruff_lsp = {
+        ruff = {
           keys = {
             {
               "<leader>co",
@@ -94,7 +94,7 @@ return {
         html = { "djlint", "rustywind" },
         jinja = { "djlint", "rustywind" },
         css = { "prettierd" },
-        python = { "ruff_lsp" },
+        python = { "ruff" },
         lua = { "stylua" },
         yaml = { "yamlfmt" },
         nix = { "nix-fmt" },

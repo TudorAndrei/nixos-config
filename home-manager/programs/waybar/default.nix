@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   programs.waybar = {
     enable = true;
+    systemd.enable = true;
     package = pkgs.waybar;
     settings = {
       mainBar = {
@@ -114,8 +115,8 @@
         "bluetooth" = {
           format = "󰂯";
           format-disabled = "󰂲";
-          format-connected = "󰂱 {device_alias}";
-          format-connected-battery = "󰂱 {device_alias} (󰥉 {device_battery_percentage}%)";
+          format-connected = "󰂱 {num_connections}";
+          # format-connected-battery = "󰂱 {device_alias} (󰥉 {device_battery_percentage}%)";
           # // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
           tooltip-format = "{controller_alias}\t{controller_address} ({status})\n\n{num_connections} connected";
           tooltip-format-disabled = "bluetooth off";
@@ -127,7 +128,7 @@
         };
         "network" = {
           format = "󰤭 ";
-          format-wifi = "{essid} {icon} ({signalStrength}%)";
+          format-wifi = "{icon} ({signalStrength}%)";
           format-icons = [
             "󰤯"
             "󰤟"

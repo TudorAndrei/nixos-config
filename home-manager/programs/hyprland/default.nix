@@ -15,7 +15,6 @@
     ];
     exec-once = [
       "nm-applet"
-      "waybar"
       "firefox"
       "easyeffects"
     ];
@@ -134,6 +133,7 @@
       "$mainMod SHIFT, S, movetoworkspace, special:magic"
       "$mainMod SHIFT, comma, movecurrentworkspacetomonitor, l"
       "$mainMod SHIFT, period, movecurrentworkspacetomonitor, r"
+      "$mainMod SHIFT, F, togglefloating,"
     ];
     bindel = [
       ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
@@ -150,7 +150,8 @@
       ", XF86AudioPrev, exec, playerctl previous"
     ];
     bindm = [
-    "$mainMod, mouse:272, movewindow"
+      "$mainMod, mouse:272, movewindow"
+      "$mainMod, mouse:273, resizewindow"
     ];
   };
 }

@@ -27,6 +27,7 @@
       settings = {
         "gfx.webrender.all" = true;
         "browser.startup.homepage" = "about:home";
+        "widget.wayland.fractional-scale.enabled" = true;
 
         # Disable irritating first-run stuff
         "browser.disableResetPrompt" = true;

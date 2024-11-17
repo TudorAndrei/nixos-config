@@ -165,6 +165,7 @@
       "networkmanager"
       "wheel"
       "audio"
+      "docker"
     ];
   };
 
@@ -199,8 +200,8 @@
     vim
     home-manager
     nvitop
-    btop
     kanata
+    htop-vim
     go
     nodejs_20
     stdenv.cc.cc
@@ -299,7 +300,7 @@
           Experimental = "true";
           FastConnectable = "true";
           ReconnectAttempts = "7";
-          ReconnectIntervals= "1, 2, 3";
+          ReconnectIntervals = "1, 2, 3";
           AutoEnable = "true";
         };
       };
@@ -308,6 +309,16 @@
     firmware = [pkgs.linux-firmware];
     graphics = {
       enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau
+        libvdpau-va-gl
+        nvidia-vaapi-driver
+        vdpauinfo
+        libva
+        libva-utils
+      ];
     };
     nvidia = {
       modesetting.enable = true;
@@ -318,7 +329,10 @@
       package = config.boot.kernelPackages.nvidiaPackages.production;
       forceFullCompositionPipeline = true; # Can help with tearing
       prime = {
-        sync.enable = true;
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
         nvidiaBusId = "PCI:1:0:0";
         amdgpuBusId = "PCI:8:0:0";
       };
@@ -386,8 +400,8 @@
     };
   };
   services.gnome.gnome-keyring.enable = true;
-  # Docker virtualisation.docker.enable = true;
   virtualisation.oci-containers.backend = "docker";
+  virtualisation.docker.enable = true;
   # ASUS
   services.asusd = {
     enable = true;
@@ -409,5 +423,11 @@
         action = "${pkgs.asusctl}/bin/asusctl --brightness-down";
       };
     };
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
   };
 }

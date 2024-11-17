@@ -38,8 +38,13 @@
     strawberry-qt6
     discord
     slack
+    # Games
     lutris
     protonup-qt
+    winetricks
+    wineWowPackages.waylandFull
+    brave
+
     wofi
     tmux
     pavucontrol
@@ -57,14 +62,19 @@
     jq
     yt-dlp
     imagemagick
+    btop
+    julia_19-bin
+    bruno
     anydesk
     pika-backup
     grim
     slurp
+    beets
     stremio
     networkmanagerapplet
     pandoc
     transmission_4-gtk
+    opustags
     mongodb-compass
     (pkgs.obsidian.override {
       electron = pkgs.electron.overrideAttrs (oldAttrs: {
@@ -75,11 +85,13 @@
   ];
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
-  home.file = {
-    ".config/nvim" = {
-      source = ./nvim;
+  xdg.configFile = {
+    "nvim" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home-manager/nvim";
       recursive = true;
     };
+    "nvim/init.lua".enable = false;
+    # "Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home-manager/vscode/settings.json";
   };
 
   programs.starship.enable = true;
@@ -148,6 +160,7 @@
       dcd = "docker compose down";
       rwb = "killall -SIGUSR2 .waybar-wrapped";
       rhl = "hyprctl reload";
+      ".." = "cd ..";
       # GPU
       gput = "python -c 'import torch;print(torch.cuda.is_available())'";
       gputf = "python -c 'import tensorflow as tf;tf.config.list_physical_devices()'";
@@ -223,7 +236,10 @@
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode.fhs;
+    package = pkgs.vscode-fhs;
+    userSettings = {
+      "workbench.colorTheme" = "Stylix";
+    };
   };
 
   stylix = {
@@ -245,9 +261,6 @@
       emoji.name = "Noto Color Emoji";
     };
   };
-  programs.btop = {
-    enable = true;
-  };
 
   home.sessionVariables = {
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
@@ -255,6 +268,9 @@
   };
 
   programs.texlive = {
-      enable = true;
-    };
+    enable = true;
+  };
+  services.syncthing = {
+    enable = true;
+  };
 }
