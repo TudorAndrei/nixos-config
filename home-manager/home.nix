@@ -63,6 +63,10 @@
     yt-dlp
     imagemagick
     btop
+    czkawka
+    foliate
+    dust
+    calibre
     julia_19-bin
     bruno
     anydesk
@@ -76,6 +80,7 @@
     transmission_4-gtk
     opustags
     mongodb-compass
+    flameshot
     (pkgs.obsidian.override {
       electron = pkgs.electron.overrideAttrs (oldAttrs: {
         meta = oldAttrs.meta // {flags = ["--enable-features=UseOzonePlatform" "--ozone-platform=wayland"];};
