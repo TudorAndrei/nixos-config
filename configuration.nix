@@ -152,10 +152,6 @@
     MOZ_DISABLE_RDD_SANDBOX = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     OBSIDIAN_USE_WAYLAND = "1";
-
-    LD_LIBRARY_PATH = "${pkgs.graphviz}/lib:${config.home.sessionVariables.LD_LIBRARY_PATH}";
-    LDFLAGS = "-L${pkgs.graphviz}/lib";
-    CFLAGS = "-I${pkgs.graphviz}/include";
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -271,7 +267,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
   #
 
   # Open ports in the firewall.

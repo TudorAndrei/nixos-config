@@ -81,11 +81,6 @@
     opustags
     mongodb-compass
     flameshot
-    (pkgs.obsidian.override {
-      electron = pkgs.electron.overrideAttrs (oldAttrs: {
-        meta = oldAttrs.meta // {flags = ["--enable-features=UseOzonePlatform" "--ozone-platform=wayland"];};
-      });
-    })
     libsForQt5.okular
   ];
   # TODO: Link .config/easyeffects with nixos
@@ -270,6 +265,9 @@
   home.sessionVariables = {
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     OBSIDIAN_USE_WAYLAND = "1";
+    LD_LIBRARY_PATH = "${pkgs.graphviz}/lib";
+    LDFLAGS = "-L${pkgs.graphviz}/lib";
+    CFLAGS = "-I${pkgs.graphviz}/include";
   };
 
   programs.texlive = {
