@@ -92,8 +92,6 @@
     # "Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home-manager/vscode/settings.json";
   };
 
-  programs.starship.enable = true;
-
   programs.neovim = {
     enable = true;
     defaultEditor = true;
