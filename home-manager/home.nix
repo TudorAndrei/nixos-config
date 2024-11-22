@@ -106,7 +106,36 @@
     enable = true;
     userName = "TudorAndrei";
     userEmail = "tudorandrei.dumitrascu@gmail.com";
-    extraConfig.init.defaultBranch = "main";
+    extraConfig = {
+      init.defaultBranch = "main";
+      push.autoSetupRemote = true;
+      filter = {
+        clean = "git-lfs clean -- %f";
+        smudge = "git-lfs smudge -- %f";
+        process = "git-lfs filter-process";
+        required = true;
+      };
+      core.excludefile = "~/.gitignore_global";
+      github.user = "TudorAndrei";
+    };
+    includes = [
+      {
+        condition = "gitdir:~/pythia/";
+        path = "~/pythia/.gitconfig-pythia";
+      }
+    ];
+  };
+
+  home.file."pythia/.gitconfig-pythia" = {
+    text = ''
+      [user]
+          name = TudorAndrei-Pythia
+          email = tudor@pythia.social
+      [url "pythia"]
+          insteadOf = "git@github.com"
+      [github]
+          user = "TudorAndrei-Pythia"
+    '';
   };
 
   programs.zoxide.enable = true;
@@ -172,64 +201,6 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-  };
-
-  home.file.".gitconfig" = {
-    text = ''
-      [user]
-          name = TudorAndrei
-          email = tudorandrei.dumitrascu@gmail.com
-
-      [includeIf "gitdir:~/pythia/"]
-          path = ~/pythia/.gitconfig-pythia
-
-      [includeIf "gitdir:~/nixos-config//"]
-          path = ~/pythia/.gitconfig-pythia
-
-      [includeIf "gitdir:~/cave/"]
-          path = ~/cave/.gitconfig-cave
-
-      [init]
-          defaultBranch = main
-
-      [push]
-          autoSetupRemote = true
-
-      [filter "lfs"]
-          clean = git-lfs clean -- %f
-          smudge = git-lfs smudge -- %f
-          process = git-lfs filter-process
-          required = true
-
-      [core]
-          excludesfile = /home/tudor/.gitignore_global
-
-      [github]
-          user = "TudorAndrei"
-
-      [url "personal"]
-          insteadOf = github.com
-
-    '';
-    onChange = "git config --global --replace-all";
-  };
-
-  home.file."/home/tudor/pythia/.gitconfig-pythia" = {
-    text = ''
-      [user]
-          name = TudorAndrei-Pythia
-          email = tudor@pythia.social
-      [url "work"]
-          insteadOf = github.com
-    '';
-  };
-
-  home.file."/home/tudor/cave/.gitconfig-cave" = {
-    text = ''
-      [user]
-          email = tudorandrei.dumitrascu@gmail.com
-          name = TudorAndrei
-    '';
   };
 
   programs.vscode = {
