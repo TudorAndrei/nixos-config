@@ -43,8 +43,6 @@
     protonup-qt
     winetricks
     wineWowPackages.waylandFull
-    brave
-
     wofi
     tmux
     pavucontrol

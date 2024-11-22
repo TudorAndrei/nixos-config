@@ -31,8 +31,6 @@
           "battery"
           "cpu"
           # // "custom/notification",
-          # // "custom/logout_menu",
-          "custom/power"
         ];
         "hyprland/workspaces" = {
           all-output = true;
@@ -171,18 +169,6 @@
           icon-size = 14;
           tooltip = false;
           spacing = 10;
-        };
-        "custom/power" = {
-          format = "⏻ ";
-          tooltip = false;
-          menu = "on-click";
-          menu-file = "$HOME/.config/waybar/power_menu.xml";
-          menu-actions = {
-            shutdown = "shutdown";
-            reboot = "reboot";
-            suspend = "systemctl suspend";
-            hibernate = "systemctl hibernate";
-          };
         };
         "custom/weather" = {
           format = "{}°";
