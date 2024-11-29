@@ -206,6 +206,7 @@
     package = pkgs.vscode-fhs;
     userSettings = {
       "workbench.colorTheme" = "Stylix";
+      "update.mode" = "none";
     };
   };
 
