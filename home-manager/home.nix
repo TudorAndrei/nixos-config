@@ -83,13 +83,12 @@
   ];
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
-  xdg.configFile = {
+ xdg.configFile.  xdg.configFile = {
     "nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home-manager/nvim";
       recursive = true;
     };
     "nvim/init.lua".enable = false;
-    # "Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home-manager/vscode/settings.json";
   };
 
   programs.neovim = {
