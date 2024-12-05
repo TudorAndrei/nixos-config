@@ -80,10 +80,13 @@
     mongodb-compass
     flameshot
     libsForQt5.okular
+    racket
+    ocaml
+    rustlings
   ];
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
- xdg.configFile.  xdg.configFile = {
+  xdg.configFile = {
     "nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home-manager/nvim";
       recursive = true;
@@ -206,6 +209,8 @@
     userSettings = {
       "workbench.colorTheme" = "Stylix";
       "update.mode" = "none";
+      "workbench.statusBar.visible"= false;
+      "editor.formatOnSave"= true;
     };
   };
 
@@ -215,13 +220,13 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     polarity = "dark";
     fonts = {
-      serif.package = pkgs.nerdfonts;
+      serif.package = pkgs.nerd-fonts.caskaydia-cove;
       serif.name = "CaskaydiaCove NF";
 
-      sansSerif.package = pkgs.nerdfonts;
+      sansSerif.package = pkgs.nerd-fonts.caskaydia-cove;
       sansSerif.name = "CaskaydiaCove NF";
 
-      monospace.package = pkgs.nerdfonts;
+      monospace.package = pkgs.nerd-fonts.caskaydia-mono;
       monospace.name = "CaskaydiaCove NF";
 
       emoji.package = pkgs.noto-fonts-emoji;

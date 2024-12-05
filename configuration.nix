@@ -363,7 +363,9 @@
 
   programs.zsh.enable = true;
   fonts.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["FiraCode" "CascadiaCode"];})
+    pkgs.nerd-fonts.fira-code
+    pkgs.nerd-fonts.caskaydia-mono
+    pkgs.nerd-fonts.caskaydia-cove
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
@@ -380,13 +382,13 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     polarity = "dark";
     fonts = {
-      serif.package = pkgs.nerdfonts;
+      serif.package = pkgs.nerd-fonts.caskaydia-cove;
       serif.name = "CaskaydiaCove NF";
 
-      sansSerif.package = pkgs.nerdfonts;
+      sansSerif.package = pkgs.nerd-fonts.caskaydia-cove;
       sansSerif.name = "CaskaydiaCove NF";
 
-      monospace.package = pkgs.nerdfonts;
+      monospace.package = pkgs.nerd-fonts.caskaydia-mono;
       monospace.name = "CaskaydiaCove NF";
 
       emoji.package = pkgs.noto-fonts-emoji;
