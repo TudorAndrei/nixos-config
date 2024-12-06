@@ -244,9 +244,8 @@
     CFLAGS = "-I${pkgs.graphviz}/include";
   };
 
-  programs.texlive = {
-    enable = true;
-  };
+  programs.texlive.enable = true;
+
   services.syncthing = {
     enable = true;
   };

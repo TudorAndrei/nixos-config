@@ -1,4 +1,5 @@
 local pypath = vim.g.current_python_path
+local nixos_dir = "~/nixos-config/"
 
 return {
   { "lepture/vim-jinja" },
@@ -33,7 +34,30 @@ return {
             },
           },
         },
-        nixd = {},
+        nixd = {
+          settings = {
+            nixd = {
+              formatting = {
+                command = { "alejandra" },
+              },
+              nixpkgs = {
+                expr = string.format("(builtins.getFlake %s).inputs.nixpkgs", nixos_dir),
+              },
+              options = {
+                nixos = {
+                  expr = string.format("(builtins.getFlake %s).homeConfigurations.nixos.options", nixos_dir),
+                },
+                home_manager = {
+                  expr = string.format(
+                    "(builtins.getFlake %s).homeConfigurations.%s.options",
+                    nixos_dir,
+                    os.getenv("USER")
+                  ),
+                },
+              },
+            },
+          },
+        },
         jinja_lsp = {},
         clangd = {},
         docker_compose_language_service = {},
@@ -98,7 +122,6 @@ return {
         python = { "ruff" },
         lua = { "stylua" },
         yaml = { "yamlfmt" },
-        ["nix"] = { "alejandra" },
       },
     },
   },
