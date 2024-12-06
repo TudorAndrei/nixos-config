@@ -38,6 +38,8 @@
     strawberry-qt6
     discord
     slack
+    nixd
+    alejandra
     # Games
     lutris
     protonup-qt
@@ -209,8 +211,8 @@
     userSettings = {
       "workbench.colorTheme" = "Stylix";
       "update.mode" = "none";
-      "workbench.statusBar.visible"= false;
-      "editor.formatOnSave"= true;
+      "workbench.statusBar.visible" = false;
+      "editor.formatOnSave" = true;
     };
   };
 
@@ -247,5 +249,11 @@
   };
   services.syncthing = {
     enable = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true; # see note on other shells below
+    nix-direnv.enable = true;
   };
 }
