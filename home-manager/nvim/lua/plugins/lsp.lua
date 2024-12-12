@@ -41,11 +41,11 @@ return {
                 command = { "alejandra" },
               },
               nixpkgs = {
-                expr = string.format("(builtins.getFlake %s).inputs.nixpkgs", nixos_dir),
+                expr = string.format("import (builtins.getFlake %s).inputs.nixpkgs {}", nixos_dir),
               },
               options = {
                 nixos = {
-                  expr = string.format("(builtins.getFlake %s).homeConfigurations.nixos.options", nixos_dir),
+                  expr = string.format("(builtins.getFlake %s).nixosConfiguration.sparta.options", nixos_dir),
                 },
                 home_manager = {
                   expr = string.format(

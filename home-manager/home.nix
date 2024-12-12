@@ -19,6 +19,7 @@
 
   home.packages = with pkgs; [
     swaynotificationcenter
+    mangohud
     libnotify
     hyperfine
     alacritty
@@ -85,6 +86,7 @@
     racket
     ocaml
     rustlings
+    obsidian
   ];
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;

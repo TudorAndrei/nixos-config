@@ -2,11 +2,19 @@
   inputs,
   config,
   pkgs,
+  lib,
   ...
-}: {
+}: let
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec "$@"
+  '';
+in {
   imports = [./hardware-configuration.nix];
 
-  # Bootloader.
   boot = {
     plymouth = {
       enable = true;
@@ -189,6 +197,7 @@
     "flakes"
   ];
   environment.systemPackages = with pkgs; [
+    nvidia-offload
     firefoxpwa
     wl-clipboard
     alsa-utils
@@ -231,8 +240,9 @@
   ];
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true; # Steam Remote Play.
-    dedicatedServer.openFirewall = true; # Source Dedicated Server.
+    gamescopeSession.enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
   };
 
   programs.gamemode = {
@@ -328,10 +338,11 @@
       package = config.boot.kernelPackages.nvidiaPackages.production;
       forceFullCompositionPipeline = true; # Can help with tearing
       prime = {
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
+        # offload = {
+        #   enable = true;
+        #   enableOffloadCmd = lib.mkIf config.hardware.nvidia.prime.offload.enable true; # Provides `nvidia-offload` command.
+        # };
+        sync.enable = true;
         nvidiaBusId = "PCI:1:0:0";
         amdgpuBusId = "PCI:8:0:0";
       };

@@ -40,7 +40,7 @@
       };
     };
     homeConfigurations = {
-      "tudor@sparta" = home-manager.lib.homeManagerConfiguration {
+      "tudor" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [

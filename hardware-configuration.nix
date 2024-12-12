@@ -4,10 +4,11 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
-}: {
+}: let
+  kver = config.boot.kernelPackages.kernel.version;
+in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -44,5 +45,11 @@
   # networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  services.fstrim.enable = lib.mkDefault true;
+  services.tlp.enable =
+    lib.mkDefault ((lib.versionOlder (lib.versions.majorMinor lib.version) "21.05")
+      || !config.services.power-profiles-daemon.enable);
 }
