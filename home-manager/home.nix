@@ -1,12 +1,19 @@
 {
-  inputs,
-  outputs,
-  lib,
   config,
   pkgs,
   ...
 }: {
-  imports = [./programs];
+  imports = [
+    ./programs/firefox
+    ./programs/waybar
+    ./programs/waybar
+    ./programs/starship
+    ./programs/alacritty
+    ./programs/tmux
+    ./programs/hyprland
+    ./programs/gammastep
+    ./programs/R
+  ];
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -87,6 +94,7 @@
     ocaml
     rustlings
     obsidian
+    texlive.combined.scheme-full
   ];
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
@@ -245,8 +253,6 @@
     LDFLAGS = "-L${pkgs.graphviz}/lib";
     CFLAGS = "-I${pkgs.graphviz}/include";
   };
-
-  programs.texlive.enable = true;
 
   services.syncthing = {
     enable = true;
