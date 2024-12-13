@@ -6,9 +6,7 @@
   lib,
   modulesPath,
   ...
-}: let
-  kver = config.boot.kernelPackages.kernel.version;
-in {
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];

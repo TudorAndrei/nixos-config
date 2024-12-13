@@ -12,7 +12,6 @@
     ./programs/tmux
     ./programs/hyprland
     ./programs/gammastep
-    ./programs/R
   ];
   nixpkgs = {
     config = {
@@ -94,7 +93,7 @@
     ocaml
     rustlings
     obsidian
-    texlive.combined.scheme-full
+    typst
   ];
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;

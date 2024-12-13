@@ -17,6 +17,8 @@
       "nm-applet"
       "firefox"
       "easyeffects"
+      "rog-control-center"
+      "flameshot"
     ];
 
     general = {
