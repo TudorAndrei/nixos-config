@@ -237,6 +237,7 @@ in {
     asusctl # ROG laptop controls
     supergfxctl # Graphics switching utility
     ffmpeg
+    icu.dev
   ];
   programs.steam = {
     enable = true;
