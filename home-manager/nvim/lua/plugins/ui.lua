@@ -254,4 +254,5 @@ return {
       require("colorizer").setup({ "*" })
     end,
   },
+  { "nvimdev/dashboard-nvim", enabled = false },
 }

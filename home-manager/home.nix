@@ -12,6 +12,7 @@
     ./programs/tmux
     ./programs/hyprland
     ./programs/gammastep
+    ./programs/kanshi
   ];
   nixpkgs = {
     config = {
@@ -94,6 +95,8 @@
     rustlings
     obsidian
     typst
+    devenv
+    heroic
   ];
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
