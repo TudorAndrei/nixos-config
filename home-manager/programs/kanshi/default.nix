@@ -4,7 +4,7 @@
     systemdTarget = "hyprland-session.target";
     settings = [
       {
-        profile.name= "undocked";
+        profile.name = "undocked";
         profile.outputs = [
           {
             criteria = "eDP-1";
@@ -12,10 +12,10 @@
             status = "enable";
           }
         ];
-    }
-    {
-      profile.name="home";
-      profile.outputs = [
+      }
+      {
+        profile.name = "home";
+        profile.outputs = [
           {
             criteria = "LG Electronics LG ULTRAGEAR 0x00023FE9";
             position = "0,0";
@@ -26,9 +26,7 @@
             status = "disable";
           }
         ];
-    }
-  ];
-};
+      }
+    ];
+  };
 }
-
-
