@@ -46,7 +46,7 @@
     strawberry-qt6
     discord
     slack
-    nixd
+    nil
     alejandra
     # Games
     lutris
@@ -75,13 +75,11 @@
     foliate
     dust
     calibre
-    julia_19-bin
     bruno
     anydesk
     pika-backup
     grim
     slurp
-    beets
     stremio
     networkmanagerapplet
     pandoc
@@ -90,8 +88,6 @@
     mongodb-compass
     flameshot
     libsForQt5.okular
-    racket
-    ocaml
     rustlings
     obsidian
     typst

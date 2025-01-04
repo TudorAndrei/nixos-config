@@ -34,7 +34,7 @@ return {
             },
           },
         },
-        nixd = {
+        nixl = {
           settings = {
             nixd = {
               formatting = {

@@ -111,7 +111,6 @@ in {
     debug = false;
   };
   services.xserver.desktopManager.gnome.enable = true;
-  security.pam.services.gdm.enableGnomeKeyring = true;
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -122,7 +121,30 @@ in {
   services.printing.enable = true;
 
   # Enable sound with pipewire.
+  security.pam.services.gdm.enableGnomeKeyring = true;
   security.rtkit.enable = true;
+  security.sudo = {
+    enable = true;
+    extraRules = [
+      {
+        commands = [
+          {
+            command = "${pkgs.systemd}/bin/systemctl suspend";
+            options = ["NOPASSWD"];
+          }
+          {
+            command = "${pkgs.systemd}/bin/reboot";
+            options = ["NOPASSWD"];
+          }
+          {
+            command = "${pkgs.systemd}/bin/poweroff";
+            options = ["NOPASSWD"];
+          }
+        ];
+        groups = ["wheel"];
+      }
+    ];
+  };
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -205,7 +227,6 @@ in {
     firefoxpwa
     wl-clipboard
     alsa-utils
-    asusctl
     kitty
     wget
     curl
@@ -299,7 +320,7 @@ in {
   hardware.cpu.amd.updateMicrocode = true; # If you're using AMD CPU
   hardware = {
     pulseaudio = {
-      enable = lib.mkForce false;
+      enable = false;
       package = pkgs.pulseaudioFull; # Use extra Bluetooth codecs like aptX
 
       extraConfig = ''
@@ -429,75 +450,7 @@ in {
   services.supergfxd.enable = true;
   services.asusd = {
     enable = true;
-    enableUserService = true; # Enable per-user control
-    asusdConfig = ''
-      (
-            charge_control_end_threshold: 100,
-            panel_od: false,
-            boot_sound: false,
-            mini_led_mode: false,
-            disable_nvidia_powerd_on_battery: true,
-            ac_command: "",
-            bat_command: "",
-            throttle_policy_linked_epp: true,
-            throttle_policy_on_battery: Quiet,
-            change_throttle_policy_on_battery: true,
-            throttle_policy_on_ac: Balanced,
-            change_throttle_policy_on_ac: true,
-            throttle_quiet_epp: Power,
-            throttle_balanced_epp: BalancePower,
-            throttle_performance_epp: Performance,
-        )
-    '';
-
-    fanCurvesConfig = ''
-      (
-          profiles: (
-              balanced: [
-                  (
-                      fan: CPU,
-                      pwm: (5, 25, 66, 96, 114, 147, 170, 204),
-                      temp: (20, 54, 63, 66, 70, 73, 80, 95),
-                      enabled: true,
-                  ),
-                  (
-                      fan: GPU,
-                      pwm: (25, 45, 56, 81, 91, 124, 142, 173),
-                      temp: (55, 60, 63, 66, 70, 73, 80, 95),
-                      enabled: false,
-                  ),
-              ],
-              performance: [
-                  (
-                      fan: CPU,
-                      pwm: (5, 25, 79, 114, 147, 170, 204, 247),
-                      temp: (20, 49, 60, 63, 65, 68, 71, 80),
-                      enabled: true,
-                  ),
-                  (
-                      fan: GPU,
-                      pwm: (6, 56, 66, 91, 124, 142, 173, 204),
-                      temp: (48, 57, 60, 63, 65, 68, 71, 80),
-                      enabled: true,
-                  ),
-              ],
-              quiet: [
-                  (
-                      fan: CPU,
-                      pwm: (5, 25, 40, 53, 79, 107, 107, 147),
-                      temp: (20, 62, 71, 74, 77, 80, 80, 97),
-                      enabled: true,
-                  ),
-                  (
-                      fan: GPU,
-                      pwm: (2, 25, 35, 45, 66, 86, 86, 124),
-                      temp: (65, 68, 71, 74, 77, 80, 80, 97),
-                      enabled: false,
-                  ),
-              ],
-          ),
-        )
-    '';
+    enableUserService = true;
   };
   services.power-profiles-daemon.enable = true;
   services.thermald.enable = true;
@@ -521,5 +474,16 @@ in {
     enable = true;
     nssmdns4 = true;
     openFirewall = true;
+  };
+  services = {
+    logind = {
+      lidSwitch = "ignore";
+      lidSwitchDocked = "ignore";
+      lidSwitchExternalPower = "ignore";
+      extraConfig = ''
+        # don’t shutdown when power button is short-pressed
+        HandlePowerKey=ignore
+      '';
+    };
   };
 }
