@@ -94,6 +94,7 @@
     devenv
     heroic
   ];
+
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
   xdg.configFile = {

@@ -68,21 +68,24 @@
     };
 
     decoration = {
-      rounding = 10;
-
+      rounding = 5;
       # Change transparency of focused and unfocused windows
       active_opacity = 1.0;
       inactive_opacity = 1.0;
-
       # https://wiki.hyprland.org/Configuring/Variables/#blur
       blur = {
         enabled = false;
       };
+      shadow = {
+        enabled = false;
+      };
+    };
+    misc = {
+      vfr = true;
     };
     animations = {
       enabled = false;
     };
-
     dwindle = {
       pseudotile = true; # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
       preserve_split = true; # You probably want this
