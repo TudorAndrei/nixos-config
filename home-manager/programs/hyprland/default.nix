@@ -1,4 +1,4 @@
-{...}: {
+{inputs, pkgs, ...}: {
   services.hypridle = {
     enable = true;
     settings = {
@@ -33,6 +33,8 @@
     };
   };
   wayland.windowManager.hyprland.enable = true;
+  wayland.windowManager.hyprland.package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+
   wayland.windowManager.hyprland.settings = {
     "$terminal" = "alacritty";
     "$fileManager" = "nautilus";
