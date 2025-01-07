@@ -15,6 +15,13 @@
 in {
   imports = [./hardware-configuration.nix];
 
+  nix.extraOptions = ''
+    trusted-users = root tudor
+    extra-substituters = https://devenv.cachix.org
+    extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+  '';
+
+
   boot = {
     blacklistedKernelModules = ["k10temp"]; # Conflicts with zenpower
     extraModulePackages = with config.boot.kernelPackages; [zenpower];
@@ -486,4 +493,5 @@ in {
       '';
     };
   };
+  systemd.services.NetworkManager-wait-online.enable = false;
 }
