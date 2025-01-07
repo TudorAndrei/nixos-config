@@ -325,8 +325,7 @@ in {
   services.xserver.videoDrivers = ["nvidia"];
   services.blueman.enable = true;
   hardware.cpu.amd.updateMicrocode = true; # If you're using AMD CPU
-  hardware = {
-    pulseaudio = {
+  services.pulseaudio= {
       enable = false;
       package = pkgs.pulseaudioFull; # Use extra Bluetooth codecs like aptX
 
@@ -338,7 +337,8 @@ in {
       extraModules = [pkgs.pulseaudio-modules-bt];
 
       support32Bit = true;
-    };
+  };
+  hardware = {
     bluetooth = {
       enable = true;
       powerOnBoot = true;
