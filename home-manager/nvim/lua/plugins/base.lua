@@ -100,7 +100,6 @@ return {
     "dariuscorvus/tree-sitter-surrealdb.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-      -- setup step
       require("tree-sitter-surrealdb").setup()
     end,
   },
@@ -111,7 +110,6 @@ return {
       ensure_installed = {
         -- python
         "basedpyright",
-        -- "pyright",
         -- docker
         "hadolint",
         "json-lsp",
@@ -121,7 +119,6 @@ return {
         "djlint",
         "biome",
         "rustywind",
-        "tailwindcss-language-server",
         "jinja-lsp",
         "marksman",
         -- lua
