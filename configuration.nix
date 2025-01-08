@@ -370,17 +370,17 @@ in {
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = true;
-      powerManagement.finegrained = false;
+      powerManagement.finegrained = true;
       open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;
       forceFullCompositionPipeline = true; # Can help with tearing
       prime = {
-        # offload = {
-        #   enable = true;
-        #   enableOffloadCmd = lib.mkIf config.hardware.nvidia.prime.offload.enable true; # Provides `nvidia-offload` command.
-        # };
-        sync.enable = true;
+        offload = {
+          enable = true;
+          enableOffloadCmd = lib.mkIf config.hardware.nvidia.prime.offload.enable true; # Provides `nvidia-offload` command.
+        };
+        # sync.enable = true;
         nvidiaBusId = "PCI:1:0:0";
         amdgpuBusId = "PCI:8:0:0";
       };
