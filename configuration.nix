@@ -15,21 +15,26 @@
 in {
   imports = [./hardware-configuration.nix];
 
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
   nix.extraOptions = ''
     trusted-users = root tudor
     extra-substituters = https://devenv.cachix.org
     extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
   '';
 
+  nixpkgs.config.allowUnfree = true;
 
   boot = {
-    blacklistedKernelModules = ["k10temp"]; # Conflicts with zenpower
+    blacklistedKernelModules = ["k10temp"];
     extraModulePackages = with config.boot.kernelPackages; [zenpower];
     plymouth = {
       enable = true;
       theme = "rings";
       themePackages = with pkgs; [
-        # By default we would install all themes
         (adi1090x-plymouth-themes.override {
           selected_themes = ["rings"];
         })
@@ -74,10 +79,9 @@ in {
       efi.canTouchEfiVariables = true;
     };
   };
-  networking.hostName = "sparta"; # Define your hostname.
 
-  # Networking
   networking = {
+    hostName = "sparta";
     nameservers = [
       "1.1.1.1"
       "1.0.0.1"
@@ -90,12 +94,9 @@ in {
     };
   };
   users.defaultUserShell = pkgs.zsh;
-  # Set your time zone.
   time.timeZone = "Europe/Bucharest";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "ro_RO.UTF-8";
     LC_IDENTIFICATION = "ro_RO.UTF-8";
@@ -108,28 +109,6 @@ in {
     LC_TIME = "ro_RO.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm = {
-    enable = true;
-    wayland = true;
-    debug = false;
-  };
-  services.xserver.desktopManager.gnome.enable = true;
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  security.pam.services.gdm.enableGnomeKeyring = true;
-  security.rtkit.enable = true;
   security.sudo = {
     enable = true;
     extraRules = [
@@ -151,24 +130,10 @@ in {
         groups = ["wheel"];
       }
     ];
+    pam.services.gdm.enableGnomeKeyring = true;
+    rtkit.enable = true;
   };
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-    xwayland.enable = true;
-  };
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -176,12 +141,6 @@ in {
       xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
     ];
-  };
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/tudor/nixos-config";
   };
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
@@ -195,10 +154,6 @@ in {
     OBSIDIAN_USE_WAYLAND = "1";
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tudor = {
     isNormalUser = true;
     description = "tudor";
@@ -210,25 +165,6 @@ in {
     ];
   };
 
-  # Install firefox.
-  programs.firefox = {
-    enable = true;
-    package = pkgs.firefox;
-    nativeMessagingHosts.packages = [pkgs.firefoxpwa];
-  };
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile
-  #
-  nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-  };
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
   environment.systemPackages = with pkgs; [
     nvidia-offload
     firefoxpwa
@@ -266,79 +202,11 @@ in {
     ffmpeg
     icu.dev
   ];
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-  };
 
-  programs.gamemode = {
-    enable = true;
-    enableRenice = true;
-    settings = {
-      general = {
-        renice = -19;
-      };
-    };
-  };
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc
-    gcc
-    zlib
-    go
-    lua
-    ripgrep
-    fd
-    clang
-    rye
-  ];
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  system.stateVersion = "24.05";
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  #
-  services.upower.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
-  services.xserver.videoDrivers = ["nvidia"];
-  services.blueman.enable = true;
-  hardware.cpu.amd.updateMicrocode = true; # If you're using AMD CPU
-  services.pulseaudio= {
-      enable = false;
-      package = pkgs.pulseaudioFull; # Use extra Bluetooth codecs like aptX
-
-      extraConfig = ''
-        load-module module-bluetooth-discover
-        load-module module-bluetooth-policy
-        load-module module-switch-on-connect
-      '';
-      extraModules = [pkgs.pulseaudio-modules-bt];
-
-      support32Bit = true;
-  };
   hardware = {
+    cpu.amd.updateMicrocode = true; # If you're using AMD CPU
     bluetooth = {
       enable = true;
       powerOnBoot = true;
@@ -387,30 +255,6 @@ in {
     };
   };
 
-  services.kanata = {
-    enable = true;
-    keyboards = {
-      "logi".config = ''
-        (defsrc
-          grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-          tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-          caps a    s    d    f    g    h    j    k    l    ;    '    ret
-          lsft z    x    c    v    b    n    m    ,    .    /    rsft
-          lctl lmet lalt           spc            ralt rmet rctl
-        )
-
-        (deflayer swapcaps
-          grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-          tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-          esc a    s    d    f    g    h    j    k    l    ;    '    ret
-          lsft z    x    c    v    b    n    m    ,    .    /    rsft
-          lctl lmet lalt           spc            ralt rmet rctl
-        )
-      '';
-    };
-  };
-
-  programs.zsh.enable = true;
   fonts.packages = with pkgs; [
     pkgs.nerd-fonts.fira-code
     pkgs.nerd-fonts.caskaydia-mono
@@ -449,11 +293,10 @@ in {
       plymouth = {enable = false;};
     };
   };
-  services.gnome.gnome-keyring.enable = true;
   virtualisation.oci-containers.backend = "docker";
   virtualisation.docker.enable = true;
 
-  # ASUS
+  services.gnome.gnome-keyring.enable = true;
   services.supergfxd.enable = true;
   services.asusd = {
     enable = true;
@@ -476,7 +319,6 @@ in {
       };
     };
   };
-
   services.avahi = {
     enable = true;
     nssmdns4 = true;
@@ -494,4 +336,122 @@ in {
     };
   };
   systemd.services.NetworkManager-wait-online.enable = false;
+
+  services.xserver.videoDrivers = ["nvidia"];
+  services.blueman.enable = true;
+
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm = {
+    enable = true;
+    wayland = true;
+    debug = false;
+  };
+  # services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+
+  services.printing.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
+
+  services.openssh.enable = true;
+  services.upower.enable = true;
+  services.pulseaudio = {
+    enable = false;
+    package = pkgs.pulseaudioFull; # Use extra Bluetooth codecs like aptX
+
+    extraConfig = ''
+      load-module module-bluetooth-discover
+      load-module module-bluetooth-policy
+      load-module module-switch-on-connect
+    '';
+    extraModules = [pkgs.pulseaudio-modules-bt];
+
+    support32Bit = true;
+  };
+
+  services.kanata = {
+    enable = true;
+    keyboards = {
+      "logi".config = ''
+        (defsrc
+          grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+          tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+          caps a    s    d    f    g    h    j    k    l    ;    '    ret
+          lsft z    x    c    v    b    n    m    ,    .    /    rsft
+          lctl lmet lalt           spc            ralt rmet rctl
+        )
+
+        (deflayer swapcaps
+          grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+          tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+          esc a    s    d    f    g    h    j    k    l    ;    '    ret
+          lsft z    x    c    v    b    n    m    ,    .    /    rsft
+          lctl lmet lalt           spc            ralt rmet rctl
+        )
+      '';
+    };
+  };
+
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    xwayland.enable = true;
+  };
+
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/home/tudor/nixos-config";
+  };
+
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox;
+    nativeMessagingHosts.packages = [pkgs.firefoxpwa];
+  };
+
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
+
+  programs.gamemode = {
+    enable = true;
+    enableRenice = true;
+    settings = {
+      general = {
+        renice = -19;
+      };
+    };
+  };
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc
+    gcc
+    zlib
+    go
+    lua
+    ripgrep
+    fd
+    clang
+    rye
+  ];
+
+  programs.zsh.enable = true;
 }
