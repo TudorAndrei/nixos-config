@@ -109,6 +109,9 @@ in {
     LC_TIME = "ro_RO.UTF-8";
   };
 
+
+  security.pam.services.gdm.enableGnomeKeyring = true;
+  security.rtkit.enable = true;
   security.sudo = {
     enable = true;
     extraRules = [
@@ -130,8 +133,6 @@ in {
         groups = ["wheel"];
       }
     ];
-    pam.services.gdm.enableGnomeKeyring = true;
-    rtkit.enable = true;
   };
 
   xdg.portal = {
