@@ -129,7 +129,7 @@
       "workspace 9, class:^discord$"
       # music
       "workspace 10, class:com.github.wwmm.easyeffects"
-      "workspace 10, class:Spotify"
+      "workspace 10, class:spotify"
       "workspace 10, class:^strawberry$"
       "suppressevent maximize, class:.*"
     ];
