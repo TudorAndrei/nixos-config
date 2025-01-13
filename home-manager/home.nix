@@ -25,6 +25,8 @@
   home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
+    zoom-us
+    vdhcoapp
     swaynotificationcenter
     mangohud
     libnotify
@@ -46,7 +48,7 @@
     strawberry-qt6
     discord
     slack
-    nil
+    nixd
     alejandra
     # Games
     lutris

@@ -34,7 +34,7 @@ return {
             },
           },
         },
-        ["nil"] = {
+        nixd = {
           settings = {
             nixd = {
               formatting = {

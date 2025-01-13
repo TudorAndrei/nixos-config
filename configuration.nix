@@ -109,7 +109,6 @@ in {
     LC_TIME = "ro_RO.UTF-8";
   };
 
-
   security.pam.services.gdm.enableGnomeKeyring = true;
   security.rtkit.enable = true;
   security.sudo = {
@@ -160,6 +159,8 @@ in {
     description = "tudor";
     extraGroups = [
       "networkmanager"
+      "adbusers"
+      "kvm"
       "wheel"
       "audio"
       "docker"
@@ -297,7 +298,13 @@ in {
   virtualisation.oci-containers.backend = "docker";
   virtualisation.docker.enable = true;
 
+  services.udev.packages = [pkgs.android-udev-rules];
   services.gnome.gnome-keyring.enable = true;
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
+
   services.supergfxd.enable = true;
   services.asusd = {
     enable = true;
@@ -368,19 +375,19 @@ in {
 
   services.openssh.enable = true;
   services.upower.enable = true;
-  services.pulseaudio = {
-    enable = false;
-    package = pkgs.pulseaudioFull; # Use extra Bluetooth codecs like aptX
-
-    extraConfig = ''
-      load-module module-bluetooth-discover
-      load-module module-bluetooth-policy
-      load-module module-switch-on-connect
-    '';
-    extraModules = [pkgs.pulseaudio-modules-bt];
-
-    support32Bit = true;
-  };
+  # services.pulseaudio = {
+  #   enable = false;
+  #   package = pkgs.pulseaudioFull; # Use extra Bluetooth codecs like aptX
+  #
+  #   extraConfig = ''
+  #     load-module module-bluetooth-discover
+  #     load-module module-bluetooth-policy
+  #     load-module module-switch-on-connect
+  #   '';
+  #   extraModules = [pkgs.pulseaudio-modules-bt];
+  #
+  #   support32Bit = true;
+  # };
 
   services.kanata = {
     enable = true;

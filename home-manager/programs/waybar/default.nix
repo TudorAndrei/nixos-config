@@ -145,6 +145,7 @@
         };
         "pulseaudio" = {
           format = "{icon} {volume}%";
+          format-bluetooth = "{volume}% {icon}";
           tooltip = false;
           format-muted = " Muted";
           on-click = "pavucontrol";
@@ -164,6 +165,7 @@
               ""
             ];
           };
+          ignored-sinks = ["Easy Effects Sink"];
         };
         tray = {
           icon-size = 14;
