@@ -137,9 +137,8 @@ in {
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-gtk
+    extraPortals = [
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
     ];
   };
   environment.sessionVariables = {
@@ -159,8 +158,8 @@ in {
     description = "tudor";
     extraGroups = [
       "networkmanager"
-      "adbusers"
       "kvm"
+      "adbusers"
       "wheel"
       "audio"
       "docker"
