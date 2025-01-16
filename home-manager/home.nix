@@ -224,6 +224,7 @@
       "update.mode" = "none";
       "workbench.statusBar.visible" = false;
       "editor.formatOnSave" = true;
+      "remote.autoForwardPorts" = false;
     };
   };
 

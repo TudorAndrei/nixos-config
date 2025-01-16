@@ -205,7 +205,6 @@ in {
   ];
 
   system.stateVersion = "24.05";
-
   hardware = {
     cpu.amd.updateMicrocode = true; # If you're using AMD CPU
     bluetooth = {
