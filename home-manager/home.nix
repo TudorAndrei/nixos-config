@@ -95,6 +95,7 @@
     typst
     devenv
     heroic
+    dbeaver-bin
   ];
 
   # TODO: Link .config/easyeffects with nixos
@@ -225,6 +226,7 @@
       "workbench.statusBar.visible" = false;
       "editor.formatOnSave" = true;
       "remote.autoForwardPorts" = false;
+      "database-client.autoSync" = true;
     };
   };
 
