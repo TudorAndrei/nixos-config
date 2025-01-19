@@ -35,14 +35,14 @@
       sparta = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./configuration.nix
+          ./hosts/sparta/configuration.nix
           stylix.nixosModules.stylix
         ];
       };
       ark = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./hosts/sparta/configuration.nix
+          ./hosts/ark/configuration.nix
           stylix.nixosModules.stylix
         ];
       };
