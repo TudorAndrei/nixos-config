@@ -88,7 +88,6 @@
     transmission_4-gtk
     opustags
     mongodb-compass
-    flameshot
     libsForQt5.okular
     rustlings
     obsidian
@@ -261,6 +260,7 @@
   services.syncthing = {
     enable = true;
   };
+  services.flameshot.enable = true;
 
   programs.direnv = {
     enable = true;

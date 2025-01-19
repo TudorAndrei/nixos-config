@@ -56,7 +56,6 @@
       "nm-applet"
       "firefox"
       "easyeffects"
-      "flameshot"
     ];
 
     general = {

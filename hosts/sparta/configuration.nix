@@ -15,8 +15,9 @@
 in {
   imports = [./hardware-configuration.nix];
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
+    auto-optimise-store = true;
+    experimental-features = ["nix-command" "flakes"];
     substituters = ["https://hyprland.cachix.org"];
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
@@ -415,6 +416,7 @@ in {
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
+    withUWSM = true;
   };
 
   programs.nh = {

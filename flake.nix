@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,11 +21,11 @@
   } @ inputs: let
     inherit (self) outputs;
     systems = [
-      "aarch64-linux"
-      "i686-linux"
+      # "aarch64-linux"
+      # "i686-linux"
       "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
+      # "aarch64-darwin"
+      # "x86_64-darwin"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
@@ -35,6 +36,13 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./configuration.nix
+          stylix.nixosModules.stylix
+        ];
+      };
+      ark = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/sparta/configuration.nix
           stylix.nixosModules.stylix
         ];
       };
