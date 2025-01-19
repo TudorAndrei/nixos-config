@@ -380,27 +380,23 @@
         "hyprlang": "hyprlang",
         "hyprutils": "hyprutils",
         "hyprwayland-scanner": "hyprwayland-scanner",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs",
         "pre-commit-hooks": "pre-commit-hooks",
         "systems": "systems",
         "xdph": "xdph"
       },
       "locked": {
         "lastModified": 1737310896,
-        "narHash": "sha256-Y0s1jBm18Dl9HKpXsLG0fN9Co2IKoGqtriZ/2Vncv5s=",
-        "ref": "refs/heads/main",
+        "narHash": "sha256-SUnsf+pETM84bT1G0aPAle22Og6mZFf53rq0thVI2cg=",
+        "owner": "hyprwm",
+        "repo": "Hyprland",
         "rev": "407453166ce2a52433c7b0b4ee92a41e47ef8f6d",
-        "revCount": 5690,
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/hyprwm/Hyprland"
+        "type": "github"
       },
       "original": {
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/hyprwm/Hyprland"
+        "owner": "hyprwm",
+        "repo": "Hyprland",
+        "type": "github"
       }
     },
     "hyprland-protocols": {
@@ -538,6 +534,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1736012469,
+        "narHash": "sha256-/qlNWm/IEVVH7GfgAIyP6EsVZI6zjAx1cV5zNyrs+rI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8f3e1f807051e32d8c95cd12b9b421623850a34d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1737062831,
         "narHash": "sha256-Tbk1MZbtV2s5aG+iM99U8FqwxU/YNArMcWAv6clcsBc=",
         "owner": "nixos",
@@ -552,7 +564,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1736798957,
         "narHash": "sha256-qwpCtZhSsSNQtK4xYGzMiyEDhkNzOCz/Vfu4oL2ETsQ=",
@@ -595,7 +607,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "stylix": "stylix"
       }
     },
@@ -611,7 +623,7 @@
         "git-hooks": "git-hooks",
         "gnome-shell": "gnome-shell",
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "systems": "systems_2",
         "tinted-foot": "tinted-foot",
         "tinted-kitty": "tinted-kitty",
