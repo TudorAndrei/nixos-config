@@ -300,21 +300,21 @@ in {
   virtualisation.docker.enable = true;
 
   services = {
-    services.udev.packages = [pkgs.android-udev-rules];
-    services.gnome.gnome-keyring.enable = true;
-    services.ollama = {
+    udev.packages = [pkgs.android-udev-rules];
+    gnome.gnome-keyring.enable = true;
+    ollama = {
       enable = true;
       acceleration = "cuda";
     };
 
-    services.supergfxd.enable = true;
-    services.asusd = {
+    supergfxd.enable = true;
+    asusd = {
       enable = true;
       enableUserService = true;
     };
-    services.power-profiles-daemon.enable = true;
-    services.thermald.enable = true;
-    services.acpid = {
+    power-profiles-daemon.enable = true;
+    thermald.enable = true;
+    acpid = {
       enable = true;
       logEvents = true;
       handlers = {

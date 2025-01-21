@@ -19,83 +19,84 @@
       allowUnfree = true;
     };
   };
-  home.username = "tudor";
-  home.homeDirectory = "/home/tudor";
+  home = {
+    username = "tudor";
+    homeDirectory = "/home/tudor";
+    stateVersion = "23.11";
 
-  home.stateVersion = "23.11";
-
-  home.packages = with pkgs; [
-    zoom-us
-    vdhcoapp
-    swaynotificationcenter
-    mangohud
-    libnotify
-    hyperfine
-    alacritty
-    fnm
-    rye
-    uv
-    unzip
-    signal-desktop
-    arandr
-    feh
-    mpv
-    libreoffice
-    fd
-    zip
-    unzip
-    cargo
-    strawberry-qt6
-    discord
-    slack
-    nixd
-    alejandra
-    # Games
-    lutris
-    protonup-qt
-    winetricks
-    wineWowPackages.waylandFull
-    wofi
-    tmux
-    pavucontrol
-    zotero
-    pamixer
-    tree
-    fastfetch
-    strawberry-qt6
-    eza
-    lazydocker
-    wdisplays
-    localsend
-    spotify
-    wttrbar
-    jq
-    yt-dlp
-    imagemagick
-    btop
-    czkawka
-    foliate
-    dust
-    calibre
-    bruno
-    anydesk
-    pika-backup
-    grim
-    slurp
-    stremio
-    networkmanagerapplet
-    pandoc
-    transmission_4-gtk
-    opustags
-    mongodb-compass
-    libsForQt5.okular
-    rustlings
-    obsidian
-    typst
-    devenv
-    heroic
-    dbeaver-bin
-  ];
+    packages = with pkgs; [
+      zoom-us
+      vdhcoapp
+      swaynotificationcenter
+      mangohud
+      libnotify
+      hyperfine
+      alacritty
+      fnm
+      rye
+      uv
+      unzip
+      signal-desktop
+      arandr
+      feh
+      mpv
+      libreoffice
+      fd
+      zip
+      unzip
+      cargo
+      strawberry-qt6
+      discord
+      slack
+      nixd
+      alejandra
+      # Games
+      lutris
+      protonup-qt
+      winetricks
+      wineWowPackages.waylandFull
+      wofi
+      tmux
+      pavucontrol
+      zotero
+      pamixer
+      tree
+      fastfetch
+      strawberry-qt6
+      eza
+      lazydocker
+      wdisplays
+      localsend
+      spotify
+      wttrbar
+      jq
+      yt-dlp
+      imagemagick
+      btop
+      czkawka
+      foliate
+      dust
+      calibre
+      bruno
+      anydesk
+      pika-backup
+      grim
+      slurp
+      stremio
+      networkmanagerapplet
+      pandoc
+      transmission_4-gtk
+      opustags
+      mongodb-compass
+      libsForQt5.okular
+      rustlings
+      obsidian
+      typst
+      devenv
+      heroic
+      dbeaver-bin
+    ];
+  };
 
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
@@ -105,38 +106,6 @@
       recursive = true;
     };
     "nvim/init.lua".enable = false;
-  };
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-  };
-
-  programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-    userName = "TudorAndrei";
-    userEmail = "tudorandrei.dumitrascu@gmail.com";
-    extraConfig = {
-      init.defaultBranch = "main";
-      push.autoSetupRemote = true;
-      filter = {
-        clean = "git-lfs clean -- %f";
-        smudge = "git-lfs smudge -- %f";
-        process = "git-lfs filter-process";
-        required = true;
-      };
-      core.excludefile = "~/.gitignore_global";
-      github.user = "TudorAndrei";
-    };
-    includes = [
-      {
-        condition = "gitdir:~/pythia/";
-        path = "~/pythia/.gitconfig-pythia";
-      }
-    ];
   };
 
   home.file."pythia/.gitconfig-pythia" = {
@@ -151,67 +120,103 @@
     '';
   };
 
-  programs.zoxide.enable = true;
-  programs.zsh = {
-    # PERF: Use to debug performance
-    # zprof.enable=true;
-    enable = true;
-    syntaxHighlighting.enable = true;
-    antidote = {
+  programs = {
+    direnv = {
       enable = true;
-      plugins = [
-        ''
-          "zsh-users/zsh-history-substring-search"
-        ''
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+    };
+
+    home-manager.enable = true;
+    git = {
+      enable = true;
+      userName = "TudorAndrei";
+      userEmail = "tudorandrei.dumitrascu@gmail.com";
+      extraConfig = {
+        init.defaultBranch = "main";
+        push.autoSetupRemote = true;
+        filter = {
+          clean = "git-lfs clean -- %f";
+          smudge = "git-lfs smudge -- %f";
+          process = "git-lfs filter-process";
+          required = true;
+        };
+        core.excludefile = "~/.gitignore_global";
+        github.user = "TudorAndrei";
+      };
+      includes = [
+        {
+          condition = "gitdir:~/pythia/";
+          path = "~/pythia/.gitconfig-pythia";
+        }
       ];
     };
-    completionInit = ''
-      if [[ -n $(print ~/.zcompdump(Nmh+24)) ]] {
-        compinit
-      } else {
-        compinit -C
-      }
-    '';
-    initExtra = ''
-      pdfcompress ()
-      {
-        gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/screen -dEmbedAllFonts=true -dSubsetFonts=true -dColorImageDownsampleType=/Bicubic -dColorImageResolution=144 -dGrayImageDownsampleType=/Bicubic -dGrayImageResolution=144 -dMonoImageDownsampleType=/Bicubic -dMonoImageResolution=144 -sOutputFile=$\{1%.*\}.compressed.pdf $1;
-      }
-      screengrab() {
-        VIDDIR=$HOME/Videos/Screengrabs
-        [ ! -d "$VIDDIR" ] && mkdir "$VIDDIR"
-        RES=$(xrandr |grep \* | awk '{print $1}')
-        ffmpeg -y -f x11grab -video_size "$RES" -framerate 30 -i :0.0 -f pulse -ac 2 -i 0 -c:v libx264 -pix_fmt yuv420p -s "$RES" -preset ultrafast -c:a libfdk_aac -b:a 128k -threads 0 -strict normal -bufsize 2000k "$VIDDIR"/"$1".mp4
-      }
-    '';
-    shellAliases = {
-      update = "sudo nixos-rebuild switch --flake .#sparta";
-      nhs = "nh home switch";
-      nos = "nh os switch";
-      n = "nvim";
-      ff = "fastfetch";
-      afz = "alias | fzf";
-      speedtest = "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -";
-      bigfiles = "du -hs $(ls -A) | sort -rh | head -5";
-      k = "eza --long --git";
-      sv = "source .venv/bin/activate";
-      dcu = "docker compose up";
-      dcud = "docker compose up -d";
-      dcd = "docker compose down";
-      rwb = "killall -SIGUSR2 .waybar-wrapped";
-      rhl = "hyprctl reload";
-      ".." = "cd ..";
-      # GPU
-      gput = "python -c 'import torch;print(torch.cuda.is_available())'";
-      gputf = "python -c 'import tensorflow as tf;tf.config.list_physical_devices()'";
+    zoxide.enable = true;
+    zsh = {
+      # PERF: Use to debug performance
+      # zprof.enable=true;
+      enable = true;
+      syntaxHighlighting.enable = true;
+      antidote = {
+        enable = true;
+        plugins = [
+          ''
+            "zsh-users/zsh-history-substring-search"
+          ''
+        ];
+      };
+      completionInit = ''
+        if [[ -n $(print ~/.zcompdump(Nmh+24)) ]] {
+          compinit
+        } else {
+          compinit -C
+        }
+      '';
+      initExtra = ''
+          pdfcompress ()
+          {
+            gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/screen -dEmbedAllFonts=true -dSubsetFonts=true -dColorImageDownsampleType=/Bicubic -dColorImageResolution=144 -dGrayImageDownsampleType=/Bicubic -dGrayImageResolution=144 -dMonoImageDownsampleType=/Bicubic -dMonoImageResolution=144 -sOutputFile=$\{1%.*\}.compressed.pdf $1;
+          }
+        screengrab() {
+          VIDDIR=$HOME/Videos/Screengrabs
+            [ ! -d "$VIDDIR" ] && mkdir "$VIDDIR"
+            RES=$(xrandr |grep \* | awk '{print $1}')
+              ffmpeg -y -f x11grab -video_size "$RES" -framerate 30 -i :0.0 -f pulse -ac 2 -i 0 -c:v libx264 -pix_fmt yuv420p -s "$RES" -preset ultrafast -c:a libfdk_aac -b:a 128k -threads 0 -strict normal -bufsize 2000k "$VIDDIR"/"$1".mp4
+        }
+      '';
+      shellAliases = {
+        update = "sudo nixos-rebuild switch --flake .#sparta";
+        nhs = "nh home switch";
+        nos = "nh os switch";
+        n = "nvim";
+        ff = "fastfetch";
+        afz = "alias | fzf";
+        speedtest = "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -";
+        bigfiles = "du -hs $(ls -A) | sort -rh | head -5";
+        k = "eza --long --git";
+        sv = "source .venv/bin/activate";
+        dcu = "docker compose up";
+        dcud = "docker compose up -d";
+        dcd = "docker compose down";
+        rwb = "killall -SIGUSR2 .waybar-wrapped";
+        rhl = "hyprctl reload";
+        ".." = "cd ..";
+        # GPU
+        gput = "python -c 'import torch;print(torch.cuda.is_available())'";
+        gputf = "python -c 'import tensorflow as tf;tf.config.list_physical_devices()'";
+      };
+      history = {
+        size = 10000;
+        path = "${config.xdg.dataHome}/zsh/history";
+        share = true;
+      };
     };
-    history = {
-      size = 10000;
-      path = "${config.xdg.dataHome}/zsh/history";
-      share = true;
-    };
-  };
-  programs = {
     fzf = {
       enable = true;
       enableZshIntegration = true;
@@ -263,10 +268,4 @@
     enable = true;
   };
   services.flameshot.enable = true;
-
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    nix-direnv.enable = true;
-  };
 }

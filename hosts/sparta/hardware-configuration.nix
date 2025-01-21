@@ -11,13 +11,17 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd" "hid-apple"];
-  boot.extraModulePackages = [];
-  boot.extraModprobeConfig = ''
-    options hid_apple fnmode=0
-  '';
+  boot = {
+    initrd = {
+      availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
+      kernelModules = [];
+    };
+    kernelModules = ["kvm-amd" "hid-apple"];
+    extraModulePackages = [];
+    extraModprobeConfig = ''
+      options hid_apple fnmode=0
+    '';
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/8b9f33fc-7d86-4ea9-9777-06e175993942";

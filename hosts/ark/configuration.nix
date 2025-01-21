@@ -80,35 +80,32 @@
     LC_TELEPHONE = "ro_RO.UTF-8";
     LC_TIME = "ro_RO.UTF-8";
   };
-
-  security.pam.services.gdm.enableGnomeKeyring = true;
-  security.rtkit.enable = true;
-  security.sudo = {
-    enable = true;
-    extraRules = [
-      {
-        commands = [
-          {
-            command = "${pkgs.systemd}/bin/systemctl suspend";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "${pkgs.systemd}/bin/reboot";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "${pkgs.systemd}/bin/poweroff";
-            options = ["NOPASSWD"];
-          }
-        ];
-        groups = ["wheel"];
-      }
-    ];
+  security = {
+    pam.services.gdm.enableGnomeKeyring = true;
+    rtkit.enable = true;
+    sudo = {
+      enable = true;
+      extraRules = [
+        {
+          commands = [
+            {
+              command = "${pkgs.systemd}/bin/systemctl suspend";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "${pkgs.systemd}/bin/reboot";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "${pkgs.systemd}/bin/poweroff";
+              options = ["NOPASSWD"];
+            }
+          ];
+          groups = ["wheel"];
+        }
+      ];
+    };
   };
-  # Enable the X11 windowing system.
-
-  # Enable the GNOME Desktop Environment.
-
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -141,9 +138,6 @@
       "docker"
     ];
   };
-  # Enable CUPS to print documents.
-
-  # Enable sound with pipewire.
   hardware = {
     bluetooth = {
       enable = true;
