@@ -160,6 +160,7 @@
       extraPackages = with pkgs; [
         intel-media-driver
       ];
+      extraPackages32 = with pkgs.pkgsi686Linux; [intel-vaapi-driver];
     };
     nvidia = {
       modesetting.enable = true;
