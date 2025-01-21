@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   services.gammastep = {
     enable = true;
     provider = "manual";

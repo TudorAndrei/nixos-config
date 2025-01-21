@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
+{pkgs, ...}: let
   tmux-ssh-split = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "tmux-ssh-split";
     version = "unstable-2024-10-27";
