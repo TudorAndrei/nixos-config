@@ -211,21 +211,23 @@
       share = true;
     };
   };
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+  programs = {
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscode-fhs;
-    userSettings = {
-      "workbench.colorTheme" = "Stylix";
-      "update.mode" = "none";
-      "workbench.statusBar.visible" = false;
-      "editor.formatOnSave" = true;
-      "remote.autoForwardPorts" = false;
-      "database-client.autoSync" = true;
+    vscode = {
+      enable = true;
+      package = pkgs.vscode-fhs;
+      userSettings = {
+        "workbench.colorTheme" = "Stylix";
+        "update.mode" = "none";
+        "workbench.statusBar.visible" = false;
+        "editor.formatOnSave" = true;
+        "remote.autoForwardPorts" = false;
+        "database-client.autoSync" = true;
+      };
     };
   };
 

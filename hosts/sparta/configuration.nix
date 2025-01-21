@@ -110,29 +110,31 @@ in {
     LC_TIME = "ro_RO.UTF-8";
   };
 
-  security.pam.services.gdm.enableGnomeKeyring = true;
-  security.rtkit.enable = true;
-  security.sudo = {
-    enable = true;
-    extraRules = [
-      {
-        commands = [
-          {
-            command = "${pkgs.systemd}/bin/systemctl suspend";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "${pkgs.systemd}/bin/reboot";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "${pkgs.systemd}/bin/poweroff";
-            options = ["NOPASSWD"];
-          }
-        ];
-        groups = ["wheel"];
-      }
-    ];
+  security = {
+    pam.services.gdm.enableGnomeKeyring = true;
+    rtkit.enable = true;
+    sudo = {
+      enable = true;
+      extraRules = [
+        {
+          commands = [
+            {
+              command = "${pkgs.systemd}/bin/systemctl suspend";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "${pkgs.systemd}/bin/reboot";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "${pkgs.systemd}/bin/poweroff";
+              options = ["NOPASSWD"];
+            }
+          ];
+          groups = ["wheel"];
+        }
+      ];
+    };
   };
 
   xdg.portal = {
@@ -297,169 +299,148 @@ in {
   virtualisation.oci-containers.backend = "docker";
   virtualisation.docker.enable = true;
 
-  services.udev.packages = [pkgs.android-udev-rules];
-  services.gnome.gnome-keyring.enable = true;
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-  };
+  services = {
+    services.udev.packages = [pkgs.android-udev-rules];
+    services.gnome.gnome-keyring.enable = true;
+    services.ollama = {
+      enable = true;
+      acceleration = "cuda";
+    };
 
-  services.supergfxd.enable = true;
-  services.asusd = {
-    enable = true;
-    enableUserService = true;
-  };
-  services.power-profiles-daemon.enable = true;
-  services.thermald.enable = true;
-  services.acpid = {
-    enable = true;
-    logEvents = true;
-    handlers = {
-      # Add custom ACPI event handlers if needed
-      brightness-up = {
-        event = "video/brightnessup";
-        action = "${pkgs.asusctl}/bin/asusctl --brightness-up";
-      };
-      brightness-down = {
-        event = "video/brightnessdown";
-        action = "${pkgs.asusctl}/bin/asusctl --brightness-down";
+    services.supergfxd.enable = true;
+    services.asusd = {
+      enable = true;
+      enableUserService = true;
+    };
+    services.power-profiles-daemon.enable = true;
+    services.thermald.enable = true;
+    services.acpid = {
+      enable = true;
+      logEvents = true;
+      handlers = {
+        # Add custom ACPI event handlers if needed
+        brightness-up = {
+          event = "video/brightnessup";
+          action = "${pkgs.asusctl}/bin/asusctl --brightness-up";
+        };
+        brightness-down = {
+          event = "video/brightnessdown";
+          action = "${pkgs.asusctl}/bin/asusctl --brightness-down";
+        };
       };
     };
-  };
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-  services = {
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
     logind = {
       lidSwitch = "ignore";
       lidSwitchDocked = "ignore";
       lidSwitchExternalPower = "ignore";
       extraConfig = ''
         # don’t shutdown when power button is short-pressed
-        HandlePowerKey=ignore
+                HandlePowerKey=ignore
       '';
+    };
+    blueman.enable = true;
+
+    xserver = {
+      videoDrivers = ["nvidia"];
+      enable = true;
+      displayManager.gdm = {
+        enable = true;
+        wayland = true;
+        debug = false;
+      };
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+    };
+
+    printing.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+
+    openssh.enable = true;
+    upower.enable = true;
+    kanata = {
+      enable = true;
+      keyboards = {
+        "logi".config = ''
+          (defsrc
+           grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+           tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+           caps a    s    d    f    g    h    j    k    l    ;    '    ret
+           lsft z    x    c    v    b    n    m    ,    .    /    rsft
+           lctl lmet lalt           spc            ralt rmet rctl
+          )
+
+          (deflayer swapcaps
+           grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+           tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+           esc a    s    d    f    g    h    j    k    l    ;    '    ret
+           lsft z    x    c    v    b    n    m    ,    .    /    rsft
+           lctl lmet lalt           spc            ralt rmet rctl
+          )
+        '';
+      };
     };
   };
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  services.xserver.videoDrivers = ["nvidia"];
-  services.blueman.enable = true;
-
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm = {
-    enable = true;
-    wayland = true;
-    debug = false;
-  };
-  # services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  services.printing.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  services.openssh.enable = true;
-  services.upower.enable = true;
-  # services.pulseaudio = {
-  #   enable = false;
-  #   package = pkgs.pulseaudioFull; # Use extra Bluetooth codecs like aptX
-  #
-  #   extraConfig = ''
-  #     load-module module-bluetooth-discover
-  #     load-module module-bluetooth-policy
-  #     load-module module-switch-on-connect
-  #   '';
-  #   extraModules = [pkgs.pulseaudio-modules-bt];
-  #
-  #   support32Bit = true;
-  # };
-
-  services.kanata = {
-    enable = true;
-    keyboards = {
-      "logi".config = ''
-        (defsrc
-          grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-          tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-          caps a    s    d    f    g    h    j    k    l    ;    '    ret
-          lsft z    x    c    v    b    n    m    ,    .    /    rsft
-          lctl lmet lalt           spc            ralt rmet rctl
-        )
-
-        (deflayer swapcaps
-          grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-          tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-          esc a    s    d    f    g    h    j    k    l    ;    '    ret
-          lsft z    x    c    v    b    n    m    ,    .    /    rsft
-          lctl lmet lalt           spc            ralt rmet rctl
-        )
-      '';
+  programs = {
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      xwayland.enable = true;
+      withUWSM = true;
     };
-  };
-
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-    xwayland.enable = true;
-    withUWSM = true;
-  };
-
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/tudor/nixos-config";
-  };
-
-  programs.firefox = {
-    enable = true;
-    package = pkgs.firefox;
-    nativeMessagingHosts.packages = [pkgs.firefoxpwa];
-  };
-
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-  };
-
-  programs.gamemode = {
-    enable = true;
-    enableRenice = true;
-    settings = {
-      general = {
-        renice = -19;
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/tudor/nixos-config";
+    };
+    firefox = {
+      enable = true;
+      package = pkgs.firefox;
+      nativeMessagingHosts.packages = [pkgs.firefoxpwa];
+    };
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
+    gamemode = {
+      enable = true;
+      enableRenice = true;
+      settings = {
+        general = {
+          renice = -19;
+        };
       };
     };
+    nix-ld.enable = true;
+    nix-ld.libraries = with pkgs; [
+      stdenv.cc.cc
+      gcc
+      zlib
+      go
+      lua
+      ripgrep
+      fd
+      clang
+      rye
+    ];
+    zsh.enable = true;
   };
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc
-    gcc
-    zlib
-    go
-    lua
-    ripgrep
-    fd
-    clang
-    rye
-  ];
-
-  programs.zsh.enable = true;
 }

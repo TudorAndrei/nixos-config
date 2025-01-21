@@ -142,7 +142,6 @@
     ];
   };
   # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   hardware = {
@@ -231,17 +230,18 @@
   virtualisation.oci-containers.backend = "docker";
   virtualisation.docker.enable = true;
 
-  services.udev.packages = [pkgs.android-udev-rules];
-  services.gnome.gnome-keyring.enable = true;
-
-  services.power-profiles-daemon.enable = true;
-  services.thermald.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
   services = {
+    udev.packages = [pkgs.android-udev-rules];
+    gnome.gnome-keyring.enable = true;
+
+    power-profiles-daemon.enable = true;
+    thermald.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+    printing.enable = true;
     logind = {
       lidSwitch = "ignore";
       lidSwitchDocked = "ignore";
@@ -251,32 +251,54 @@
         HandlePowerKey=ignore
       '';
     };
-  };
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+      # use the example session manager (no others are packaged yet so this is enabled by default,
+      # no need to redefine it in your config for now)
+      #media-session.enable = true;
+    };
+    xserver.videoDrivers = ["nvidia"];
+    blueman.enable = true;
+
+    xserver.displayManager.gdm = {
+      enable = true;
+      wayland = true;
+      debug = false;
+    };
+
+    openssh.enable = true;
+    upower.enable = true;
+    kanata = {
+      enable = true;
+      keyboards = {
+        "logi".config = ''
+          (defsrc
+            grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+            tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+            caps a    s    d    f    g    h    j    k    l    ;    '    ret
+            lsft z    x    c    v    b    n    m    ,    .    /    rsft
+            lctl lmet lalt           spc            ralt rmet rctl
+          )
+
+          (deflayer swapcaps
+            grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+            tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+            esc a    s    d    f    g    h    j    k    l    ;    '    ret
+            lsft z    x    c    v    b    n    m    ,    .    /    rsft
+            lctl lmet lalt           spc            ralt rmet rctl
+          )
+        '';
+      };
+    };
   };
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  services.xserver.videoDrivers = ["nvidia"];
-  services.blueman.enable = true;
-
-  services.xserver.displayManager.gdm = {
-    enable = true;
-    wayland = true;
-    debug = false;
-  };
-
-  services.openssh.enable = true;
-  services.upower.enable = true;
   # Enable firefox.
 
   # Allow unfree packages
@@ -322,79 +344,58 @@
     icu.dev
   ];
 
-  services.kanata = {
-    enable = true;
-    keyboards = {
-      "logi".config = ''
-        (defsrc
-          grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-          tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-          caps a    s    d    f    g    h    j    k    l    ;    '    ret
-          lsft z    x    c    v    b    n    m    ,    .    /    rsft
-          lctl lmet lalt           spc            ralt rmet rctl
-        )
-
-        (deflayer swapcaps
-          grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-          tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-          esc a    s    d    f    g    h    j    k    l    ;    '    ret
-          lsft z    x    c    v    b    n    m    ,    .    /    rsft
-          lctl lmet lalt           spc            ralt rmet rctl
-        )
-      '';
+  programs = {
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      xwayland.enable = true;
+      withUWSM = true;
     };
-  };
 
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-    xwayland.enable = true;
-    withUWSM = true;
-  };
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/tudor/nixos-config";
+    };
 
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/tudor/nixos-config";
-  };
+    firefox = {
+      enable = true;
+      package = pkgs.firefox;
+      nativeMessagingHosts.packages = [pkgs.firefoxpwa];
+    };
 
-  programs.firefox = {
-    enable = true;
-    package = pkgs.firefox;
-    nativeMessagingHosts.packages = [pkgs.firefoxpwa];
-  };
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
 
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-  };
-
-  programs.gamemode = {
-    enable = true;
-    enableRenice = true;
-    settings = {
-      general = {
-        renice = -19;
+    gamemode = {
+      enable = true;
+      enableRenice = true;
+      settings = {
+        general = {
+          renice = -19;
+        };
       };
     };
-  };
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc
-    gcc
-    zlib
-    go
-    lua
-    ripgrep
-    fd
-    clang
-    rye
-  ];
+    nix-ld.enable = true;
+    nix-ld.libraries = with pkgs; [
+      stdenv.cc.cc
+      gcc
+      zlib
+      go
+      lua
+      ripgrep
+      fd
+      clang
+      rye
+    ];
 
-  programs.zsh.enable = true;
+    zsh.enable = true;
+  };
   system.stateVersion = "24.11"; # Did you read the comment?
 }
