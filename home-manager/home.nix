@@ -67,7 +67,6 @@
       jq
       yt-dlp
       imagemagick
-      btop
       czkawka
       foliate
       dust
@@ -147,6 +146,10 @@
   };
 
   programs = {
+    btop = {
+      enable = true;
+      package = pkgs.btop.override {cudaSupport = true;};
+    };
     direnv = {
       config = {
         global.hide_env_diff = true;
