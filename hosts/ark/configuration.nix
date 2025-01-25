@@ -25,7 +25,7 @@
   nixpkgs.config.allowUnfree = true;
   # Bootloader.
   boot = {
-    kernelParams = ["btusb.enable_autosuspend=n" "btusb.enable_autosuspend=0"];
+    kernelParams = ["btusb.enable_autosuspend=n"];
     plymouth = {
       enable = true;
       theme = "rings";
@@ -240,7 +240,7 @@
       lidSwitchDocked = "ignore";
       lidSwitchExternalPower = "ignore";
       extraConfig = ''
-        # don’t shutdown when power button is short-pressed
+        # don't shutdown when power button is short-pressed
         HandlePowerKey=ignore
       '';
     };

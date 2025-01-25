@@ -6,7 +6,6 @@
   imports = [
     ./programs/firefox
     ./programs/waybar
-    ./programs/waybar
     ./programs/starship
     ./programs/alacritty
     ./programs/tmux
@@ -35,7 +34,6 @@
       fnm
       rye
       uv
-      unzip
       signal-desktop
       arandr
       feh
@@ -43,9 +41,7 @@
       libreoffice
       fd
       zip
-      unzip
       cargo
-      strawberry-qt6
       discord
       slack
       nixd
@@ -62,7 +58,6 @@
       pamixer
       tree
       fastfetch
-      strawberry-qt6
       eza
       lazydocker
       wdisplays
@@ -95,6 +90,9 @@
       devenv
       heroic
       dbeaver-bin
+      code-cursor
+      unzip
+      strawberry
     ];
   };
 
@@ -108,6 +106,34 @@
     "nvim/init.lua".enable = false;
   };
 
+  home.file.".local/bin/update-system" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+      set -euo pipefail
+
+      echo "🔄 Updating flake inputs..."
+      nix flake update
+
+      echo "🖥️  Switching OS configuration..."
+      nh os switch
+
+      echo "🏠 Switching Home configuration..."
+      nh home switch
+
+      echo "🔍 Checking for changes to commit..."
+      if git diff-index --quiet HEAD --; then
+          echo "✅ No changes to commit."
+      else
+          echo "💾 Committing changes..."
+          git add -A
+          git commit -m "chore: update system and home configurations"
+          echo "🚀 Changes committed successfully!"
+      fi
+
+      echo "🎉 All done! System and home configurations updated."
+    '';
+  };
   home.file."pythia/.gitconfig-pythia" = {
     text = ''
       [user]
@@ -194,7 +220,7 @@
         }
       '';
       shellAliases = {
-        update = "sudo nixos-rebuild switch --flake .#sparta";
+        # update = "sudo nixos-rebuild switch --flake .#sparta";
         nhs = "nh home switch";
         nos = "nh os switch";
         n = "nvim";
