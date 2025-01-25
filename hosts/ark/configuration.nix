@@ -1,6 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   inputs,
   config,
@@ -9,7 +6,6 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
   nixpkgs.config.packageOverrides = pkgs: {
@@ -29,6 +25,7 @@
   nixpkgs.config.allowUnfree = true;
   # Bootloader.
   boot = {
+    kernelParams = ["btusb.enable_autosuspend=n" "btusb.enable_autosuspend=0"];
     plymouth = {
       enable = true;
       theme = "rings";
@@ -110,6 +107,7 @@
     enable = true;
     wlr.enable = true;
     extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
     ];
   };
@@ -130,9 +128,9 @@
     isNormalUser = true;
     description = "tudor";
     extraGroups = [
+      "video"
       "networkmanager"
       "kvm"
-      "adbusers"
       "wheel"
       "audio"
       "docker"

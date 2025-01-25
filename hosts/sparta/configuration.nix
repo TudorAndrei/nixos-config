@@ -160,6 +160,7 @@ in {
     isNormalUser = true;
     description = "tudor";
     extraGroups = [
+      "video"
       "networkmanager"
       "kvm"
       "adbusers"
@@ -242,7 +243,7 @@ in {
       modesetting.enable = true;
       powerManagement.enable = true;
       powerManagement.finegrained = true;
-      open = false;
+      open = true;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;
       forceFullCompositionPipeline = true; # Can help with tearing
