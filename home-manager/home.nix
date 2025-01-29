@@ -13,6 +13,7 @@
     ./programs/hyprland
     ./programs/gammastep
     ./programs/kanshi
+    ./programs/windsurf
   ];
   nixpkgs = {
     config = {
@@ -270,6 +271,8 @@
         "editor.formatOnSave" = true;
         "remote.autoForwardPorts" = false;
         "database-client.autoSync" = true;
+        "workbench.sideBar.location" = "right";
+        "workbench.startupEditor" = "none";
       };
     };
   };
