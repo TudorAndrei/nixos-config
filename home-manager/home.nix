@@ -35,6 +35,7 @@
       rye
       uv
       signal-desktop
+      brightnessctl
       arandr
       feh
       mpv

@@ -157,25 +157,26 @@
       enable32Bit = true;
       extraPackages = with pkgs; [
         intel-media-driver
+        nvidia-vaapi-driver
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [intel-vaapi-driver];
     };
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = true;
-      powerManagement.finegrained = true;
+      # powerManagement.finegrained = true;
       open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
-      forceFullCompositionPipeline = true; # Can help with tearing
+      # package = config.boot.kernelPackages.nvidiaPackages.production;
+      forceFullCompositionPipeline = true;
       prime = {
-        offload = {
-          enable = true;
-          enableOffloadCmd = lib.mkIf config.hardware.nvidia.prime.offload.enable true; # Provides `nvidia-offload` command.
-        };
-        # sync.enable = true;
+        # offload = {
+        #   enable = true;
+        #   enableOffloadCmd = lib.mkIf config.hardware.nvidia.prime.offload.enable true; # Provides `nvidia-offload` command.
+        # };
+        sync.enable = true;
         nvidiaBusId = "PCI:1:0:0";
-        amdgpuBusId = "PCI:8:0:0";
+        intelBusId = "PCI:0:2:0";
       };
     };
   };
@@ -196,6 +197,8 @@
     proggyfonts
   ];
   stylix = {
+    cursor.package = pkgs.bibata-cursors;
+    cursor.name = "Bibata-Modern-Ice";
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     polarity = "dark";

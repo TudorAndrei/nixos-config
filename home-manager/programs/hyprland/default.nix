@@ -52,6 +52,7 @@
           ];
           env = [
             "XCURSOR_SIZE,24"
+            "NVD_BACKEND,direct"
             "HYPRCURSOR_SIZE,24"
           ];
           exec-once = [
