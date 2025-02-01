@@ -300,5 +300,4 @@
   services.syncthing = {
     enable = true;
   };
-  services.flameshot.enable = true;
 }
