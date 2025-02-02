@@ -25,7 +25,6 @@
 
     packages = with pkgs; [
       zoom-us
-      vdhcoapp
       swaynotificationcenter
       mangohud
       libnotify
@@ -47,6 +46,7 @@
       slack
       nixd
       alejandra
+      hyprshot
       # Games
       lutris
       protonup-qt
@@ -93,11 +93,14 @@
       code-cursor
       unzip
       strawberry
+      ldtk
+      brave
     ];
   };
 
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
+  xdg.mimeApps.enable = true;
   xdg.configFile = {
     "nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home-manager/nvim";

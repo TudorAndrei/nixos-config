@@ -26,10 +26,11 @@
           "bluetooth"
           "network"
           "memory"
+          "disk"
+          "cpu"
           "temperature"
           "pulseaudio"
           "battery"
-          "cpu"
           # // "custom/notification",
         ];
         "hyprland/workspaces" = {
@@ -79,24 +80,23 @@
           # // "format-full": "",
           # // "format-icons": [ "", "", "", "", "" ]
         };
-        "cpu" = {
-          "interval" = 10;
-          "format" = "{}% ";
-          "max-length" = 10;
-        };
         "clock#calendar" = {
           format = "{:%F}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
-        # // "cpu": {
-        # //     "interval": 10,
-        # //     "format": " {}%",
-        # //     "max-length": 10,
-        # //     "on-click": ""
-        # // },
+        "cpu" = {
+          interval = 10;
+          format = " {}%";
+          max-length = 10;
+        };
+        "disk" = {
+          interval = 30;
+          format = " {free}";
+          path = "/";
+        };
         "memory" = {
           interval = 30;
-          format = " {}%";
+          format = " {percentage}%";
           max-length = 10;
         };
         "clock2" = {

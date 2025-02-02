@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   home.file = {
     ".mozilla/firefox/tudor/chrome/firefox-custom" = {
       source = ./userChrome;
@@ -7,6 +11,7 @@
   };
   programs.firefox = {
     enable = true;
+    nativeMessagingHosts = [pkgs.vdhcoapp];
     profiles.tudor = {
       # @import "firefox-custom/userChrome.css";
       userChrome = ''
@@ -109,7 +114,20 @@
           placements = {
             PersonalToolbar = ["personal-bookmarks"];
             TabsToolbar = ["tabbrowser-tabs" "new-tab-button" "alltabs-button"];
-            nav-bar = ["back-button" "forward-button" "stop-reload-button" "urlbar-container" "downloads-button" "ublock0_raymondhill_net-browser-action" "_testpilot-containers-browser-action" "reset-pbm-toolbar-button" "unified-extensions-button"];
+            nav-bar = [
+              "back-button"
+              "forward-button"
+              "stop-reload-button"
+              "urlbar-container"
+              "downloads-button"
+              "ublock0_raymondhill_net-browser-action"
+              "zotero_chnm_gmu_edu-browser-action"
+              "readeck_readeck_com-browser-action"
+              "excalisave_atharvakadlag_github_io-browser-action"
+              "sponsorblocker_ajay_app-browser-action"
+              "unified-extensions-button"
+              "_testpilot-containers-browser-action"
+            ];
             toolbar-menubar = ["menubar-items"];
             unified-extensions-area = [];
             widget-overflow-fixed-list = [];
