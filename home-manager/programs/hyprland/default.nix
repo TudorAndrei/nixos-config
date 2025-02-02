@@ -74,6 +74,9 @@
 
             layout = "dwindle";
           };
+          cursor = {
+            no_hardware_cursors = true;
+          };
 
           decoration = {
             rounding = 5;
@@ -179,6 +182,10 @@
             "$mainMod SHIFT, comma, movecurrentworkspacetomonitor, l"
             "$mainMod SHIFT, period, movecurrentworkspacetomonitor, r"
             "$mainMod SHIFT, F, togglefloating,"
+            " SUPER, p, exec, grimblast save active"
+            " bind = SUPER SHIFT, p, exec, grimblast save area"
+            " bind = SUPER ALT, p, exec, grimblast save output"
+            " bind = SUPER CTRL, p, exec, grimblast save screen"
           ];
           bindel = [
             ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"

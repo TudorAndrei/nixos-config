@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   pkgs,
   ...
 }: {
@@ -25,6 +26,7 @@
 
     packages = with pkgs; [
       zoom-us
+      inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       swaynotificationcenter
       mangohud
       libnotify

@@ -227,6 +227,9 @@
   virtualisation.docker.enable = true;
 
   services = {
+    devmon.enable = true;
+    gvfs.enable = true;
+    udisks2.enable = true;
     udev.packages = [pkgs.android-udev-rules];
     gnome.gnome-keyring.enable = true;
 
