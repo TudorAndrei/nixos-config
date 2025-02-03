@@ -13,7 +13,6 @@
     ./programs/hyprland
     ./programs/gammastep
     ./programs/kanshi
-    ./programs/windsurf
   ];
   nixpkgs = {
     config = {
@@ -45,6 +44,8 @@
       fd
       zip
       cargo
+      azure-cli
+      strawberry-qt6
       discord
       slack
       nixd
