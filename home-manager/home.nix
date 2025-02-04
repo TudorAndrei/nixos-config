@@ -304,6 +304,7 @@
     LD_LIBRARY_PATH = "${pkgs.graphviz}/lib";
     LDFLAGS = "-L${pkgs.graphviz}/lib";
     CFLAGS = "-I${pkgs.graphviz}/include";
+    XDG_SCREENSHOTS_DIR = "$HOME/Pictures/screenshots";
   };
 
   services.syncthing = {
