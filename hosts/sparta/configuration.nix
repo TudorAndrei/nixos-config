@@ -154,6 +154,7 @@ in {
     MOZ_DISABLE_RDD_SANDBOX = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     OBSIDIAN_USE_WAYLAND = "1";
+    XDG_SCREENSHOTS_DIR = "$HOME/Pictures/screenshots";
   };
 
   users.users.tudor = {
