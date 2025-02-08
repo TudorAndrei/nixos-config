@@ -13,6 +13,7 @@
     ./programs/hyprland
     ./programs/gammastep
     ./programs/kanshi
+    ./programs/easyeffects
   ];
   nixpkgs = {
     config = {
@@ -28,6 +29,7 @@
       zoom-us
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       swaynotificationcenter
+      slack
       mangohud
       libnotify
       hyperfine
