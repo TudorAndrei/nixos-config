@@ -28,14 +28,14 @@ in {
           set-option -ga terminal-overrides ",*:Tc"
         '';
       }
-      {
-        plugin = tmuxPlugins.resurrect;
-        extraConfig = ''
-          set -g @resurrect-strategy-nvim 'session'
-          set -g @resurrect-capture-pane-contents 'on'
-          set -g @resurrect-processes 'ssh'
-        '';
-      }
+      # {
+      # plugin = tmuxPlugins.resurrect;
+      # extraConfig = ''
+      #   set -g @resurrect-strategy-nvim 'session'
+      #   set -g @resurrect-capture-pane-contents 'on'
+      #   set -g @resurrect-processes 'ssh'
+      # '';
+      # }
       {
         plugin = tmuxPlugins.continuum;
         extraConfig = ''

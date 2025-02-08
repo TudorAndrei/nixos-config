@@ -44,7 +44,6 @@
       fd
       zip
       cargo
-      azure-cli
       strawberry-qt6
       discord
       slack
