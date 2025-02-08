@@ -225,6 +225,7 @@
 
   virtualisation.oci-containers.backend = "docker";
   virtualisation.docker.enable = true;
+  virtualisation.waydroid.enable = true;
 
   services = {
     devmon.enable = true;
