@@ -9,6 +9,17 @@
       sha256 = "sha256-KuVHkuF13WZAS3NU0WSaPBZytY78wV0Ti1Va7+LXXoQ=";
     };
   };
+  tmux-resurrect = pkgs.tmuxPlugins.mkTmuxPlugin {
+    pluginName = "tmux-resurrect";
+    version = "unstable-2024-10-27";
+    src = pkgs.fetchFromGitHub {
+      owner = "tmux-plugins";
+      repo = "tmux-resurrect";
+      rev = "ca6468e2deef11efadfe3a62832ae67742505432";
+      sha256 = "sha256-wl9/5XvFq+AjV8CwYgIZjPOE0/kIuEYBNQqNDidjNFo=";
+      fetchSubmodules = true;
+    };
+  };
 in {
   programs.tmux = {
     enable = true;
@@ -28,18 +39,20 @@ in {
           set-option -ga terminal-overrides ",*:Tc"
         '';
       }
-      # {
-      # plugin = tmuxPlugins.resurrect;
-      # extraConfig = ''
-      #   set -g @resurrect-strategy-nvim 'session'
-      #   set -g @resurrect-capture-pane-contents 'on'
-      #   set -g @resurrect-processes 'ssh'
-      # '';
-      # }
+      {
+        # plugin = tmuxPlugins.resurrect;
+        plugin = tmux-resurrect;
+        extraConfig = ''
+          set -g @resurrect-strategy-nvim 'session'
+          set -g @resurrect-capture-pane-contents 'on'
+          set -g @resurrect-processes 'ssh'
+        '';
+      }
       {
         plugin = tmuxPlugins.continuum;
         extraConfig = ''
           set -g @continuum-restore 'on'
+          set -g @continuum-save-interval '1'
         '';
       }
     ];
