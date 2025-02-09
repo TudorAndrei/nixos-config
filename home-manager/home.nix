@@ -46,7 +46,6 @@
       fd
       zip
       cargo
-      strawberry-qt6
       discord
       slack
       nixd
