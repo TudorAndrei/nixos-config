@@ -182,9 +182,7 @@
   };
 
   fonts.packages = with pkgs; [
-    pkgs.nerd-fonts.fira-code
-    pkgs.nerd-fonts.caskaydia-mono
-    pkgs.nerd-fonts.caskaydia-cove
+    nerdfonts
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
@@ -203,13 +201,13 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     polarity = "dark";
     fonts = {
-      serif.package = pkgs.nerd-fonts.caskaydia-cove;
+      serif.package = pkgs.nerdfonts;
       serif.name = "CaskaydiaCove NF";
 
-      sansSerif.package = pkgs.nerd-fonts.caskaydia-cove;
+      sansSerif.package = pkgs.nerdfonts;
       sansSerif.name = "CaskaydiaCove NF";
 
-      monospace.package = pkgs.nerd-fonts.caskaydia-mono;
+      monospace.package = pkgs.nerdfonts;
       monospace.name = "CaskaydiaCove NF";
 
       emoji.package = pkgs.noto-fonts-emoji;
