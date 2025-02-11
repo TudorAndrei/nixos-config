@@ -47,15 +47,14 @@
     formatter = forAllSystems (system: (pkgsFor system).alejandra);
     overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
-      sparta = forAllSystems (system:
-        nixpkgs.lib.nixosSystem {
-          system = system;
-          specialArgs = {inherit inputs outputs;};
-          modules = [
-            ./hosts/sparta/configuration.nix
-            stylix.nixosModules.stylix
-          ];
-        });
+      sparta = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/ark/configuration.nix
+          stylix.nixosModules.stylix
+        ];
+      };
+
       ark = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
