@@ -2,6 +2,7 @@
   config,
   inputs,
   pkgs,
+  unstablePkgs,
   ...
 }: {
   imports = [
@@ -99,6 +100,8 @@
       strawberry
       ldtk
       brave
+      wireshark
+      unstablePkgs.windsurf
     ];
   };
 
@@ -274,6 +277,7 @@
         "database-client.autoSync" = true;
         "workbench.sideBar.location" = "right";
         "workbench.startupEditor" = "none";
+        "vsc-webshark.sharkdFullPath" = "/home/tudor/.nix-profile/bin/sharkd";
       };
     };
   };

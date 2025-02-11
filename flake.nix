@@ -27,6 +27,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     stylix,
     ...
@@ -40,29 +41,43 @@
       # "x86_64-darwin"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
+    pkgsFor = system: import nixpkgs {
+      system = system;
+      config.allowUnfree = true;
+    };
+    unstablePkgsFor = system: import nixpkgs-unstable {
+      system = system;
+      config.allowUnfree = true;
+    };
   in {
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-
+    formatter = forAllSystems (system: (pkgsFor system).alejandra);
     nixosConfigurations = {
-      sparta = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+      sparta = forAllSystems (system:
+        nixpkgs.lib.nixosSystem {
+          system = system;
+          specialArgs = { inherit inputs outputs; };
         modules = [
-          ./hosts/sparta/configuration.nix
-          stylix.nixosModules.stylix
+            ./hosts/sparta/configuration.nix
+            stylix.nixosModules.stylix
         ];
-      };
-      ark = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./hosts/ark/configuration.nix
-          stylix.nixosModules.stylix
-        ];
-      };
+        });
+      ark = forAllSystems (system:
+        nixpkgs.lib.nixosSystem {
+          system = system;
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/ark/configuration.nix
+            stylix.nixosModules.stylix
+          ];
+        });
     };
     homeConfigurations = {
       "tudor" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
+        pkgs = pkgsFor "x86_64-linux";
+        extraSpecialArgs = {
+          inherit inputs outputs;
+          unstablePkgs = unstablePkgsFor "x86_64-linux";
+  };
         modules = [
           ./home-manager/home.nix
           stylix.homeManagerModules.stylix
