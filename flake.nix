@@ -6,15 +6,11 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprland.url = "github:hyprwm/Hyprland";
 
-    hyprland-contrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprland-contrib.url = "github:hyprwm/contrib";
+    hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
 
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix = {
       url = "github:danth/stylix/release-24.11";
       inputs = {
@@ -41,43 +37,39 @@
       # "x86_64-darwin"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
-    pkgsFor = system: import nixpkgs {
-      system = system;
-      config.allowUnfree = true;
-    };
-    unstablePkgsFor = system: import nixpkgs-unstable {
-      system = system;
-      config.allowUnfree = true;
-    };
+    pkgsFor = system:
+      import nixpkgs {
+        system = system;
+        config.allowUnfree = true;
+      };
   in {
+    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     formatter = forAllSystems (system: (pkgsFor system).alejandra);
+    overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
       sparta = forAllSystems (system:
         nixpkgs.lib.nixosSystem {
           system = system;
-          specialArgs = { inherit inputs outputs; };
-        modules = [
-            ./hosts/sparta/configuration.nix
-            stylix.nixosModules.stylix
-        ];
-        });
-      ark = forAllSystems (system:
-        nixpkgs.lib.nixosSystem {
-          system = system;
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = {inherit inputs outputs;};
           modules = [
-            ./hosts/ark/configuration.nix
+            ./hosts/sparta/configuration.nix
             stylix.nixosModules.stylix
           ];
         });
+      ark = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/ark/configuration.nix
+          stylix.nixosModules.stylix
+        ];
+      };
     };
     homeConfigurations = {
       "tudor" = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgsFor "x86_64-linux";
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {
           inherit inputs outputs;
-          unstablePkgs = unstablePkgsFor "x86_64-linux";
-  };
+        };
         modules = [
           ./home-manager/home.nix
           stylix.homeManagerModules.stylix
