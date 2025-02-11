@@ -40,8 +40,8 @@ in {
         '';
       }
       {
-        # plugin = tmuxPlugins.resurrect;
-        plugin = tmux-resurrect;
+        plugin = tmuxPlugins.resurrect;
+        # plugin = tmux-resurrect;
         extraConfig = ''
           set -g @resurrect-strategy-nvim 'session'
           set -g @resurrect-capture-pane-contents 'on'
