@@ -56,6 +56,7 @@
             "HYPRCURSOR_SIZE,24"
           ];
           exec-once = [
+            "waybar"
             "nm-applet"
             "firefox"
             "easyeffects"

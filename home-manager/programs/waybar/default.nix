@@ -1,8 +1,6 @@
 {pkgs, ...}: {
   programs.waybar = {
     enable = true;
-    systemd.enable = true;
-    package = pkgs.waybar;
     settings = {
       mainBar = {
         layer = "top";
