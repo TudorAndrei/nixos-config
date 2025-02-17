@@ -1,10 +1,4 @@
-{
-  inputs,
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -139,9 +133,10 @@
   hardware = {
     bluetooth = {
       enable = true;
-      powerOnBoot = true;
       settings = {
         General = {
+          Enable = "Source,Sink,Media,Socket";
+          ControllerMode = "bredr";
           Experimental = "true";
           FastConnectable = "true";
           ReconnectAttempts = "7";
