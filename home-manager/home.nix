@@ -45,7 +45,7 @@
 
     packages = with pkgs; [
       zoom-us
-      # inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+      grimblast
       swaynotificationcenter
       slack
       mangohud
