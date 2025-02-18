@@ -303,6 +303,7 @@ in {
   virtualisation.docker.enable = true;
 
   services = {
+    gvfs.enable = true;
     udev.packages = [pkgs.android-udev-rules];
     gnome.gnome-keyring.enable = true;
     ollama = {

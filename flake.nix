@@ -46,14 +46,15 @@
     overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
       sparta = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./hosts/ark/configuration.nix
+          ./hosts/sparta/configuration.nix
           stylix.nixosModules.stylix
         ];
       };
-
       ark = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/ark/configuration.nix
