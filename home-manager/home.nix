@@ -16,6 +16,7 @@
     ./programs/gammastep
     ./programs/kanshi
     ./programs/easyeffects
+    # ./programs/kunkun
   ];
   nixpkgs = {
     overlays = [
