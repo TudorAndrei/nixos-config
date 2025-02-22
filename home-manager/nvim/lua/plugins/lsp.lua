@@ -71,7 +71,6 @@ return {
         tsserver = {},
         yamlls = {},
         biome = {},
-        -- ruff_lsp = {
         ruff = {
           keys = {
             {
@@ -96,7 +95,7 @@ return {
               typeCheckingMode = "standard",
             },
             python = {
-              pythonPath = pypath,
+              -- pythonPath = pypath,
               analysis = {
                 autoSearchPaths = true,
                 diagnosticMode = "workspace",
