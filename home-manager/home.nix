@@ -1,9 +1,7 @@
 {
-  inputs,
   outputs,
   config,
   pkgs,
-  unstablePkgs,
   ...
 }: {
   imports = [
