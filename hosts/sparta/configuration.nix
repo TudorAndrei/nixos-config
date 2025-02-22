@@ -169,6 +169,7 @@ in {
       "wheel"
       "audio"
       "docker"
+      "gamemode"
     ];
   };
 
@@ -200,7 +201,6 @@ in {
     hyprpicker
     hyprcursor
     hyprpaper
-    steam
     nautilus
     killall
     ghostscript

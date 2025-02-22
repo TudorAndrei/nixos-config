@@ -297,8 +297,7 @@
         "workbench.startupEditor" = "none";
         "vsc-webshark.sharkdFullPath" = "/home/tudor/.nix-profile/bin/sharkd";
         "git.openRepositoryInParentFolders" = "never";
-        "notebook.formatOnSave.enabled"= true;
-
+        "notebook.formatOnSave.enabled" = true;
       };
     };
   };
