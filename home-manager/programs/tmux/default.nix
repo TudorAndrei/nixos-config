@@ -128,9 +128,8 @@ in {
       set -g window-status-current-format "#[fg=$BG,bg=$PURPLE,nobold,noitalics,nounderscore] #[fg=$BG,bg=$PURPLE]#I#[fg=$BACKGROUND,bg=$PURPLE,nobold,noitalics,nounderscore] #[fg=$BG,bg=$PURPLE]#W "
       set -g window-status-separator ""
 
-      set -g status-left "#[fg=$BG,bg=$PURPLE,bold] #S #[fg=$PURPLE,bg=$COMMENT,nobold]"
-      set -g status-right "#[fg=$FG,bg=$COMMENT] #H #[fg=$COMMENT,bg=$BG,nobold]#[fg=$COMMENT,bg=$BG]#[fg=$FG,bg=$COMMENT] %Y-%m-%d #[fg=$PURPLE,bg=$COMMENT]#[fg=$BG,bg=$PURPLE,bold] %H:%M "
-
+      set -g status-left "#[fg=$BG,bg=$PURPLE,bold] #S #[fg=$PURPLE,bg=$COMMENT,nobold]#[fg=$FG,bg=$COMMENT] #H #[fg=$COMMENT,bg=$BG,nobold]"
+      set -g status-right "#[fg=$COMMENT,bg=$BG]#[fg=$FG,bg=$COMMENT] %Y-%m-%d #[fg=$PURPLE,bg=$COMMENT]#[fg=$BG,bg=$PURPLE,bold] %H:%M "
     '';
   };
 }
