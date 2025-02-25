@@ -2,9 +2,11 @@
   outputs,
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
+    inputs.nur.modules.homeManager.default
     ./programs/firefox
     ./programs/waybar
     ./programs/starship
@@ -43,6 +45,7 @@
     stateVersion = "23.11";
 
     packages = with pkgs; [
+      nur.repos.xddxdd.adspower
       zoom-us
       grimblast
       swaynotificationcenter
