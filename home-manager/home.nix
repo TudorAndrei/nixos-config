@@ -46,6 +46,7 @@
 
     packages = with pkgs; [
       nur.repos.xddxdd.adspower
+      delta
       zoom-us
       grimblast
       swaynotificationcenter
@@ -201,6 +202,13 @@
       userName = "TudorAndrei";
       userEmail = "tudorandrei.dumitrascu@gmail.com";
       extraConfig = {
+        core.pager = "delta";
+        interactive.diffFilter = "delta --color-only";
+
+        delta.navigate = true;
+        delta.dark = true;
+
+        merge.conflictstyle = "zdiff3";
         init.defaultBranch = "main";
         push.autoSetupRemote = true;
         filter = {
