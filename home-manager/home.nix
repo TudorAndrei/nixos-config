@@ -204,10 +204,8 @@
       extraConfig = {
         core.pager = "delta";
         interactive.diffFilter = "delta --color-only";
-
         delta.navigate = true;
         delta.dark = true;
-
         merge.conflictstyle = "zdiff3";
         init.defaultBranch = "main";
         push.autoSetupRemote = true;
