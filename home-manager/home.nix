@@ -305,6 +305,14 @@
         "vsc-webshark.sharkdFullPath" = "/home/tudor/.nix-profile/bin/sharkd";
         "git.openRepositoryInParentFolders" = "never";
         "notebook.formatOnSave.enabled" = true;
+        "roo-cline.allowedCommands" = [
+          "npm test"
+          "npm install"
+          "tsc"
+          "git log"
+          "git diff"
+          "git show"
+        ];
       };
     };
   };
