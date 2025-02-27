@@ -48,6 +48,7 @@
       nur.repos.xddxdd.adspower
       delta
       zoom-us
+      scrcpy
       grimblast
       swaynotificationcenter
       slack
