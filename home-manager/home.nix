@@ -17,6 +17,7 @@
     ./programs/kanshi
     ./programs/easyeffects
     ./programs/qutebrowser
+    ./programs/brave
     # ./programs/kunkun
   ];
   nixpkgs = {
@@ -121,7 +122,6 @@
       unzip
       strawberry
       ldtk
-      brave
       wireshark
       unstable.windsurf
     ];

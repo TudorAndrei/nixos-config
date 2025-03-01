@@ -3,17 +3,10 @@
   pkgs,
   ...
 }: {
-  home.file = {
-    ".mozilla/firefox/tudor/chrome/firefox-custom" = {
-      source = ./userChrome;
-      recursive = true;
-    };
-  };
   programs.firefox = {
     enable = true;
     nativeMessagingHosts = [pkgs.vdhcoapp];
     profiles.tudor = {
-      # @import "firefox-custom/userChrome.css";
       userChrome = ''
                 #TabsToolbar
         {
