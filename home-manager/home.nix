@@ -16,6 +16,7 @@
     ./programs/gammastep
     ./programs/kanshi
     ./programs/easyeffects
+    ./programs/qutebrowser
     # ./programs/kunkun
   ];
   nixpkgs = {
