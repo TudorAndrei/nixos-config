@@ -18,6 +18,8 @@
     ./programs/easyeffects
     ./programs/qutebrowser
     ./programs/brave
+    ./programs/nixcord
+    ./programs/spicetify
     # ./programs/kunkun
   ];
   nixpkgs = {
@@ -346,18 +348,21 @@
     image = ../bigsun.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     polarity = "dark";
+    cursor.package = pkgs.bibata-cursors;
+    cursor.name = "Bibata-Modern-Ice";
     fonts = {
       serif.package = pkgs.nerdfonts;
       serif.name = "Iosevka NF";
-
       sansSerif.package = pkgs.nerdfonts;
       sansSerif.name = "Iosevka NF";
-
       monospace.package = pkgs.nerdfonts;
-      monospace.name = "CaskaydiaCove NF";
-
+      monospace.name = "Iosevka NF";
       emoji.package = pkgs.noto-fonts-emoji;
       emoji.name = "Noto Color Emoji";
+    };
+    targets = {
+      veskop.enable = false;
+      spicetify.enable = false;
     };
   };
 

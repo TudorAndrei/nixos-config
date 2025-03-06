@@ -14,12 +14,14 @@
 
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    stylix = {
-      url = "github:danth/stylix/release-24.11";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-      };
+    stylix.url = "github:danth/stylix/release-24.11";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -54,7 +56,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/sparta/configuration.nix
-          stylix.nixosModules.stylix
+          inputs.stylix.nixosModules.stylix
         ];
       };
       ark = nixpkgs.lib.nixosSystem {
@@ -62,7 +64,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/ark/configuration.nix
-          stylix.nixosModules.stylix
+          inputs.stylix.nixosModules.stylix
         ];
       };
     };
@@ -74,7 +76,7 @@
         };
         modules = [
           ./home-manager/home.nix
-          stylix.homeManagerModules.stylix
+          inputs.stylix.homeManagerModules.stylix
         ];
       };
     };

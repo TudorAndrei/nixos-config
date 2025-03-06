@@ -282,13 +282,13 @@ in {
     polarity = "dark";
     fonts = {
       serif.package = pkgs.nerdfonts;
-      serif.name = "CaskaydiaCove NF";
+      serif.name = "Iosevka NF";
 
       sansSerif.package = pkgs.nerdfonts;
-      sansSerif.name = "CaskaydiaCove NF";
+      sansSerif.name = "Iosevka NF";
 
       monospace.package = pkgs.nerdfonts;
-      monospace.name = "CaskaydiaCove NF";
+      monospace.name = "Iosevka NF";
 
       emoji.package = pkgs.noto-fonts-emoji;
       emoji.name = "Noto Color Emoji";
@@ -306,10 +306,6 @@ in {
     gvfs.enable = true;
     udev.packages = [pkgs.android-udev-rules];
     gnome.gnome-keyring.enable = true;
-    ollama = {
-      enable = true;
-      acceleration = "cuda";
-    };
 
     supergfxd.enable = true;
     asusd = {
