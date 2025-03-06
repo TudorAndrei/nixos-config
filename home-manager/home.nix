@@ -60,7 +60,7 @@
       alacritty
       fnm
       rye
-      uv
+      unstable.uv
       signal-desktop
       brightnessctl
       arandr
@@ -115,7 +115,7 @@
       rustlings
       obsidian
       typst
-      devenv
+      unstable.devenv
       heroic
       dbeaver-bin
       code-cursor
@@ -179,6 +179,23 @@
   };
 
   programs = {
+    rio = {
+      enable = true;
+      settings = {
+        theme = "dracula";
+        platform = {
+          linux.shell.program = "tmux";
+          linux.shell.args = ["new-session" "-c" "/var/www"];
+        };
+        renderer = {
+          backend = "Vulkan";
+          performance = "High";
+          filters = [
+            "${config.home.homeDirectory}/nixos-config/home-manager/programs/rio/slang-shaders/crt/newpixie-crt.slangp"
+          ];
+        };
+      };
+    };
     btop = {
       enable = true;
       package = pkgs.btop.override {cudaSupport = true;};
@@ -294,11 +311,11 @@
 
     vscode = {
       enable = true;
-      package = pkgs.vscode-fhs;
+      package = pkgs.vscode.fhs;
       userSettings = {
         "workbench.colorTheme" = "Stylix";
         "update.mode" = "none";
-        "workbench.statusBar.visible" = false;
+        "workbench.statusBar.visible" = true;
         "editor.formatOnSave" = true;
         "remote.autoForwardPorts" = false;
         "database-client.autoSync" = true;
@@ -315,6 +332,11 @@
           "git diff"
           "git show"
         ];
+        "github.copilot.chat.commitMessageGeneration.instructions" = [
+          {
+            "text" = "Use conventional commit message format.";
+          }
+        ];
       };
     };
   };
@@ -326,10 +348,10 @@
     polarity = "dark";
     fonts = {
       serif.package = pkgs.nerdfonts;
-      serif.name = "CaskaydiaCove NF";
+      serif.name = "Iosevka NF";
 
       sansSerif.package = pkgs.nerdfonts;
-      sansSerif.name = "CaskaydiaCove NF";
+      sansSerif.name = "Iosevka NF";
 
       monospace.package = pkgs.nerdfonts;
       monospace.name = "CaskaydiaCove NF";

@@ -1,0 +1,6 @@
+[submodule "home-manager/programs/rio/home-manager/programs/rio/slang-shaders"]
+	path = home-manager/programs/rio/home-manager/programs/rio/slang-shaders
+	url = https://github.com/libretro/slang-shaders.git
+[submodule "home-manager/programs/rio/slang-shaders"]
+	path = home-manager/programs/rio/slang-shaders
+	url = https://github.com/libretro/slang-shaders.git
