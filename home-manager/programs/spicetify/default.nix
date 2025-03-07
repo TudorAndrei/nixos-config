@@ -1,25 +1,24 @@
 {
   inputs,
-  system,
+  pkgs,
   ...
-}: {
+}: let
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+in {
   imports = [
     inputs.spicetify-nix.homeManagerModules.default
   ];
 
-  programs.spicetify = let
-    spicetify-pkgs = inputs.spicetify-nix.legacyPackages.${system};
-  in {
+  programs.spicetify = {
     enable = true;
-    enabledExtensions = with spicetify-pkgs.extensions; [
+    enabledExtensions = with spicePkgs.extensions; [
       fullScreen
       betterGenres
       volumePercentage
     ];
-    enabledCustomApps = with spicetify-pkgs.apps; [
+    enabledCustomApps = with spicePkgs.apps; [
       lyricsPlus
       historyInSidebar
     ];
-    theme = spicetify-pkgs.themes.hazy;
   };
 }

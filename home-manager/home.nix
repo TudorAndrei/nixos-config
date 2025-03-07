@@ -6,6 +6,7 @@
   ...
 }: {
   imports = [
+    inputs.stylix.homeManagerModules.stylix
     inputs.nur.modules.homeManager.default
     ./programs/firefox
     ./programs/waybar
@@ -72,7 +73,6 @@
       fd
       zip
       cargo
-      discord
       slack
       nixd
       alejandra
@@ -93,7 +93,6 @@
       lazydocker
       wdisplays
       localsend
-      spotify
       wttrbar
       jq
       yt-dlp
@@ -361,7 +360,6 @@
       emoji.name = "Noto Color Emoji";
     };
     targets = {
-      veskop.enable = false;
       spicetify.enable = false;
     };
   };

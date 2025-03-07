@@ -131,7 +131,7 @@
     };
   };
   programs.librewolf = {
-    enable = true;
+    enable = false;
     # Enable WebGL, cookies and history
     settings = {
       "webgl.disabled" = false;
