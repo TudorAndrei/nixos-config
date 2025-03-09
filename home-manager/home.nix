@@ -51,6 +51,7 @@
 
     packages = with pkgs; [
       nur.repos.xddxdd.adspower
+      inputs.zen-browser.packages."${system}".default # beta
       delta
       zoom-us
       scrcpy
@@ -91,7 +92,8 @@
       fastfetch
       eza
       lazydocker
-      wdisplays
+      # wdisplays
+      nwg-displays
       localsend
       wttrbar
       jq

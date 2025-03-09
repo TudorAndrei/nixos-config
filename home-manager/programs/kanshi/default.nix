@@ -38,6 +38,20 @@ _: {
         ];
       }
       {
+        profile.name = "home-bigmonitor";
+        profile.outputs = [
+          {
+            criteria = "LG Electronics LG TV SSCR2 0x01010101";
+            position = "0,0";
+            mode = "2560x1080@143.94Hz";
+          }
+          {
+            criteria = "eDP-1";
+            status = "disable";
+          }
+        ];
+      }
+      {
         profile.name = "home2";
         profile.outputs = [
           {
