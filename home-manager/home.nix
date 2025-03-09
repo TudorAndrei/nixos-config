@@ -52,6 +52,7 @@
     packages = with pkgs; [
       nur.repos.xddxdd.adspower
       inputs.zen-browser.packages."${system}".default # beta
+      llm
       delta
       zoom-us
       scrcpy
@@ -100,6 +101,7 @@
       yt-dlp
       imagemagick
       czkawka
+      foliate
       foliate
       dust
       calibre
