@@ -52,8 +52,9 @@
     packages = with pkgs; [
       nur.repos.xddxdd.adspower
       inputs.zen-browser.packages."${system}".default # beta
-      llm
+      # llm
       delta
+      unstable.dioxus-cli
       zoom-us
       scrcpy
       grimblast

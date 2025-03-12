@@ -5,7 +5,7 @@
 }:
 python3.pkgs.buildPythonPackage rec {
   pname = "llm-commit";
-  version = "0.3";
+  version = "1.0.2";
   pyproject = true;
 
   src = fetchFromGitHub {
@@ -31,7 +31,7 @@ python3.pkgs.buildPythonPackage rec {
     description = "A plugin for llm that generates commit messages ";
     homepage = "https://github.com/gntousakis/llm-commit";
     license = licenses.asl20;
-    maintainers = with maintainers; [];
+    maintainers = [];
     mainProgram = "llm-commit";
   };
 }

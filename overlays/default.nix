@@ -9,17 +9,19 @@
   modifications = final: prev: {
     llm = let
       pyWithPackages = final.unstable.python3.withPackages (ps: [
-        ps.llm
+        (final.callPackage ../home-manager/programs/llm/llm-cli {})
         (final.callPackage ../home-manager/programs/llm/llm-gemini {
           inherit (final.unstable) python3;
           unstable = final.unstable;
         })
         (final.callPackage ../home-manager/programs/llm/llm-commit {})
+        (final.callPackage ../home-manager/programs/llm/llm-groq {})
       ]);
-    in prev.runCommandNoCCLocal "llm" {} ''
-      mkdir -p $out/bin
-      ln -s ${pyWithPackages}/bin/llm $out/bin/llm
-    '';
+    in
+      prev.runCommandNoCCLocal "llm" {} ''
+        mkdir -p $out/bin
+        ln -s ${pyWithPackages}/bin/llm $out/bin/llm
+      '';
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
