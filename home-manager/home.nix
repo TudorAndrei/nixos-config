@@ -323,7 +323,6 @@
         "update.mode" = "none";
         "workbench.statusBar.visible" = true;
         "editor.formatOnSave" = true;
-        "remote.autoForwardPorts" = false;
         "database-client.autoSync" = true;
         "workbench.sideBar.location" = "right";
         "workbench.startupEditor" = "none";
@@ -343,6 +342,9 @@
             "text" = "Use conventional commit message format.";
           }
         ];
+        "[json]" = {
+          "editor.defaultFormatter" = "vscode.json-language-features";
+        };
       };
     };
   };
