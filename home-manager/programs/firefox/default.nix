@@ -27,6 +27,7 @@
         "browser.startup.homepage" = "about:home";
         "widget.wayland.fractional-scale.enabled" = true;
         "browser.startup.page" = 3;
+        "network.proxy.allow_hijacking_localhost" = true;
 
         # Disable irritating first-run stuff
         "browser.disableResetPrompt" = true;

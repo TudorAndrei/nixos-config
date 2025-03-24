@@ -124,7 +124,7 @@
       unstable.devenv
       heroic
       dbeaver-bin
-      code-cursor
+      unstable.code-cursor
       unzip
       strawberry
       ldtk
@@ -317,8 +317,11 @@
 
     vscode = {
       enable = true;
-      package = pkgs.vscode.fhs;
+      package = pkgs.unstable.vscode.fhs;
       userSettings = {
+        "[typescriptreact]" = {
+          "editor.defaultFormatter" = "rvest.vs-code-prettier-eslint";
+        };
         "workbench.colorTheme" = "Stylix";
         "update.mode" = "none";
         "workbench.statusBar.visible" = true;
