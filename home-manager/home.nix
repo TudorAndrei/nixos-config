@@ -319,6 +319,11 @@
       enable = true;
       package = pkgs.unstable.vscode.fhs;
       userSettings = {
+        "cline.modelSettings.o3Mini.reasoningEffort" = "high";
+        "[javascript]" = {
+          "editor.defaultFormatter" = "vscode.typescript-language-features";
+        };
+        "azureResourceGroups.groupBy" = "resourceGroup";
         "[typescriptreact]" = {
           "editor.defaultFormatter" = "rvest.vs-code-prettier-eslint";
         };
