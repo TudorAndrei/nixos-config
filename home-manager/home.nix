@@ -57,6 +57,7 @@
       unstable.dioxus-cli
       zoom-us
       scrcpy
+      beekeeper-studio
       grimblast
       swaynotificationcenter
       slack
