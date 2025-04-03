@@ -106,7 +106,6 @@
       foliate
       foliate
       dust
-      calibre
       bruno
       anydesk
       pika-backup
