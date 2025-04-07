@@ -55,6 +55,7 @@
       # llm
       delta
       unstable.dioxus-cli
+      unstable.claude-code
       zoom-us
       scrcpy
       beekeeper-studio
@@ -79,6 +80,7 @@
       cargo
       slack
       nixd
+      distrobox
       alejandra
       hyprshot
       # Games
@@ -128,7 +130,6 @@
       unzip
       strawberry
       ldtk
-      wireshark
       unstable.windsurf
     ];
   };
@@ -215,6 +216,7 @@
       nix-direnv.enable = true;
     };
     neovim = {
+      package = pkgs.unstable.neovim-unwrapped;
       enable = true;
       defaultEditor = true;
       viAlias = true;

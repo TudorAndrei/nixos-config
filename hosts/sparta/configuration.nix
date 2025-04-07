@@ -176,8 +176,10 @@ in {
       "audio"
       "docker"
       "gamemode"
+      "wireshark"
     ];
   };
+  users.groups.wireshark = {};
 
   environment.systemPackages = with pkgs; [
     nvidia-offload
@@ -403,6 +405,9 @@ in {
   systemd.services.NetworkManager-wait-online.enable = false;
 
   programs = {
+    wireshark = {
+      enable = true;
+    };
     hyprland = {
       enable = true;
       # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
