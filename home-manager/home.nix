@@ -17,10 +17,10 @@
     ./programs/gammastep
     ./programs/kanshi
     ./programs/easyeffects
-    ./programs/qutebrowser
+    # ./programs/qutebrowser
     ./programs/brave
-    ./programs/nixcord
-    ./programs/spicetify
+    # ./programs/nixcord
+    # ./programs/spicetify
     # ./programs/kunkun
   ];
   nixpkgs = {
@@ -108,7 +108,7 @@
       foliate
       foliate
       dust
-      bruno
+      unstable.bruno
       anydesk
       pika-backup
       grim

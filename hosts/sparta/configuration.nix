@@ -407,6 +407,7 @@ in {
   programs = {
     wireshark = {
       enable = true;
+      package = pkgs.wireshark-qt;
     };
     hyprland = {
       enable = true;
@@ -454,5 +455,14 @@ in {
       rye
     ];
     zsh.enable = true;
+  };
+
+  services.guacamole-client = {
+    enable = true;
+    enableWebserver = true;
+    settings = {
+      guacd-port = 4822;
+      guacd-hostname = "127.0.0.1";
+    };
   };
 }
