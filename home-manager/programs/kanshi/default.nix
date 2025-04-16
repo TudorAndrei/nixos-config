@@ -76,7 +76,9 @@ _: {
           }
           {
             criteria = "eDP-1";
-            status = "disable";
+            scale = 1.0;
+            status = "enable";
+            position = "2160@,0";
           }
         ];
       }
@@ -91,7 +93,9 @@ _: {
           }
           {
             criteria = "eDP-2";
-            status = "disable";
+            scale = 1.0;
+            status = "enable";
+            position = "2160@,0";
           }
         ];
       }

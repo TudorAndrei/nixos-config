@@ -50,7 +50,6 @@
     stateVersion = "23.11";
 
     packages = with pkgs; [
-      nur.repos.xddxdd.adspower
       inputs.zen-browser.packages."${system}".default # beta
       # llm
       delta
