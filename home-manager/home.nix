@@ -88,7 +88,6 @@
       winetricks
       wineWowPackages.waylandFull
       wofi
-      tmux
       pavucontrol
       zotero
       pamixer
@@ -104,7 +103,6 @@
       yt-dlp
       imagemagick
       czkawka
-      foliate
       foliate
       dust
       unstable.bruno
