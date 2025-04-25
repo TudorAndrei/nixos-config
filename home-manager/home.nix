@@ -116,6 +116,7 @@
       transmission_4-gtk
       opustags
       mongodb-compass
+      openrefine
       libsForQt5.okular
       rustlings
       obsidian

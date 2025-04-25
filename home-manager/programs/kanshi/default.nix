@@ -1,7 +1,8 @@
-_: {
+{...}: {
   services.kanshi = {
     enable = true;
-    systemdTarget = "hyprland-session.target";
+    systemdTarget = "graphical-session.target";
+
     settings = [
       {
         profile.name = "undocked";
@@ -24,7 +25,7 @@ _: {
         ];
       }
       {
-        profile.name = "home";
+        profile.name = "home-1";
         profile.outputs = [
           {
             criteria = "LG Electronics LG ULTRAGEAR 0x00023FE9";
@@ -33,6 +34,20 @@ _: {
           }
           {
             criteria = "eDP-1";
+            status = "disable";
+          }
+        ];
+      }
+      {
+        profile.name = "home-2";
+        profile.outputs = [
+          {
+            criteria = "LG Electronics LG ULTRAGEAR 0x00023FE9";
+            position = "0,0";
+            mode = "2560x1080@143.94Hz";
+          }
+          {
+            criteria = "eDP-2";
             status = "disable";
           }
         ];
@@ -52,20 +67,6 @@ _: {
         ];
       }
       {
-        profile.name = "home2";
-        profile.outputs = [
-          {
-            criteria = "LG Electronics LG ULTRAGEAR 0x00023FE9";
-            position = "0,0";
-            mode = "2560x1080@143.94Hz";
-          }
-          {
-            criteria = "eDP-2";
-            status = "disable";
-          }
-        ];
-      }
-      {
         profile.name = "work";
         profile.outputs = [
           {
@@ -78,7 +79,7 @@ _: {
             criteria = "eDP-1";
             scale = 1.0;
             status = "enable";
-            position = "2160@,0";
+            position = "1920,0";
           }
         ];
       }
@@ -95,7 +96,7 @@ _: {
             criteria = "eDP-2";
             scale = 1.0;
             status = "enable";
-            position = "2160@,0";
+            position = "1920,0";
           }
         ];
       }
