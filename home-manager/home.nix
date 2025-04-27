@@ -94,7 +94,7 @@
       tree
       fastfetch
       eza
-      lazydocker
+      unstable.lazydocker
       # wdisplays
       nwg-displays
       localsend

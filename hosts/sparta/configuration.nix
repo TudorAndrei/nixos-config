@@ -38,15 +38,15 @@ in {
   boot = {
     blacklistedKernelModules = ["k10temp"];
     extraModulePackages = with config.boot.kernelPackages; [zenpower];
-    plymouth = {
-      enable = true;
-      theme = "rings";
-      themePackages = with pkgs; [
-        (adi1090x-plymouth-themes.override {
-          selected_themes = ["rings"];
-        })
-      ];
-    };
+    # plymouth = {
+    #   enable = true;
+    #   theme = "rings";
+    #   themePackages = with pkgs; [
+    #     (adi1090x-plymouth-themes.override {
+    #       selected_themes = ["rings"];
+    #     })
+    #   ];
+    # };
 
     consoleLogLevel = 0;
     initrd.verbose = false;
