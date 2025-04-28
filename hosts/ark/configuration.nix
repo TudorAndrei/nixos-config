@@ -311,7 +311,6 @@
     kitty
     wget
     curl
-    easyeffects
     vim
     home-manager
     nvitop

@@ -81,6 +81,7 @@
       nixd
       distrobox
       alejandra
+      qbittorrent-enhanced
       hyprshot
       # Games
       lutris
