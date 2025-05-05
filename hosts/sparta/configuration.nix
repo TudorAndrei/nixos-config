@@ -210,6 +210,7 @@ in {
     hyprpaper
     nautilus
     killall
+    gnome-disk-utility
     ghostscript
     clang
     graphviz

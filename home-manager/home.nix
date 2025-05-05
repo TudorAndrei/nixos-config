@@ -4,7 +4,16 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  neovim-unwrapped = pkgs.unstable.neovim-unwrapped.overrideAttrs (old: {
+    meta =
+      old.meta
+      or {}
+      // {
+        maintainers = [];
+      };
+  });
+in {
   imports = [
     inputs.stylix.homeManagerModules.stylix
     inputs.nur.modules.homeManager.default
@@ -85,6 +94,8 @@
       hyprshot
       # Games
       lutris
+      kdePackages.krdc
+      unstable.xan
       protonup-qt
       winetricks
       wineWowPackages.waylandFull
@@ -215,7 +226,8 @@
       nix-direnv.enable = true;
     };
     neovim = {
-      package = pkgs.unstable.neovim-unwrapped;
+      # package = pkgs.unstable.neovim;
+      package = neovim-unwrapped;
       enable = true;
       defaultEditor = true;
       viAlias = true;
@@ -291,6 +303,7 @@
         n = "nvim";
         ff = "fastfetch";
         afz = "alias | fzf";
+        rcp = "rsync -r --info=progress2 --info=name0";
         speedtest = "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -";
         bigfiles = "du -hs $(ls -A) | sort -rh | head -5";
         k = "eza --long --git";
