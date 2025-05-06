@@ -23,13 +23,21 @@
         order = ["Google" "DuckDuckGo"];
       };
       settings = {
+        # PERF
+        "gfx.canvas.accelerated.cache-size" = 512;
+        "gfx.content.skia-font-cache-size" = 20;
+        "content.notify.interval" = 100000;
+
         "gfx.webrender.all" = true;
         "browser.startup.homepage" = "about:home";
         "widget.wayland.fractional-scale.enabled" = true;
         "browser.startup.page" = 3;
         "network.proxy.allow_hijacking_localhost" = true;
-        "rowser.cache.disk.enable" = false;
+        "browser.cache.disk.enable" = false;
         "browser.cache.memory.capacity" = 1048576;
+        "browser.cache.memory.max_entry_size" = 10240;
+        "media.memory_cache_max_size" = 65536;
+        "network.http.max-connections" = 1800;
 
         # Disable irritating first-run stuff
         "browser.disableResetPrompt" = true;
@@ -67,6 +75,22 @@
           # Twitter
           "T9nJot5PurhJSy8n038xGA=="
         ] (_: 1);
+
+        # smoothscroll
+        #
+        "apz.overscroll.enabled" = true;
+        "general.smoothScroll" = true;
+        "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS" = 12;
+        "general.smoothScroll.msdPhysics.enabled" = true;
+        "general.smoothScroll.msdPhysics.motionBeginSpringConstant" = 600;
+        "general.smoothScroll.msdPhysics.regularSpringConstant" = 650;
+        "general.smoothScroll.msdPhysics.slowdownMinDeltaMS" = 25;
+        "general.smoothScroll.msdPhysics.slowdownMinDeltaRatio" = "2";
+        "general.smoothScroll.msdPhysics.slowdownSpringConstant" = 250;
+        "general.smoothScroll.currentVelocityWeighting" = "1";
+        "general.smoothScroll.stopDecelerationWeighting" = "1";
+        "mousewheel.default.delta_multiplier_y" = 300;
+        # // 250-400; adjust this number to your liking
 
         # Disable some telemetry
         "app.shield.optoutstudies.enabled" = false;
@@ -131,17 +155,6 @@
           seen = ["save-to-pocket-button" "developer-button" "ublock0_raymondhill_net-browser-action" "_testpilot-containers-browser-action"];
         };
       };
-    };
-  };
-  programs.librewolf = {
-    enable = false;
-    # Enable WebGL, cookies and history
-    settings = {
-      "webgl.disabled" = false;
-      "privacy.resistFingerprinting" = false;
-      "privacy.clearOnShutdown.history" = false;
-      "privacy.clearOnShutdown.cookies" = false;
-      "network.cookie.lifetimePolicy" = 0;
     };
   };
 
