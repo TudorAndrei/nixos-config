@@ -24,7 +24,7 @@ in {
     ./programs/tmux
     ./programs/hyprland
     ./programs/gammastep
-    ./programs/kanshi
+    # ./programs/kanshi
     ./programs/easyeffects
     # ./programs/qutebrowser
     ./programs/brave
@@ -62,6 +62,7 @@ in {
       inputs.zen-browser.packages."${system}".default # beta
       # llm
       delta
+      unstable.postman
       unstable.dioxus-cli
       unstable.claude-code
       zoom-us
