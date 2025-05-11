@@ -7,12 +7,12 @@
     enable = true;
     nativeMessagingHosts = [pkgs.vdhcoapp];
     profiles.tudor = {
-      userChrome = ''
-                #TabsToolbar
-        {
-            visibility: collapse;
-        }
-      '';
+      # userChrome = ''
+      #           #TabsToolbar
+      #   {
+      #       visibility: collapse;
+      #   }
+      # '';
       # userContent = ''
       #   @import "firefox-custom/userContent.css";
       # '';
@@ -23,6 +23,7 @@
         order = ["Google" "DuckDuckGo"];
       };
       settings = {
+        "browser.tabs.groups.enabled" = true;
         # PERF
         "gfx.canvas.accelerated.cache-size" = 512;
         "gfx.content.skia-font-cache-size" = 20;
