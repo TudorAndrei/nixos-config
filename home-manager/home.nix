@@ -368,6 +368,7 @@ in {
         "[json]" = {
           "editor.defaultFormatter" = "vscode.json-language-features";
         };
+        "vim.useSystemClipboard"= true;
       };
     };
   };
