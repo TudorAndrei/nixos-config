@@ -70,6 +70,7 @@ in {
       beekeeper-studio
       grimblast
       swaynotificationcenter
+      vlc
       slack
       mangohud
       libnotify
@@ -80,6 +81,7 @@ in {
       unstable.uv
       signal-desktop
       brightnessctl
+      smplayer
       arandr
       feh
       mpv
@@ -368,7 +370,7 @@ in {
         "[json]" = {
           "editor.defaultFormatter" = "vscode.json-language-features";
         };
-        "vim.useSystemClipboard"= true;
+        "vim.useSystemClipboard" = true;
       };
     };
   };
