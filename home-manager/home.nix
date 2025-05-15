@@ -62,6 +62,7 @@ in {
       inputs.zen-browser.packages."${system}".default # beta
       # llm
       delta
+      google-chrome
       unstable.postman
       unstable.dioxus-cli
       unstable.claude-code
