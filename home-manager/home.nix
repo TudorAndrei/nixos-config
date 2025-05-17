@@ -60,6 +60,7 @@ in {
 
     packages = with pkgs; [
       inputs.zen-browser.packages."${system}".default # beta
+      (callPackage ./programs/opencode/package.nix {})
       # llm
       delta
       google-chrome
