@@ -18,9 +18,9 @@
       # '';
       search = {
         force = true;
-        default = "Google";
+        default = "google";
         privateDefault = "DuckDuckGo";
-        order = ["Google" "DuckDuckGo"];
+        order = ["google" "DuckDuckGo"];
       };
       settings = {
         "browser.tabs.groups.enabled" = true;

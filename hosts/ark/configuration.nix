@@ -181,8 +181,6 @@
   };
 
   fonts.packages = with pkgs; [
-    nerdfonts
-    noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
     liberation_ttf
@@ -200,15 +198,9 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     polarity = "dark";
     fonts = {
-      serif.package = pkgs.nerdfonts;
-      serif.name = "CaskaydiaCove NF";
-
-      sansSerif.package = pkgs.nerdfonts;
-      sansSerif.name = "CaskaydiaCove NF";
-
-      monospace.package = pkgs.nerdfonts;
-      monospace.name = "CaskaydiaCove NF";
-
+      serif.package = pkgs.nerd-fonts.iosevka;
+      sansSerif.package = pkgs.nerd-fonts.iosevka;
+      monospace.package = pkgs.nerd-fonts.iosevka;
       emoji.package = pkgs.noto-fonts-emoji;
       emoji.name = "Noto Color Emoji";
     };

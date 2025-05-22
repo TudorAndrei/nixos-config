@@ -60,20 +60,18 @@ in {
 
     packages = with pkgs; [
       inputs.zen-browser.packages."${system}".default # beta
-      (callPackage ./programs/opencode/package.nix {})
+      # (callPackage ./programs/opencode/package.nix {})
       # llm
+      opencode
       delta
       google-chrome
       unstable.postman
       unstable.dioxus-cli
       unstable.claude-code
-      zoom-us
       scrcpy
-      beekeeper-studio
       grimblast
       swaynotificationcenter
       vlc
-      slack
       mangohud
       libnotify
       hyperfine
@@ -141,11 +139,11 @@ in {
       unstable.devenv
       heroic
       dbeaver-bin
-      unstable.code-cursor
+      # unstable.code-cursor
       unzip
       strawberry
       ldtk
-      unstable.windsurf
+      # unstable.windsurf
     ];
   };
 
@@ -289,7 +287,7 @@ in {
           compinit -C
         }
       '';
-      initExtra = ''
+      initContent = ''
           pdfcompress ()
           {
             gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/screen -dEmbedAllFonts=true -dSubsetFonts=true -dColorImageDownsampleType=/Bicubic -dColorImageResolution=144 -dGrayImageDownsampleType=/Bicubic -dGrayImageResolution=144 -dMonoImageDownsampleType=/Bicubic -dMonoImageResolution=144 -sOutputFile=$\{1%.*\}.compressed.pdf $1;
@@ -337,7 +335,7 @@ in {
     vscode = {
       enable = true;
       package = pkgs.unstable.vscode.fhs;
-      userSettings = {
+      profiles.default.userSettings = {
         "cline.modelSettings.o3Mini.reasoningEffort" = "high";
         "[javascript]" = {
           "editor.defaultFormatter" = "vscode.typescript-language-features";
@@ -385,17 +383,18 @@ in {
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
     fonts = {
-      serif.package = pkgs.nerdfonts;
+      serif.package = pkgs.nerd-fonts.iosevka;
       serif.name = "Iosevka NF";
-      sansSerif.package = pkgs.nerdfonts;
+      sansSerif.package = pkgs.nerd-fonts.iosevka;
       sansSerif.name = "Iosevka NF";
-      monospace.package = pkgs.nerdfonts;
+      monospace.package = pkgs.nerd-fonts.iosevka;
       monospace.name = "Iosevka NF";
       emoji.package = pkgs.noto-fonts-emoji;
       emoji.name = "Noto Color Emoji";
     };
     targets = {
       spicetify.enable = false;
+      mako.enable = false;
     };
   };
 

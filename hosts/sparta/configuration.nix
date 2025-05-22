@@ -33,7 +33,12 @@ in {
     extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
   '';
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "electron-33.4.11"
+    ];
+  };
 
   boot = {
     blacklistedKernelModules = ["k10temp"];
@@ -270,8 +275,6 @@ in {
   };
 
   fonts.packages = with pkgs; [
-    nerdfonts
-    noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
     liberation_ttf
@@ -290,13 +293,13 @@ in {
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     polarity = "dark";
     fonts = {
-      serif.package = pkgs.nerdfonts;
+      serif.package = pkgs.nerd-fonts.iosevka;
       serif.name = "Iosevka NF";
 
-      sansSerif.package = pkgs.nerdfonts;
+      sansSerif.package = pkgs.nerd-fonts.iosevka;
       sansSerif.name = "Iosevka NF";
 
-      monospace.package = pkgs.nerdfonts;
+      monospace.package = pkgs.nerd-fonts.iosevka;
       monospace.name = "Iosevka NF";
 
       emoji.package = pkgs.noto-fonts-emoji;
