@@ -6,14 +6,14 @@
 }:
 buildGo124Module {
   pname = "opencode";
-  version = "0.0.46";
+  version = "0.0.49";
   src = fetchFromGitHub {
     owner = "opencode-ai";
     repo = "opencode";
     tag = "v0.0.46";
-    hash = "sha256-PQuv3XX6aGs5XeuIYnQlTHqPFbJDg1WO6BWEuwbqjY4=";
+    hash = "sha256-Q7ArUsFMpe0zayUMBJd+fC1K4jTGElIFep31Qa/L1jY=";
   };
-  vendorHash = "sha256-0Gfn3G4ar6lHJk5SnR5dkHD0XeYi7Te6T00b5MwXKTk=";
+  vendorHash = "sha256-MVpluFTF/2S6tRQQAXE3ujskQZ3njBkfve0RQgk3IkQ=";
   nativeBuildInputs = [pkgs.fzf pkgs.ripgrep];
   meta = {
     description = "Simple command-line snippet manager, written in Go";

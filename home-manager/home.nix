@@ -60,9 +60,8 @@ in {
 
     packages = with pkgs; [
       inputs.zen-browser.packages."${system}".default # beta
-      # (callPackage ./programs/opencode/package.nix {})
+      (callPackage ./programs/opencode/package.nix {})
       # llm
-      opencode
       delta
       google-chrome
       unstable.postman
