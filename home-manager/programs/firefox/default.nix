@@ -19,8 +19,8 @@
       search = {
         force = true;
         default = "google";
-        privateDefault = "DuckDuckGo";
-        order = ["google" "DuckDuckGo"];
+        privateDefault = "ddg";
+        order = ["google" "ddg"];
       };
       settings = {
         "browser.tabs.groups.enabled" = true;
