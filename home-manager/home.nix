@@ -198,23 +198,6 @@ in {
   };
 
   programs = {
-    rio = {
-      enable = true;
-      settings = {
-        theme = "dracula";
-        platform = {
-          linux.shell.program = "tmux";
-          linux.shell.args = ["new-session" "-c" "/var/www"];
-        };
-        renderer = {
-          backend = "Vulkan";
-          performance = "High";
-          filters = [
-            "${config.home.homeDirectory}/nixos-config/home-manager/programs/rio/slang-shaders/crt/newpixie-crt.slangp"
-          ];
-        };
-      };
-    };
     btop = {
       enable = true;
       package = pkgs.btop.override {cudaSupport = true;};
