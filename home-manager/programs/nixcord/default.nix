@@ -4,7 +4,7 @@
   ];
 
   programs.nixcord = {
-    enable = false;
+    enable = true;
     config = {
       themeLinks = [
         "https://raw.githubusercontent.com/KillYoy/DiscordNight/master/DiscordNight.theme.css"

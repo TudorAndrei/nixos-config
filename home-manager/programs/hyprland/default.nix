@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{...}: {
   # services.hypridle = {
   #   enable = true;
   #   settings = {
@@ -60,6 +56,7 @@
             "nm-applet"
             "firefox"
             "easyeffects"
+            "obsidian"
           ];
 
           general = {
@@ -136,14 +133,14 @@
             # music
             "workspace 10, class:com.github.wwmm.easyeffects"
             "workspace 10, class:spotify"
-            "workspace 10, class:^strawberry$"
+            "workspace 10, class:^org.strawberrymusicplayer.strawberry$"
             "suppressevent maximize, class:.*"
+            "workspace special:notes, class:^obsidian$"
           ];
 
           bind = [
             "$mainMod, Return, exec, $terminal"
             "$mainMod_SHIFT, Q, killactive,"
-            "$mainMod, M, exit,"
             "$mainMod, D, exec, $menu"
             "$mainMod, E, exec, $fileManager"
             "$mainMod, F, fullscreen"
@@ -187,6 +184,8 @@
             "$mainMod SHIFT,p, exec, grimblast  copysave area"
             "$mainMod ALT,p, exec, grimblast copysave output"
             "$mainMod CTRL,p, exec, grimblast copysave screen"
+            "$mainMod, N, togglespecialworkspace, notes"
+            "$mainMod SHIFT, N, movetoworkspacesilent, special:notes"
           ];
           bindel = [
             ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
