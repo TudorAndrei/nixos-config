@@ -24,7 +24,7 @@ in {
     ./programs/tmux
     ./programs/hyprland
     ./programs/gammastep
-    ./programs/kanshi
+    # ./programs/kanshi
     ./programs/easyeffects
     # ./programs/qutebrowser
     ./programs/brave
@@ -74,7 +74,6 @@ in {
       mangohud
       libnotify
       hyperfine
-      alacritty
       fnm
       rye
       unstable.uv
@@ -129,7 +128,6 @@ in {
       pandoc
       transmission_4-gtk
       opustags
-      mongodb-compass
       openrefine
       libsForQt5.okular
       rustlings
