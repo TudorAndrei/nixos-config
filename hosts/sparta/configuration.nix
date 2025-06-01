@@ -24,7 +24,7 @@ in {
   boot = {
     blacklistedKernelModules = ["k10temp"];
     extraModulePackages = with config.boot.kernelPackages; [zenpower];
-    
+
     consoleLogLevel = 0;
     initrd.verbose = false;
     kernelParams = [
@@ -79,11 +79,11 @@ in {
   ];
 
   system.stateVersion = "24.05";
-  
+
   # Hardware configuration specific to sparta
   hardware.cpu.amd.updateMicrocode = true;
   hardware.bluetooth.powerOnBoot = true;
-  
+
   hardware.graphics.extraPackages = with pkgs; [
     vaapiVdpau
     libvdpau
@@ -93,7 +93,7 @@ in {
     libva
     libva-utils
   ];
-  
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
@@ -111,7 +111,7 @@ in {
       intelBusId = "PCI:0:2:0";
     };
   };
-  
+
   # Override stylix font names
   stylix.fonts = {
     serif.name = "Iosevka NF";
@@ -126,7 +126,7 @@ in {
       enable = true;
       enableUserService = true;
     };
-    
+
     acpid = {
       enable = true;
       logEvents = true;
@@ -141,7 +141,7 @@ in {
         };
       };
     };
-    
+
     xserver = {
       enable = true;
       xkb = {
@@ -149,7 +149,7 @@ in {
         variant = "";
       };
     };
-    
+
     pipewire.jack.enable = true;
   };
 

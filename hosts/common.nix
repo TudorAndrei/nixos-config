@@ -183,9 +183,9 @@
     };
     printing.enable = true;
     logind = {
-      lidSwitch = "ignore";
+      lidSwitch = "suspend";
       lidSwitchDocked = "ignore";
-      lidSwitchExternalPower = "ignore";
+      lidSwitchExternalPower = "suspend";
       extraConfig = ''
         # don't shutdown when power button is short-pressed
         HandlePowerKey=ignore

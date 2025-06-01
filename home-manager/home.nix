@@ -63,6 +63,7 @@ in {
       (callPackage ./programs/opencode/package.nix {})
       # llm
       delta
+      lmstudio
       google-chrome
       unstable.postman
       unstable.dioxus-cli
@@ -134,12 +135,11 @@ in {
       obsidian
       typst
       unstable.devenv
-      heroic
+      unstable.heroic
       dbeaver-bin
       # unstable.code-cursor
       unzip
-      strawberry
-      ldtk
+      unstable.strawberry
       # unstable.windsurf
     ];
   };
