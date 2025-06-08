@@ -28,6 +28,7 @@ in {
     ./programs/easyeffects
     # ./programs/qutebrowser
     ./programs/brave
+    ./programs/vscode
     # ./programs/nixcord
     # ./programs/spicetify
     # ./programs/kunkun
@@ -310,48 +311,6 @@ in {
     fzf = {
       enable = true;
       enableZshIntegration = true;
-    };
-
-    vscode = {
-      enable = true;
-      package = pkgs.unstable.vscode.fhs;
-      profiles.default.userSettings = {
-        "cline.modelSettings.o3Mini.reasoningEffort" = "high";
-        "[javascript]" = {
-          "editor.defaultFormatter" = "vscode.typescript-language-features";
-        };
-        "azureResourceGroups.groupBy" = "resourceGroup";
-        "[typescriptreact]" = {
-          "editor.defaultFormatter" = "rvest.vs-code-prettier-eslint";
-        };
-        "workbench.colorTheme" = "Stylix";
-        "update.mode" = "none";
-        "workbench.statusBar.visible" = true;
-        "editor.formatOnSave" = true;
-        "database-client.autoSync" = true;
-        "workbench.sideBar.location" = "right";
-        "workbench.startupEditor" = "none";
-        "vsc-webshark.sharkdFullPath" = "/home/tudor/.nix-profile/bin/sharkd";
-        "git.openRepositoryInParentFolders" = "never";
-        "notebook.formatOnSave.enabled" = true;
-        "roo-cline.allowedCommands" = [
-          "npm test"
-          "npm install"
-          "tsc"
-          "git log"
-          "git diff"
-          "git show"
-        ];
-        "github.copilot.chat.commitMessageGeneration.instructions" = [
-          {
-            "text" = "Use conventional commit message format.";
-          }
-        ];
-        "[json]" = {
-          "editor.defaultFormatter" = "vscode.json-language-features";
-        };
-        "vim.useSystemClipboard" = true;
-      };
     };
   };
 
