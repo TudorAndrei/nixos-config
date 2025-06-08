@@ -72,7 +72,6 @@ in {
   ];
   users.groups.wireshark = {};
 
-  # Host-specific packages
   environment.systemPackages = with pkgs; [
     nvidia-offload
     gnome-disk-utility
@@ -80,7 +79,6 @@ in {
 
   system.stateVersion = "24.05";
 
-  # Hardware configuration specific to sparta
   hardware.cpu.amd.updateMicrocode = true;
   hardware.bluetooth.powerOnBoot = true;
 
@@ -112,14 +110,12 @@ in {
     };
   };
 
-  # Override stylix font names
   stylix.fonts = {
     serif.name = "Iosevka NF";
     sansSerif.name = "Iosevka NF";
     monospace.name = "Iosevka NF";
   };
 
-  # Services specific to sparta
   services = {
     supergfxd.enable = true;
     asusd = {
@@ -149,11 +145,9 @@ in {
         variant = "";
       };
     };
-
     pipewire.jack.enable = true;
   };
 
-  # Host-specific programs
   programs = {
     wireshark = {
       enable = true;

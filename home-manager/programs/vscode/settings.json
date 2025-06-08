@@ -48,5 +48,6 @@
   "workbench.colorTheme": "Stylix",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
-  "workbench.statusBar.visible": true
+  "workbench.statusBar.visible": true,
+  "biome.suggestInstallingGlobally": false
 }
