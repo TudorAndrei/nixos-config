@@ -5,26 +5,6 @@
 
     settings = [
       {
-        profile.name = "undocked";
-        profile.outputs = [
-          {
-            criteria = "eDP-1";
-            scale = 1.0;
-            status = "enable";
-          }
-        ];
-      }
-      {
-        profile.name = "undocked2";
-        profile.outputs = [
-          {
-            criteria = "eDP-2";
-            scale = 1.0;
-            status = "enable";
-          }
-        ];
-      }
-      {
         profile.name = "home-1";
         profile.outputs = [
           {
