@@ -62,6 +62,7 @@ in {
     packages = with pkgs; [
       inputs.zen-browser.packages."${system}".default # beta
       (callPackage ./programs/opencode/package.nix {})
+      # (callPackage ./programs/jan/package.nix {})
       # llm
       delta
       lmstudio
@@ -349,4 +350,6 @@ in {
   services.syncthing = {
     enable = true;
   };
+  services.kdeconnect.enable = true;
+  services.kdeconnect.indicator = true;
 }
