@@ -20,7 +20,7 @@ in {
     ./programs/firefox
     ./programs/waybar
     ./programs/starship
-    ./programs/alacritty
+    ./programs/terminal
     ./programs/tmux
     ./programs/hyprland
     ./programs/gammastep
@@ -60,7 +60,6 @@ in {
     stateVersion = "23.11";
 
     packages = with pkgs; [
-      inputs.zen-browser.packages."${system}".default # beta
       (callPackage ./programs/opencode/package.nix {})
       # (callPackage ./programs/jan/package.nix {})
       # llm
@@ -68,8 +67,6 @@ in {
       lmstudio
       google-chrome
       unstable.postman
-      unstable.dioxus-cli
-      unstable.claude-code
       scrcpy
       grimblast
       swaynotificationcenter
@@ -78,7 +75,6 @@ in {
       libnotify
       hyperfine
       fnm
-      rye
       unstable.uv
       signal-desktop
       brightnessctl
@@ -98,8 +94,6 @@ in {
       hyprshot
       # Games
       lutris
-      kdePackages.krdc
-      unstable.xan
       protonup-qt
       winetricks
       wineWowPackages.waylandFull
@@ -111,8 +105,6 @@ in {
       fastfetch
       eza
       unstable.lazydocker
-      # wdisplays
-      nwg-displays
       localsend
       wttrbar
       jq
@@ -124,25 +116,17 @@ in {
       unstable.bruno
       anydesk
       pika-backup
-      grim
       slurp
       stremio
       networkmanagerapplet
       pandoc
-      transmission_4-gtk
       opustags
-      openrefine
       libsForQt5.okular
-      rustlings
       obsidian
-      typst
       unstable.devenv
       unstable.heroic
-      dbeaver-bin
-      # unstable.code-cursor
       unzip
       unstable.strawberry
-      # unstable.windsurf
     ];
   };
 
