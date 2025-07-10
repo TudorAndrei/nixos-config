@@ -7,9 +7,9 @@
     auto-optimise-store = true;
     experimental-features = ["nix-command" "flakes"];
     substituters = [
-      "https://cache.nixos.org/"
-      "https://hyprland.cachix.org"
-      "https://nix-community.cachix.org"
+      "https://hyprland.cachix.org?priority=10"
+      "https://nix-community.cachix.org?priority=20"
+      "https://cache.nixos.org/?priority=40"
     ];
     trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
@@ -150,8 +150,6 @@
   ];
 
   stylix = {
-    cursor.package = pkgs.bibata-cursors;
-    cursor.name = "Bibata-Modern-Ice";
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     polarity = "dark";

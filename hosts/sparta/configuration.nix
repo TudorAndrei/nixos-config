@@ -110,12 +110,6 @@ in {
     };
   };
 
-  stylix.fonts = {
-    serif.name = "Iosevka NF";
-    sansSerif.name = "Iosevka NF";
-    monospace.name = "Iosevka NF";
-  };
-
   services = {
     supergfxd.enable = true;
     asusd = {

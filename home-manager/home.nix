@@ -15,7 +15,7 @@
   });
 in {
   imports = [
-    inputs.stylix.homeManagerModules.stylix
+    inputs.stylix.homeModules.stylix
     inputs.nur.modules.homeManager.default
     ./programs/firefox
     ./programs/waybar
@@ -320,17 +320,10 @@ in {
     image = ../bigsun.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     polarity = "dark";
-    cursor.package = pkgs.bibata-cursors;
-    cursor.name = "Bibata-Modern-Ice";
     fonts = {
-      serif.package = pkgs.nerd-fonts.iosevka;
       serif.name = "Iosevka NF";
-      sansSerif.package = pkgs.nerd-fonts.iosevka;
       sansSerif.name = "Iosevka NF";
-      monospace.package = pkgs.nerd-fonts.iosevka;
       monospace.name = "Iosevka NF";
-      emoji.package = pkgs.noto-fonts-emoji;
-      emoji.name = "Noto Color Emoji";
     };
     targets = {
       spicetify.enable = false;
