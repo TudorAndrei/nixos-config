@@ -24,7 +24,7 @@ in {
     ./programs/tmux
     ./programs/hyprland
     ./programs/gammastep
-    # ./programs/kanshi
+    ./programs/kanshi
     ./programs/easyeffects
     # ./programs/qutebrowser
     ./programs/brave
@@ -299,6 +299,7 @@ in {
     targets = {
       spicetify.enable = false;
       mako.enable = false;
+      firefox.enable = false;
     };
   };
 

@@ -2,39 +2,36 @@
   services.kanshi = {
     enable = true;
     systemdTarget = "graphical-session.target";
-
-    settings = [
-      {
-        profile.name = "home-1";
-        profile.outputs = [
+    # systemdTarget = "hyprland-session.target";
+    profiles = {
+      home_1 = {
+        outputs = [
           {
             criteria = "LG Electronics LG ULTRAGEAR 0x00023FE9";
             position = "0,0";
-            mode = "2560x1080@143.94Hz";
+            mode = "2560x1080@60Hz";
           }
           {
             criteria = "eDP-1";
             status = "disable";
           }
         ];
-      }
-      {
-        profile.name = "home-2";
-        profile.outputs = [
+      };
+      home_2 = {
+        outputs = [
           {
             criteria = "LG Electronics LG ULTRAGEAR 0x00023FE9";
             position = "0,0";
-            mode = "2560x1080@143.94Hz";
+            mode = "2560x1080@60Hz";
           }
           {
             criteria = "eDP-2";
             status = "disable";
           }
         ];
-      }
-      {
-        profile.name = "home-bigmonitor";
-        profile.outputs = [
+      };
+      home_bigmonitor = {
+        outputs = [
           {
             criteria = "LG Electronics LG TV SSCR2 0x01010101";
             position = "0,0";
@@ -45,10 +42,9 @@
             status = "disable";
           }
         ];
-      }
-      {
-        profile.name = "home-bigmonitor2";
-        profile.outputs = [
+      };
+      home_bigmonitor2 = {
+        outputs = [
           {
             criteria = "LG Electronics LG TV SSCR2 0x01010101";
             position = "0,0";
@@ -59,10 +55,9 @@
             status = "disable";
           }
         ];
-      }
-      {
-        profile.name = "work";
-        profile.outputs = [
+      };
+      work = {
+        outputs = [
           {
             criteria = "Dell Inc. DELL U4320Q 41LFCH3";
             position = "0,0";
@@ -76,10 +71,9 @@
             position = "1920,0";
           }
         ];
-      }
-      {
-        profile.name = "work2";
-        profile.outputs = [
+      };
+      work2 = {
+        outputs = [
           {
             criteria = "Dell Inc. DELL U4320Q 41LFCH3";
             position = "0,0";
@@ -87,13 +81,13 @@
             scale = 2.0;
           }
           {
-            criteria = "eDP-2";
+            criteria = "eDP-1";
             scale = 1.0;
             status = "enable";
             position = "1920,0";
           }
         ];
-      }
-    ];
+      };
+    };
   };
 }
