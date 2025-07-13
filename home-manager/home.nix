@@ -235,24 +235,11 @@ in {
     zoxide.enable = true;
     zsh = {
       # PERF: Use to debug performance
-      # zprof.enable=true;
+      # zprof.enable = true;
       enable = true;
       syntaxHighlighting.enable = true;
-      antidote = {
-        enable = true;
-        plugins = [
-          ''
-            "zsh-users/zsh-history-substring-search"
-          ''
-        ];
-      };
-      completionInit = ''
-        if [[ -n $(print ~/.zcompdump(Nmh+24)) ]] {
-          compinit
-        } else {
-          compinit -C
-        }
-      '';
+      historySubstringSearch.enable = true;
+      enableCompletion = true;
       initContent = ''
           pdfcompress ()
           {
