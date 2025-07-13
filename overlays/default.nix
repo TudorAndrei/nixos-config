@@ -7,6 +7,7 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
+    calf = final.unstable.calf;
     llm = let
       pyWithPackages = final.unstable.python3.withPackages (ps: [
         (final.callPackage ../home-manager/programs/llm/llm-cli {})
