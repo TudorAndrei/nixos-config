@@ -49,7 +49,7 @@
           env = [
             "XCURSOR_SIZE,24"
             "NVD_BACKEND,direct"
-            "HYPRCURSOR_SIZE,24"
+            "HYPRCURSOR_SIZE,50"
           ];
           exec-once = [
             "waybar"

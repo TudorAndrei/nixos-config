@@ -64,6 +64,7 @@ in {
       # (callPackage ./programs/jan/package.nix {})
       # llm
       delta
+      nwg-displays
       lmstudio
       google-chrome
       unstable.postman
@@ -126,7 +127,7 @@ in {
       unstable.devenv
       unstable.heroic
       unzip
-      unstable.strawberry
+      strawberry
     ];
   };
 
@@ -287,6 +288,9 @@ in {
   };
 
   stylix = {
+    # cursor.package = pkgs.bibata-cursors;
+    # cursor.name = "Bibata-Modern-Ice";
+    # cursor.size = 24;
     enable = true;
     image = ../bigsun.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";

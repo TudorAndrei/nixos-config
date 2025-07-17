@@ -150,6 +150,8 @@
   ];
 
   stylix = {
+    # cursor.package = pkgs.bibata-cursors;
+    # cursor.name = "Bibata-Modern-Ice";
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     polarity = "dark";
@@ -240,7 +242,6 @@
     vim
     home-manager
     nvitop
-    kanata
     htop-vim
     go
     nodejs_20

@@ -1,6 +1,6 @@
 {...}: {
   services.kanshi = {
-    enable = true;
+    enable = false;
     systemdTarget = "graphical-session.target";
     # systemdTarget = "hyprland-session.target";
     profiles = {
@@ -9,7 +9,6 @@
           {
             criteria = "LG Electronics LG ULTRAGEAR 0x00023FE9";
             position = "0,0";
-            mode = "2560x1080@144Hz";
           }
           {
             criteria = "BOE NE173QHM-NZ2";
