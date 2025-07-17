@@ -15,7 +15,10 @@ in {
   imports = [
     ./hardware-configuration.nix
     ../common.nix
+    ../modules/asus
   ];
+
+  asus.enable = true;
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-33.4.11"
@@ -23,7 +26,6 @@ in {
 
   boot = {
     blacklistedKernelModules = ["k10temp"];
-    extraModulePackages = with config.boot.kernelPackages; [zenpower];
 
     consoleLogLevel = 0;
     initrd.verbose = false;
@@ -48,11 +50,8 @@ in {
       "nvidia.NVreg_UsePageAttributeTable=1"
     ];
     kernelModules = [
-      "asus-nb-wmi"
-      "asus-wmi"
       "btusb"
       "kvm-amd"
-      "zenpower"
     ];
     extraModprobeConfig = ''
       options btusb enable_autosuspend=n
@@ -86,20 +85,13 @@ in {
     vaapiVdpau
     libvdpau
     libvdpau-va-gl
-    nvidia-vaapi-driver
     vdpauinfo
     libva
     libva-utils
   ];
 
   hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
     powerManagement.finegrained = true;
-    open = true;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-    forceFullCompositionPipeline = true;
     prime = {
       offload = {
         enable = true;
@@ -111,27 +103,6 @@ in {
   };
 
   services = {
-    supergfxd.enable = true;
-    asusd = {
-      enable = true;
-      enableUserService = true;
-    };
-
-    acpid = {
-      enable = true;
-      logEvents = true;
-      handlers = {
-        brightness-up = {
-          event = "video/brightnessup";
-          action = "${pkgs.asusctl}/bin/asusctl --brightness-up";
-        };
-        brightness-down = {
-          event = "video/brightnessdown";
-          action = "${pkgs.asusctl}/bin/asusctl --brightness-down";
-        };
-      };
-    };
-
     xserver = {
       enable = true;
       xkb = {

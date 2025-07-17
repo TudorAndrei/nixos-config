@@ -27,15 +27,6 @@
 
   networking.hostName = "ark";
 
-  users.users.tudor.extraGroups = [
-    "video"
-    "networkmanager"
-    "kvm"
-    "wheel"
-    "audio"
-    "docker"
-  ];
-
   hardware.bluetooth.settings.General = {
     Enable = "Source,Sink,Media,Socket";
     ControllerMode = "bredr";
@@ -44,19 +35,12 @@
   hardware.graphics = {
     extraPackages = with pkgs; [
       intel-media-driver
-      nvidia-vaapi-driver
     ];
     extraPackages32 = with pkgs.pkgsi686Linux; [intel-vaapi-driver];
   };
 
   hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
     # powerManagement.finegrained = true;
-    open = true;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-    forceFullCompositionPipeline = true;
     prime = {
       # offload = {
       #   enable = true;
