@@ -8,21 +8,12 @@
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
     calf = final.unstable.calf;
-    llm = let
-      pyWithPackages = final.unstable.python3.withPackages (ps: [
-        (final.callPackage ../home-manager/programs/llm/llm-cli {})
-        (final.callPackage ../home-manager/programs/llm/llm-gemini {
-          inherit (final.unstable) python3;
-          unstable = final.unstable;
-        })
-        (final.callPackage ../home-manager/programs/llm/llm-commit {})
-        (final.callPackage ../home-manager/programs/llm/llm-groq {})
-      ]);
-    in
-      prev.runCommandNoCCLocal "llm" {} ''
-        mkdir -p $out/bin
-        ln -s ${pyWithPackages}/bin/llm $out/bin/llm
-      '';
+    llm = prev.python3.withPackages (ps: with ps; [
+      final.llm-cli
+      final.llm-commit
+      final.llm-gemini
+      final.llm-groq
+    ]);
   };
 
   unstable-packages = final: _prev: {

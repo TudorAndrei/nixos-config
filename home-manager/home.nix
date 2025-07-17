@@ -60,9 +60,9 @@ in {
     stateVersion = "23.11";
 
     packages = with pkgs; [
-      (callPackage ./programs/opencode/package.nix {})
-      # (callPackage ./programs/jan/package.nix {})
-      # llm
+      jan
+      opencode
+      llm
       delta
       nwg-displays
       lmstudio

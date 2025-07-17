@@ -1,5 +1,9 @@
-# Custom packages, that can be defined similarly to ones from nixpkgs
-# You can build them using 'nix build .#example'
-pkgs: {
-  # example = pkgs.callPackage ./example { };
+# pkgs/default.nix
+{ pkgs }: {
+  jan = pkgs.callPackage ./jan.nix { };
+  opencode = pkgs.callPackage ./opencode.nix { };
+  llm-cli = pkgs.callPackage ./llm/llm-cli { };
+  llm-commit = pkgs.callPackage ./llm/llm-commit { };
+  llm-gemini = pkgs.callPackage ./llm/llm-gemini { };
+  llm-groq = pkgs.callPackage ./llm/llm-groq { };
 }
