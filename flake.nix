@@ -47,7 +47,7 @@
         config.allowUnfree = true;
       };
   in {
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+    packages = forAllSystems (system: import ./pkgs { pkgs = pkgsFor system; });
     formatter = forAllSystems (system: (pkgsFor system).alejandra);
     overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {

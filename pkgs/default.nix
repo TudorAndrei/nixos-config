@@ -1,4 +1,3 @@
-# pkgs/default.nix
 { pkgs }: {
   jan = pkgs.callPackage ./jan.nix { };
   opencode = pkgs.callPackage ./opencode.nix { };

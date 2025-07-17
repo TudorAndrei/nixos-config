@@ -63,10 +63,6 @@ in {
     "nvim/init.lua".enable = false;
   };
 
-  home.file.".local/bin/update-system" = {
-    executable = true;
-    source = ../scripts/update-system.sh;
-  };
   home.file."pythia/.gitconfig-pythia" = {
     text = ''
       [user]
