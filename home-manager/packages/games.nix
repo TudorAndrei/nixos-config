@@ -1,9 +1,9 @@
-{ pkgs }:
-
+{pkgs}:
 with pkgs; [
-  # Games
   lutris
   protonup-qt
   winetricks
   wineWowPackages.waylandFull
+  mangohud
+  unstable.heroic
 ]

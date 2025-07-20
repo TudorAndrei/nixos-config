@@ -1,29 +1,26 @@
-{ pkgs }:
-
+{pkgs}:
 with pkgs; [
-  # GUI Applications
+  nwg-displays
   lmstudio
   google-chrome
   unstable.postman
   swaynotificationcenter
   vlc
-  mangohud
   signal-desktop
   smplayer
   libreoffice
-  slack
   qbittorrent-enhanced
   zotero
   localsend
   czkawka
   foliate
   unstable.bruno
-  anydesk
   pika-backup
   stremio
   libsForQt5.okular
   obsidian
-  unstable.devenv
-  unstable.heroic
   strawberry
+  mpv
+  pavucontrol
+  networkmanagerapplet
 ]

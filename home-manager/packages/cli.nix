@@ -1,9 +1,8 @@
 { pkgs }:
 
 with pkgs; [
-  # CLI Tools
   delta
-  nwg-displays
+  unstable.devenv
   scrcpy
   grimblast
   libnotify
@@ -11,9 +10,7 @@ with pkgs; [
   fnm
   unstable.uv
   brightnessctl
-  arandr
   feh
-  mpv
   fd
   zip
   cargo
@@ -22,7 +19,6 @@ with pkgs; [
   alejandra
   hyprshot
   wofi
-  pavucontrol
   pamixer
   tree
   fastfetch
@@ -34,7 +30,6 @@ with pkgs; [
   imagemagick
   dust
   slurp
-  networkmanagerapplet
   pandoc
   opustags
   unzip
