@@ -4,8 +4,7 @@
   pkgs,
   inputs,
   ...
-}: let
-in {
+}: {
   imports = [
     inputs.stylix.homeModules.stylix
     inputs.nur.modules.homeManager.default
@@ -38,7 +37,6 @@ in {
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
-
     ];
     config = {
       allowUnfree = true;
@@ -49,7 +47,7 @@ in {
     homeDirectory = "/home/tudor";
     stateVersion = "23.11";
 
-    packages = (import ./packages { inherit pkgs; });
+    packages = import ./packages {inherit pkgs;};
   };
 
   # TODO: Link .config/easyeffects with nixos
@@ -107,5 +105,4 @@ in {
     CFLAGS = "-I${pkgs.graphviz}/include";
     XDG_SCREENSHOTS_DIR = "$HOME/Pictures/screenshots";
   };
-
 }
