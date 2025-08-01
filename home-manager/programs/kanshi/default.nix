@@ -8,11 +8,11 @@
         outputs = [
           {
             criteria = "LG Electronics LG ULTRAGEAR 0x00023FE9";
+            mode = "2560x1080@60Hz";
             position = "0,0";
           }
           {
             criteria = "BOE NE173QHM-NZ2";
-            status = "disable";
           }
         ];
       };

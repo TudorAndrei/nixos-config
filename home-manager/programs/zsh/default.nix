@@ -1,7 +1,7 @@
 {config, ...}: {
   programs.zsh = {
     # PERF: Use to debug performance
-    zprof.enable = true;
+    # zprof.enable = true;
     enable = true;
     syntaxHighlighting.enable = true;
     historySubstringSearch.enable = true;
@@ -19,7 +19,8 @@
       }
     '';
     shellAliases = {
-      nhs = "nh home switch";
+      # nhs = "nh home switch";
+      nhs = "home-manager switch --flake .#tudor";
       nos = "nh os switch";
       n = "nvim";
       ff = "fastfetch";

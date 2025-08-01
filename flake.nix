@@ -19,9 +19,9 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
     nixcord = {
-      url = "github:kaylorben/nixcord?rev=c1a2a14393dba951994442199b9adfe14bb78a99";
-      # url = "github:kaylorben/nixcord";
+      url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -47,7 +47,7 @@
         config.allowUnfree = true;
       };
   in {
-    packages = forAllSystems (system: import ./pkgs { pkgs = pkgsFor system; });
+    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     formatter = forAllSystems (system: (pkgsFor system).alejandra);
     overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
@@ -70,7 +70,7 @@
     };
     homeConfigurations = {
       "tudor" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;
         };

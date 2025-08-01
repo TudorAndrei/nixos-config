@@ -28,7 +28,7 @@
     ./programs/zoxide
     ./programs/syncthing
     ./programs/neovim
-    # ./programs/nixcord
+    ./programs/nixcord
     # ./programs/spicetify
     # ./programs/kunkun
   ];
@@ -47,7 +47,13 @@
     homeDirectory = "/home/tudor";
     stateVersion = "23.11";
 
-    packages = import ./packages {inherit pkgs;};
+    packages =
+      (import ./packages/cli.nix {inherit pkgs;})
+      ++ (import ./packages/gui.nix {inherit pkgs;})
+      ++ (import ./packages/games.nix {inherit pkgs;})
+      ++ [
+        inputs.zen-browser.packages."${pkgs.system}".default
+      ];
   };
 
   # TODO: Link .config/easyeffects with nixos

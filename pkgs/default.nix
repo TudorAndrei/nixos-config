@@ -1,4 +1,4 @@
-{ pkgs }: {
+pkgs: {
   jan = pkgs.callPackage ./jan.nix { };
   opencode = pkgs.callPackage ./opencode.nix { };
   llm-cli = pkgs.callPackage ./llm/llm-cli { };

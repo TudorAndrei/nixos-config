@@ -1,4 +1,6 @@
-{pkgs}:
+{
+  pkgs,
+}:
 with pkgs; [
   nwg-displays
   lmstudio
