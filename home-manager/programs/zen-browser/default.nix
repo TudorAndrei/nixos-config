@@ -1,8 +1,4 @@
-{ pkgs, ... }:
-
-{
-  home.packages = [ pkgs.zen-browser ];
-
+{...}: {
   xdg.mimeApps.defaultApplications = {
     "x-scheme-handler/http" = ["zen-browser.desktop"];
     "x-scheme-handler/https" = ["zen-browser.desktop"];
