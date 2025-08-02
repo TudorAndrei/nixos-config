@@ -8,7 +8,7 @@
   imports = [
     inputs.stylix.homeModules.stylix
     inputs.nur.modules.homeManager.default
-    ./programs/firefox
+    ./programs/zen-browser
     ./programs/waybar
     ./programs/starship
     ./programs/terminal

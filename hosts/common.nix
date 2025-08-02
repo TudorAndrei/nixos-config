@@ -246,16 +246,15 @@
   systemd.services.NetworkManager-wait-online.enable = false;
 
   environment.systemPackages = with pkgs; [
-    firefoxpwa
     wl-clipboard
     alsa-utils
-    kitty
     wget
     curl
     vim
     home-manager
     nvitop
     htop-vim
+    font-awesome
     go
     nodejs_20
     stdenv.cc.cc
