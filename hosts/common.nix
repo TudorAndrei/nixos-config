@@ -289,11 +289,11 @@
       clean.extraArgs = "--keep-since 4d --keep 3";
       flake = "/home/tudor/nixos-config";
     };
-    firefox = {
-      enable = true;
-      package = pkgs.firefox;
-      nativeMessagingHosts.packages = [pkgs.firefoxpwa];
-    };
+    # firefox = {
+    #   enable = true;
+    #   package = pkgs.firefox;
+    #   nativeMessagingHosts.packages = [pkgs.firefoxpwa];
+    # };
     steam = {
       enable = true;
       gamescopeSession.enable = true;

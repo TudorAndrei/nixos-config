@@ -54,7 +54,7 @@
           exec-once = [
             "waybar"
             "nm-applet"
-            "firefox"
+            "zen"
             "easyeffects"
             "obsidian"
           ];
@@ -125,7 +125,7 @@
             workspace_swipe = false;
           };
           windowrulev2 = [
-            "workspace 1, class:^firefox$"
+            "workspace 1, class:^zen$"
             "workspace 7, class:^steam$"
             # chat
             "workspace 9, class:^signal$"
