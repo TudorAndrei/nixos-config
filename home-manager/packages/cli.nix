@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, inputs }:
 
 with pkgs; [
   delta

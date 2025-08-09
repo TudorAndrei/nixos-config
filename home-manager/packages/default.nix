@@ -1,5 +1,4 @@
-{ pkgs }:
-
-(import ./cli.nix { inherit pkgs; }) ++
-(import ./gui.nix { inherit pkgs; }) ++
-(import ./games.nix { inherit pkgs; })
+{ pkgs, inputs, system }:
+(import ./cli.nix { inherit pkgs inputs; }) ++
+(import ./gui.nix { inherit pkgs inputs system; }) ++
+(import ./games.nix { inherit pkgs ; })

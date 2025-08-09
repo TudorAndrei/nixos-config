@@ -84,7 +84,7 @@
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit inputs outputs;
+            inherit inputs outputs system;
           };
           modules = [
             ./home-manager/home.nix

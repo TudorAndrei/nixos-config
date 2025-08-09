@@ -1,7 +1,11 @@
 {
   pkgs,
+  inputs,
+  system
 }:
 with pkgs; [
+inputs.zen-browser.packages."${system}".default
+
   nwg-displays
   lmstudio
   google-chrome

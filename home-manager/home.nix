@@ -3,6 +3,7 @@
   config,
   pkgs,
   inputs,
+  system,
   ...
 }: {
   imports = [
@@ -50,7 +51,7 @@
     homeDirectory = "/home/tudor";
     stateVersion = "23.11";
 
-    packages = with pkgs; (import ./packages { inherit pkgs; });
+    packages = with pkgs; (import ./packages { inherit pkgs inputs system; });
   };
 
   # TODO: Link .config/easyeffects with nixos
