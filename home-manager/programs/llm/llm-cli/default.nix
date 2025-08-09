@@ -13,7 +13,7 @@ unstable.python3Packages.buildPythonPackage rec {
     owner = "simonw";
     repo = "llm";
     rev = version;
-    hash = "sha256-06wkAWblwtPo5/fJXqprjOuqA/yXN65qsDKjoZAh0YM=";
+    hash = "sha256-jUWhdLZLHgrIP7trHvLBETQ764+k4ze5Swt2HYMqg4E=";
   };
 
   nativeBuildInputs = with unstable.python3Packages; [

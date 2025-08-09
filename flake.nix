@@ -5,8 +5,14 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    hyprland-contrib.url = "github:hyprwm/contrib";
-    hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,15 +74,22 @@
       };
     };
     homeConfigurations = {
-      "tudor" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {
-          inherit inputs outputs;
+      "tudor" = let
+        system = "x86_64-linux";
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
         };
-        modules = [
-          ./home-manager/home.nix
-        ];
-      };
+      in
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
+          modules = [
+            ./home-manager/home.nix
+          ];
+        };
     };
   };
 }

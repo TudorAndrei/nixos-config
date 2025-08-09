@@ -7,7 +7,7 @@
 }: {
   imports = [
     inputs.stylix.homeModules.stylix
-    inputs.nur.modules.homeManager.default
+    # inputs.nur.modules.homeManager.default
     ./programs/zen-browser
     ./programs/waybar
     ./programs/starship
@@ -31,9 +31,9 @@
     ./programs/nixcord
     # ./programs/spicetify
     # ./programs/kunkun
-    ./programs/jan
+    # ./programs/jan
     ./programs/opencode
-    ./programs/llm
+    # ./programs/llm
   ];
   nixpkgs = {
     overlays = [
@@ -50,6 +50,7 @@
     homeDirectory = "/home/tudor";
     stateVersion = "23.11";
 
+    packages = with pkgs; (import ./packages { inherit pkgs; });
   };
 
   # TODO: Link .config/easyeffects with nixos
@@ -79,6 +80,11 @@
     home-manager.enable = true;
   };
 
+  services.mako = {
+    enable = true;
+    # Add any other mako configuration options here
+  };
+
   stylix = {
     # cursor.package = pkgs.bibata-cursors;
     # cursor.name = "Bibata-Modern-Ice";
@@ -91,11 +97,6 @@
       serif.name = "Iosevka NF";
       sansSerif.name = "Iosevka NF";
       monospace.name = "Iosevka NF";
-    };
-    targets = {
-      spicetify.enable = false;
-      mako.enable = false;
-      firefox.enable = false;
     };
   };
 
