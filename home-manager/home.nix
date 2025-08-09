@@ -31,6 +31,9 @@
     ./programs/nixcord
     # ./programs/spicetify
     # ./programs/kunkun
+    ./programs/jan
+    ./programs/opencode
+    ./programs/llm
   ];
   nixpkgs = {
     overlays = [
@@ -47,13 +50,6 @@
     homeDirectory = "/home/tudor";
     stateVersion = "23.11";
 
-    packages =
-      (import ./packages/cli.nix {inherit pkgs;})
-      ++ (import ./packages/gui.nix {inherit pkgs;})
-      ++ (import ./packages/games.nix {inherit pkgs;})
-      ++ [
-        inputs.zen-browser.packages."${pkgs.system}".default
-      ];
   };
 
   # TODO: Link .config/easyeffects with nixos

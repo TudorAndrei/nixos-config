@@ -31,6 +31,7 @@ with pkgs; [
   dust
   slurp
   pandoc
+  opencode
   opustags
   unzip
 ]

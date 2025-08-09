@@ -10,5 +10,6 @@
     "application/xhtml+xml" = ["zen-browser.desktop"];
     "application/x-extension-xhtml" = ["zen-browser.desktop"];
     "application/x-extension-xht" = ["zen-browser.desktop"];
+    "application/pdf" = ["zen-browser.desktop"];
   };
 }

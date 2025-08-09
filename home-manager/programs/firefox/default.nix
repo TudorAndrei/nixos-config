@@ -4,7 +4,7 @@
   ...
 }: {
   programs.firefox = {
-    enable = true;
+    enable = false;
     nativeMessagingHosts = [pkgs.vdhcoapp];
     profiles.tudor = {
       # userChrome = ''
