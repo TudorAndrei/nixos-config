@@ -10,7 +10,7 @@
             {
               criteria = "BOE NE173QHM-NZ2";
               status = "enable";
-              mode = "2560x1440@240.00Hz";
+              mode = "2560x1440@240.00";
               scale = 1.0;
             }
           ];
@@ -23,7 +23,7 @@
             {
               criteria = "LG Electronics LG ULTRAGEAR 0x00023FE9";
               status = "enable";
-              mode = "2560x1080@60Hz";
+              mode = "2560x1080@60";
               position = "2560,0";
             }
             {

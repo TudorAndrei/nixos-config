@@ -65,7 +65,6 @@ in {
 
   # Additional user groups specific to this host
   users.users.tudor.extraGroups = [
-    "adbusers"
     "gamemode"
     "wireshark"
   ];
@@ -91,7 +90,6 @@ in {
   ];
 
   hardware.nvidia = {
-    powerManagement.finegrained = true;
     prime = {
       offload = {
         enable = true;

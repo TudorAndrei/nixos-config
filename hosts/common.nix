@@ -139,11 +139,11 @@
         nvidia-vaapi-driver
       ];
     };
-
+    nvidia-container-toolkit.enable = true;
     nvidia = {
       modesetting.enable = true;
-      powerManagement.enable = true;
-      open = true;
+      powerManagement.finegrained = true;
+      open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;
       forceFullCompositionPipeline = true;
@@ -182,6 +182,7 @@
 
   virtualisation.oci-containers.backend = "docker";
   virtualisation.docker.enable = true;
+  virtualisation.docker.enableOnBoot = false;
 
   services = {
     gvfs.enable = true;
