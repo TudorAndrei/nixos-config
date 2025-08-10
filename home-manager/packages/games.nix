@@ -6,5 +6,5 @@ with pkgs; [
   wineWowPackages.waylandFull
   mangohud
   unstable.heroic
-  unstable.nexusmods-app-unfree
+  # unstable.nexusmods-app-unfree
 ]
