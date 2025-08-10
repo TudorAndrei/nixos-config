@@ -39,6 +39,9 @@
   wayland = {
     windowManager = {
       hyprland = {
+        systemd.enable = true;
+        systemd.enableXdgAutostart = true;
+        xwayland.enable = true;
         enable = true;
         package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
         portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
@@ -47,17 +50,14 @@
           "$fileManager" = "nautilus";
           "$menu" = "wofi --show drun";
           "$mainMod" = "SUPER";
-          monitor = [
-            "eDP-1, 2560x1440@240.00Hz, 0x0, 1"
-            "eDP-2, 2560x1440@240.00Hz, 0x0, 1"
-          ];
+          # monitor = ["unknown,preferred,auto,1"];
           env = [
             "XCURSOR_SIZE,24"
             "NVD_BACKEND,direct"
             "HYPRCURSOR_SIZE,50"
           ];
           exec-once = [
-            "waybar"
+            # "waybar"
             "nm-applet"
             "zen"
             "easyeffects"

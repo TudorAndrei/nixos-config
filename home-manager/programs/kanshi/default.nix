@@ -1,40 +1,61 @@
 {...}: {
   services.kanshi = {
-    enable = false;
-    systemdTarget = "graphical-session.target";
-    # systemdTarget = "hyprland-session.target";
-    profiles = {
-      home_monitor = {
-        outputs = [
-          {
-            criteria = "LG Electronics LG ULTRAGEAR 0x00023FE9";
-            mode = "2560x1080@60Hz";
-            position = "0,0";
-          }
-          {
-            criteria = "BOE NE173QHM-NZ2";
-          }
-        ];
-      };
-      home_tv = {
-        outputs = [
+    enable = true;
+    systemdTarget = "hyprland-session.target";
+    settings = [
+      {
+        profile = {
+          name = "laptop-only";
+          outputs = [
+            {
+              criteria = "BOE NE173QHM-NZ2";
+              status = "enable";
+              mode = "2560x1440@240.00Hz";
+              scale = 1.0;
+            }
+          ];
+        };
+      }
+      {
+        profile = {
+          name = "home_monitor";
+          outputs = [
+            {
+              criteria = "LG Electronics LG ULTRAGEAR 0x00023FE9";
+              status = "enable";
+              mode = "2560x1080@60Hz";
+              position = "2560,0";
+            }
+            {
+              criteria = "BOE NE173QHM-NZ2";
+              status = "enable";
+              position = "0,0";
+              scale = 1.0;
+            }
+          ];
+        };
+      }
+      {
+        profile.name = "home_tv";
+        profile.outputs = [
           {
             criteria = "LG Electronics LG TV SSCR2 0x01010101";
             position = "0,0";
-            mode = "3840x2160@60.0Hz";
+            mode = "3840x2160@60.0";
           }
           {
             criteria = "BOE NE173QHM-NZ2";
             status = "disable";
           }
         ];
-      };
-      work = {
-        outputs = [
+      }
+      {
+        profile.name = "work";
+        profile.outputs = [
           {
             criteria = "Dell Inc. DELL U4320Q 41LFCH3";
             position = "0,0";
-            mode = "3840x2160@60Hz";
+            mode = "3840x2160@60";
             scale = 2.0;
           }
           {
@@ -44,7 +65,7 @@
             position = "1920,0";
           }
         ];
-      };
-    };
+      }
+    ];
   };
 }
