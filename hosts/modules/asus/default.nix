@@ -1,14 +1,17 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options.asus = {
     enable = lib.mkEnableOption "Enable ASUS specific configuration";
   };
 
   config = lib.mkIf config.asus.enable {
     boot = {
-      kernelModules = [ "asus-nb-wmi" "asus-wmi" "zenpower" ];
-      extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
+      kernelModules = ["asus-nb-wmi" "asus-wmi" "zenpower"];
+      extraModulePackages = with config.boot.kernelPackages; [zenpower];
     };
 
     services = {

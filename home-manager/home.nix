@@ -33,7 +33,6 @@
     # ./programs/spicetify
     # ./programs/kunkun
     # ./programs/jan
-    ./programs/opencode
     # ./programs/llm
   ];
   nixpkgs = {
@@ -51,7 +50,7 @@
     homeDirectory = "/home/tudor";
     stateVersion = "23.11";
 
-    packages = with pkgs; (import ./packages { inherit pkgs inputs system; });
+    packages = with pkgs; (import ./packages {inherit pkgs inputs system;});
   };
 
   # TODO: Link .config/easyeffects with nixos

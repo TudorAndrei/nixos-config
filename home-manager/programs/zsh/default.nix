@@ -35,6 +35,7 @@
       dcd = "docker compose down";
       rwb = "killall -SIGUSR2 .waybar-wrapped";
       rhl = "hyprctl reload";
+      opencode = "npx opencode";
       ".." = "cd ..";
       # GPU
       gput = "python -c 'import torch;print(torch.cuda.is_available())'";

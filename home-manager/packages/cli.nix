@@ -1,7 +1,10 @@
-{ pkgs, inputs }:
-
+{
+  pkgs,
+  inputs,
+}:
 with pkgs; [
   delta
+  unstable.bun
   unstable.devenv
   scrcpy
   grimblast
@@ -31,7 +34,6 @@ with pkgs; [
   dust
   slurp
   pandoc
-  opencode
   opustags
   unzip
 ]
