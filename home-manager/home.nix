@@ -7,8 +7,8 @@
   ...
 }: {
   imports = [
-    inputs.stylix.homeModules.stylix
-    # inputs.nur.modules.homeManager.default
+     inputs.stylix.homeModules.stylix
+     inputs.nur.modules.homeManager.default
     ./programs/zen-browser
     ./programs/waybar
     ./programs/starship
