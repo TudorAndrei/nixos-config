@@ -3,12 +3,38 @@
     enable = true;
     systemdTarget = "hyprland-session.target";
     settings = [
+      # {
+      #   profile = {
+      #     name = "laptop-only";
+      #     outputs = [
+      #       {
+      #         criteria = "BOE NE173QHM-NZ2";
+      #         status = "enable";
+      #         mode = "2560x1440@240.00";
+      #         scale = 1.0;
+      #       }
+      #     ];
+      #   };
+      # }
       {
         profile = {
-          name = "laptop-only";
+          name = "laptop1";
           outputs = [
             {
-              criteria = "BOE NE173QHM-NZ2";
+              criteria = "eDP-1";
+              status = "enable";
+              mode = "2560x1440@240.00";
+              scale = 1.0;
+            }
+          ];
+        };
+      }
+      {
+        profile = {
+          name = "laptop2";
+          outputs = [
+            {
+              criteria = "eDP-2";
               status = "enable";
               mode = "2560x1440@240.00";
               scale = 1.0;
