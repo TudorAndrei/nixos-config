@@ -130,7 +130,7 @@
             workspace_swipe = false;
           };
           windowrulev2 = [
-            "workspace 1, class:^zen$"
+            "workspace 1, class:^zen-alpha$"
             "workspace 7, class:^steam$"
             # chat
             "workspace 9, class:^signal$"
