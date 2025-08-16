@@ -6,13 +6,12 @@
 with pkgs; [
   inputs.zen-browser.packages.${system}.default
   nwg-displays
-  lmstudio
+  unstable.lmstudio
   google-chrome
   unstable.postman
   swaynotificationcenter
   vlc
   signal-desktop
-  smplayer
   libreoffice
   qbittorrent-enhanced
   zotero
