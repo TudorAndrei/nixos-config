@@ -36,5 +36,5 @@ with pkgs; [
   pandoc
   opustags
   unzip
-  nur.repos.falconprogrammer.opencode-sst
+  # nur.repos.falconprogrammer.opencode-sst
 ]

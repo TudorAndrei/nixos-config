@@ -7,9 +7,8 @@
   ...
 }: {
   imports = [
-     inputs.stylix.homeModules.stylix
-     inputs.nur.modules.homeManager.default
-    ./programs/zen-browser
+    inputs.stylix.homeModules.stylix
+    inputs.nur.modules.homeManager.default
     ./programs/waybar
     ./programs/starship
     ./programs/terminal
@@ -18,8 +17,8 @@
     ./programs/gammastep
     ./programs/kanshi
     ./programs/easyeffects
-    # ./programs/qutebrowser
-    ./programs/brave
+    ./programs/qutebrowser
+    # ./programs/brave
     ./programs/vscode
     ./programs/git
     ./programs/zsh
@@ -56,6 +55,32 @@
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
   xdg.mimeApps.enable = true;
+  xdg.mimeApps = {
+    defaultApplications = {
+      "x-scheme-handler/http" = "zen-browser.desktop";
+      "x-scheme-handler/https" = "zen-browser.desktop";
+      "x-scheme-handler/chrome" = "zen-browser.desktop";
+      "text/html" = "zen-browser.desktop";
+      "application/x-extension-htm" = "zen-browser.desktop";
+      "application/x-extension-html" = "zen-browser.desktop";
+      "application/x-extension-shtml" = "zen-browser.desktop";
+      "application/xhtml+xml" = "zen-browser.desktop";
+      "application/x-extension-xhtml" = "zen-browser.desktop";
+      "application/x-extension-xht" = "zen-browser.desktop";
+    };
+    associations.added = {
+      "x-scheme-handler/http" = "zen-browser.desktop";
+      "x-scheme-handler/https" = "zen-browser.desktop";
+      "text/html" = "zen-browser.desktop";
+      "application/xhtml+xml" = "zen-browser.desktop";
+    };
+    associations.removed = {
+      "x-scheme-handler/http" = ["com.google.Chrome.desktop" "chromium-browser.desktop"];
+      "x-scheme-handler/https" = ["com.google.Chrome.desktop" "chromium-browser.desktop"];
+      "text/html" = ["com.google.Chrome.desktop" "chromium-browser.desktop"];
+      "application/xhtml+xml" = ["com.google.Chrome.desktop" "chromium-browser.desktop"];
+    };
+  };
   xdg.configFile = {
     "nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home-manager/nvim";
@@ -101,6 +126,7 @@
   };
 
   home.sessionVariables = {
+    BROWSER = "zen-browser";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     OBSIDIAN_USE_WAYLAND = "1";
     LD_LIBRARY_PATH = "${pkgs.graphviz}/lib";

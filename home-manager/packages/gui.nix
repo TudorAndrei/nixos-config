@@ -7,14 +7,14 @@ with pkgs; [
   inputs.zen-browser.packages.${system}.default
   nwg-displays
   unstable.lmstudio
-  google-chrome
+  # google-chrome
   unstable.postman
   swaynotificationcenter
   vlc
   signal-desktop
   libreoffice
   qbittorrent-enhanced
-  zotero
+  unstable.zotero
   localsend
   czkawka
   foliate
