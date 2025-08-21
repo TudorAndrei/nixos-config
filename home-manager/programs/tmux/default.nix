@@ -17,10 +17,8 @@ in {
     historyLimit = 100000;
     plugins = with pkgs; [
       tmuxPlugins.sensible
-      tmuxPlugins.prefix-highlight
       tmuxPlugins.yank
       tmuxPlugins.open
-      tmuxPlugins.mode-indicator
       tmuxPlugins.vim-tmux-navigator
       {
         plugin = tmux-ssh-split;
