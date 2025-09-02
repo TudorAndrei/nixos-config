@@ -7,6 +7,7 @@
   ...
 }: {
   imports = [
+    inputs.zen-browser.homeModules.beta
     inputs.stylix.homeModules.stylix
     inputs.nur.modules.homeManager.default
     ./programs/waybar
@@ -17,7 +18,7 @@
     ./programs/gammastep
     ./programs/kanshi
     ./programs/easyeffects
-    ./programs/qutebrowser
+    # ./programs/qutebrowser
     # ./programs/brave
     ./programs/vscode
     ./programs/git
@@ -101,15 +102,10 @@
     '';
   };
 
-  programs = {
-    home-manager.enable = true;
-  };
-
-  services.mako = {
-    enable = true;
-    # Add any other mako configuration options here
-  };
-
+  programs.home-manager.enable = true;
+  programs.zen-browser.enable = true;
+  programs.zen-browser.nativeMessagingHosts = [pkgs.vdhcoapp];
+  services.mako.enable = true;
   stylix = {
     # cursor.package = pkgs.bibata-cursors;
     # cursor.name = "Bibata-Modern-Ice";

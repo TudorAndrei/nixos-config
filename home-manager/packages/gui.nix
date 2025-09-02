@@ -4,9 +4,9 @@
   system,
 }:
 with pkgs; [
-  inputs.zen-browser.packages.${system}.default
   nwg-displays
   unstable.lmstudio
+  unstable.code-cursor-fhs
   # google-chrome
   unstable.postman
   swaynotificationcenter

@@ -135,6 +135,7 @@
             # chat
             "workspace 9, class:^signal$"
             "workspace 9, class:^discord$"
+            "workspace 9, class:^veskop$"
             # music
             "workspace 10, class:com.github.wwmm.easyeffects"
             "workspace 10, class:spotify"
