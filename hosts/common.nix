@@ -6,21 +6,32 @@
 }: {
   nix.settings = {
     auto-optimise-store = true;
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = ["nix-command" "flakes" "ca-derivations"];
     substituters = [
       "https://hyprland.cachix.org?priority=10"
       "https://nix-community.cachix.org?priority=20"
+      "https://nixpkgs-wayland.cachix.org?priority=30"
+      "https://nix-gaming.cachix.org?priority=25"
       "https://cache.nixos.org/?priority=40"
     ];
     trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
     ];
+    # Performance optimizations
+    max-jobs = "auto";
+    cores = 0;
+    # Memory optimizations
+    max-free = 1073741824; # 1GB
+    min-free = 134217728;  # 128MB
   };
 
   nix.extraOptions = ''
     trusted-users = root tudor
   '';
+
 
   nixpkgs.config.allowUnfree = true;
 
@@ -29,16 +40,27 @@
     efi.canTouchEfiVariables = true;
   };
 
+  boot.tmp.useTmpfs = true; 
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;
+    "vm.vfs_cache_pressure" = 50;
+    "vm.dirty_ratio" = 15;
+    "vm.dirty_background_ratio" = 5;
+    "vm.overcommit_memory" = 1;
+  };
+
   networking = {
     nameservers = [
       "1.1.1.1"
       "1.0.0.1"
-      "8.8.8.8"
-      "8.8.4.4"
     ];
     networkmanager = {
       enable = true;
       wifi.powersave = false;
+    };
+    firewall = {
+      enable = true;
+      allowPing = false;  
     };
   };
 
@@ -247,35 +269,9 @@
   systemd.services.NetworkManager-wait-online.enable = false;
 
   environment.systemPackages = with pkgs; [
-    wl-clipboard
-    alsa-utils
-    wget
-    curl
-    vim
     home-manager
     nvitop
     htop-vim
-    font-awesome
-    go
-    nodejs_20
-    stdenv.cc.cc
-    luajitPackages.luarocks
-    zlib
-    python3
-    lua
-    ripgrep
-    fd
-    gcc
-    hyprpicker
-    hyprcursor
-    hyprpaper
-    nautilus
-    killall
-    ghostscript
-    clang
-    graphviz
-    ffmpeg
-    icu.dev
   ];
 
   programs = {
@@ -289,7 +285,7 @@
     nh = {
       enable = true;
       clean.enable = true;
-      clean.extraArgs = "--keep-since 4d --keep 3";
+      clean.extraArgs = "--keep-since 7d --keep 5";
       flake = "/home/tudor/nixos-config";
     };
     # firefox = {
@@ -315,14 +311,7 @@
     nix-ld.enable = true;
     nix-ld.libraries = with pkgs; [
       stdenv.cc.cc
-      gcc
       zlib
-      go
-      lua
-      ripgrep
-      fd
-      clang
-      rye
     ];
     zsh.enable = true;
   };

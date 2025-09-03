@@ -41,11 +41,11 @@
 
   hardware.nvidia = {
     prime = {
-      # offload = {
-      #   enable = true;
-      #   enableOffloadCmd = lib.mkIf config.hardware.nvidia.prime.offload.enable true; # Provides `nvidia-offload` command.
-      # };
-      sync.enable = true;
+      offload = {
+        enable = true;
+        enableOffloadCmd = true; # Provides `nvidia-offload` command.
+      };
+      # sync.enable = true;  # Disabled to allow power management
       nvidiaBusId = "PCI:1:0:0";
       intelBusId = "PCI:0:2:0";
     };
