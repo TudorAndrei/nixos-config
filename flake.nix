@@ -52,6 +52,14 @@
       import nixpkgs {
         system = system;
         config.allowUnfree = true;
+        overlays = [
+          (final: prev: {
+            unstable = import inputs.nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+          })
+        ];
       };
   in {
     formatter = forAllSystems (system: (pkgsFor system).alejandra);

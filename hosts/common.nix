@@ -173,12 +173,13 @@
   };
 
   fonts.packages = with pkgs; [
+    # Consolidated nerd-fonts to avoid duplicates
+    nerd-fonts.iosevka
+    nerd-fonts.fira-code
     noto-fonts-cjk-sans
     noto-fonts-emoji
     liberation_ttf
-    fira-code
     font-awesome
-    fira-code-symbols
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts

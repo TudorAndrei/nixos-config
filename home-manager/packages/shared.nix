@@ -16,7 +16,6 @@
   python3
   lua
   gcc
-  clang
   stdenv.cc.cc
   zlib
   luajitPackages.luarocks

@@ -48,7 +48,7 @@
   home = {
     username = "tudor";
     homeDirectory = "/home/tudor";
-    stateVersion = "23.11";
+    stateVersion = "25.05";
 
     packages = with pkgs; (import ./packages {inherit pkgs inputs system;});
   };
@@ -87,7 +87,7 @@
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home-manager/nvim";
       recursive = true;
     };
-    "nvim/init.lua".enable = false;
+    "nvim/init.lua".enable = false; # Never Change
   };
 
   home.file."pythia/.gitconfig-pythia" = {
