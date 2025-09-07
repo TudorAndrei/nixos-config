@@ -25,13 +25,12 @@
     cores = 0;
     # Memory optimizations
     max-free = 1073741824; # 1GB
-    min-free = 134217728;  # 128MB
+    min-free = 134217728; # 128MB
   };
 
   nix.extraOptions = ''
     trusted-users = root tudor
   '';
-
 
   nixpkgs.config.allowUnfree = true;
 
@@ -40,7 +39,7 @@
     efi.canTouchEfiVariables = true;
   };
 
-  boot.tmp.useTmpfs = true; 
+  boot.tmp.useTmpfs = true;
   boot.kernel.sysctl = {
     "vm.swappiness" = 10;
     "vm.vfs_cache_pressure" = 50;
@@ -60,7 +59,7 @@
     };
     firewall = {
       enable = true;
-      allowPing = false;  
+      allowPing = false;
     };
   };
 
@@ -125,6 +124,9 @@
     MOZ_DISABLE_RDD_SANDBOX = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     OBSIDIAN_USE_WAYLAND = "1";
+    # Steam X11 compatibility
+    XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
+    STEAM_USE_GPU_SCREEN_CAPTURE = "1";
   };
 
   users.users.tudor = {

@@ -126,9 +126,6 @@
             };
           };
 
-          gestures = {
-            workspace_swipe = false;
-          };
           windowrulev2 = [
             "workspace 1, class:^zen-alpha$"
             "workspace 7, class:^steam$"

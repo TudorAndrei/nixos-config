@@ -7,6 +7,9 @@ with pkgs; [
   unstable.bun
   unstable.devenv
   unstable.claude-code
+  beets
+  picard
+  nicotine-plus
   scrcpy
   grimblast
   libnotify

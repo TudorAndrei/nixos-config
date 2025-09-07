@@ -30,7 +30,7 @@
     ./programs/syncthing
     ./programs/neovim
     ./programs/nixcord
-    # ./programs/spicetify
+    ./programs/spicetify
     # ./programs/kunkun
     # ./programs/jan
     # ./programs/llm
@@ -129,5 +129,8 @@
     LDFLAGS = "-L${pkgs.graphviz}/lib";
     CFLAGS = "-I${pkgs.graphviz}/include";
     XDG_SCREENSHOTS_DIR = "$HOME/Pictures/screenshots";
+    # Steam X11 compatibility
+    XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
+    STEAM_USE_GPU_SCREEN_CAPTURE = "1";
   };
 }
