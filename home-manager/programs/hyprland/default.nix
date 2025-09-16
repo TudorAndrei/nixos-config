@@ -59,6 +59,7 @@
           exec-once = [
             # "waybar"
             "nm-applet"
+            "swaynotificationcenter"
             "zen"
             "easyeffects"
             "obsidian"
@@ -131,8 +132,11 @@
             "workspace 7, class:^steam$"
             # chat
             "workspace 9, class:^signal$"
+            "workspace 9, class:^Signal$"
             "workspace 9, class:^discord$"
             "workspace 9, class:^veskop$"
+            # resaerch
+            "workspace 4, class:^Zotero$"
             # music
             "workspace 10, class:com.github.wwmm.easyeffects"
             "workspace 10, class:spotify"

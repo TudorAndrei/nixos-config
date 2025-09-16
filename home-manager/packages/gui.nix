@@ -9,6 +9,7 @@ with pkgs; [
   unstable.code-cursor-fhs
   # google-chrome
   unstable.postman
+  slack
   swaynotificationcenter
   vlc
   signal-desktop

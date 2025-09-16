@@ -6,6 +6,7 @@ with pkgs; [
   delta
   unstable.bun
   unstable.devenv
+  unstable.pnpm
   unstable.claude-code
   beets
   picard

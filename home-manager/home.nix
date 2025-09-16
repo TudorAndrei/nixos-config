@@ -18,6 +18,7 @@
     ./programs/gammastep
     ./programs/kanshi
     ./programs/easyeffects
+    ./programs/swaynotificationcenter
     # ./programs/qutebrowser
     # ./programs/brave
     ./programs/vscode
@@ -101,11 +102,21 @@
           user = "TudorAndrei-Pythia"
     '';
   };
+  home.file."work/.gitconfig-cognisync" = {
+    text = ''
+      [user]
+          user = tudordumitrascu-cognisync
+          email = tudor.dumitrascu@cogni-sync.com
+      [url "cognisync"]
+          insteadOf = "git@github.com"
+      [github]
+          user = "tudordumitrascu-cognisync"
+    '';
+  };
 
   programs.home-manager.enable = true;
   programs.zen-browser.enable = true;
   programs.zen-browser.nativeMessagingHosts = [pkgs.vdhcoapp];
-  services.mako.enable = true;
   stylix = {
     # cursor.package = pkgs.bibata-cursors;
     # cursor.name = "Bibata-Modern-Ice";
