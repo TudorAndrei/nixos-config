@@ -59,7 +59,7 @@
           exec-once = [
             # "waybar"
             "nm-applet"
-            "swaynotificationcenter"
+            "swaync"
             "zen"
             "easyeffects"
             "obsidian"
