@@ -28,4 +28,5 @@ with pkgs; [
   mpv
   pavucontrol
   networkmanagerapplet
+  inputs.vicinae.packages.${system}.default
 ]

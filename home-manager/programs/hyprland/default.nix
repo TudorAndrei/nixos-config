@@ -48,7 +48,7 @@
         settings = {
           "$terminal" = "alacritty";
           "$fileManager" = "nautilus";
-          "$menu" = "wofi --show drun";
+          "$menu" = "vicinae";
           "$mainMod" = "SUPER";
           # monitor = ["unknown,preferred,auto,1"];
           env = [
@@ -97,6 +97,10 @@
           };
           misc = {
             vfr = true;
+          };
+          ecosystem = {
+            no_update_news = true;
+            no_donation_nag = true;
           };
           animations = {
             enabled = false;

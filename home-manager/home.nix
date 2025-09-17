@@ -117,6 +117,22 @@
   programs.home-manager.enable = true;
   programs.zen-browser.enable = true;
   programs.zen-browser.nativeMessagingHosts = [pkgs.vdhcoapp];
+
+  systemd.user.services.vicinae = {
+    Unit = {
+      Description = "Vicinae launcher server";
+      After = "graphical-session.target";
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${inputs.vicinae.packages.${system}.default}/bin/vicinae server";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
   stylix = {
     # cursor.package = pkgs.bibata-cursors;
     # cursor.name = "Bibata-Modern-Ice";
