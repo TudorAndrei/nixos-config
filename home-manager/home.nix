@@ -32,6 +32,7 @@
     ./programs/neovim
     ./programs/nixcord
     ./programs/spicetify
+    ./programs/cursor-cli
     # ./programs/kunkun
     # ./programs/jan
     # ./programs/llm

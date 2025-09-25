@@ -7,6 +7,8 @@ with pkgs; [
   nwg-displays
   unstable.lmstudio
   unstable.code-cursor-fhs
+  wireguard-tools
+  unstable.wireguard-ui
   # google-chrome
   unstable.postman
   slack

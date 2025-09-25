@@ -40,6 +40,13 @@
       # GPU
       gput = "python -c 'import torch;print(torch.cuda.is_available())'";
       gputf = "python -c 'import tensorflow as tf;tf.config.list_physical_devices()'";
+      # WireGuard
+      wg-status = "sudo wg show";
+      wg-start = "sudo systemctl start wireguard-wg0.service";
+      wg-stop = "sudo systemctl stop wireguard-wg0.service";
+      wg-restart = "sudo systemctl restart wireguard-wg0.service";
+      wg-ui = "xdg-open http://localhost:5000";
+      wg-start-ui = "wireguard-ui";
     };
     history = {
       size = 10000;

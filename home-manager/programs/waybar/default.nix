@@ -24,6 +24,7 @@
         modules-right = [
           "tray"
           "custom/notification"
+          "custom/wireguard"
           "bluetooth"
           "network"
           "memory"
@@ -52,6 +53,8 @@
             focused = "";
             default = "";
             special = "";
+            "special:slack" = "";
+            "special:notes" = "";
           };
           show-special = true;
         };
@@ -199,6 +202,19 @@
           "on-click-right" = "swaync-client -d -sw";
           escape = true;
         };
+        "custom/wireguard" = {
+          format = "{icon}";
+          format-icons = {
+            "connected" = "󰖂";
+            "disconnected" = "󰖂";
+          };
+          tooltip = true;
+          interval = 5;
+          exec = "/home/tudor/nixos-config/scripts/wg-status.sh";
+          return-type = "json";
+          on-click = "xdg-open http://localhost:5000";
+          on-click-right = "alacritty -e bash -c 'echo \"WireGuard Service Management:\"; echo \"1. Start: sudo systemctl start wireguard-wg0.service\"; echo \"2. Stop: sudo systemctl stop wireguard-wg0.service\"; echo \"3. Restart: sudo systemctl restart wireguard-wg0.service\"; echo \"4. Status: sudo wg show\"; echo \"\"; read -p \"Press Enter to close...\"'";
+        };
       };
     };
     style = ''
@@ -250,6 +266,16 @@
       #clock {
           padding: 0 4px;
           background: @background;
+      }
+      #custom-wireguard {
+          padding: 0 4px;
+          background: @background;
+      }
+      #custom-wireguard.connected {
+          color: @green;
+      }
+      #custom-wireguard.disconnected {
+          color: @red;
       }
     '';
   };

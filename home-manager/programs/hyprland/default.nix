@@ -51,6 +51,7 @@
           "$menu" = "vicinae";
           "$mainMod" = "SUPER";
           # monitor = ["unknown,preferred,auto,1"];
+
           env = [
             "XCURSOR_SIZE,24"
             "NVD_BACKEND,direct"
@@ -63,17 +64,13 @@
             "zen"
             "easyeffects"
             "obsidian"
+            "slack"
           ];
-
           general = {
             gaps_in = 5;
             gaps_out = 20;
-
             border_size = 2;
-
             resize_on_border = false;
-
-            # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
             allow_tearing = false;
 
             layout = "dwindle";
@@ -109,22 +106,17 @@
             pseudotile = true; # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
             preserve_split = true; # You probably want this
           };
-
           master = {
             new_status = "master";
           };
-
           input = {
             kb_layout = "us";
             kb_variant = "";
             kb_model = "";
             kb_options = "";
             kb_rules = "";
-
             follow_mouse = 1;
-
             sensitivity = 0;
-
             touchpad = {
               natural_scroll = true;
               scroll_factor = 0.2;
@@ -134,6 +126,10 @@
           windowrulev2 = [
             "workspace 1, class:^zen-alpha$"
             "workspace 7, class:^steam$"
+            # Slack floating popup - must come before general chat rules
+            "float, class:^Slack$"
+            "center, class:^Slack$"
+            "workspace special:slack, class:^Slack$"
             # chat
             "workspace 9, class:^signal$"
             "workspace 9, class:^Signal$"
@@ -197,6 +193,8 @@
             "$mainMod CTRL,p, exec, grimblast copysave screen"
             "$mainMod, N, togglespecialworkspace, notes"
             "$mainMod SHIFT, N, movetoworkspacesilent, special:notes"
+            "$mainMod, V, exec, wireguard-ui"
+            "$mainMod, C, togglespecialworkspace, slack"
           ];
           bindel = [
             ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"

@@ -270,6 +270,24 @@
     };
   };
 
+  networking.wireguard = {
+    enable = true;
+    interfaces = {
+      wg0 = {
+        ips = [ "192.168.0.6/32" ];
+        privateKeyFile = "/etc/wireguard/private.key";
+        peers = [
+          {
+            publicKey = "tU19qljDj5+dT7OHT7MBrsca32wus9f0pbU3SRw36z0=";
+            allowedIPs = [ "10.0.0.0/16" ];
+            endpoint = "bastion.dev.cogni-sync.net:51820";
+            persistentKeepalive = 25;
+          }
+        ];
+      };
+    };
+  };
+
   systemd.services.NetworkManager-wait-online.enable = false;
 
   environment.systemPackages = with pkgs; [
