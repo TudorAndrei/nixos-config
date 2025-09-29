@@ -29,6 +29,7 @@ with pkgs; [
   strawberry
   mpv
   pavucontrol
+  unstable.dbeaver-bin
   networkmanagerapplet
   inputs.vicinae.packages.${system}.default
 ]

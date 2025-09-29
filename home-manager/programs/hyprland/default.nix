@@ -50,8 +50,6 @@
           "$fileManager" = "nautilus";
           "$menu" = "vicinae";
           "$mainMod" = "SUPER";
-          # monitor = ["unknown,preferred,auto,1"];
-
           env = [
             "XCURSOR_SIZE,24"
             "NVD_BACKEND,direct"

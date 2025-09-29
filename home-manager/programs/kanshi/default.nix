@@ -18,7 +18,7 @@
       # }
       {
         profile = {
-          name = "laptop1";
+          name = "laptop-only";
           outputs = [
             {
               criteria = "eDP-1";
@@ -31,7 +31,7 @@
       }
       {
         profile = {
-          name = "laptop2";
+          name = "laptop-only-alt";
           outputs = [
             {
               criteria = "eDP-2";
@@ -44,18 +44,41 @@
       }
       {
         profile = {
-          name = "home_monitor";
+          name = "home_monitor_eDP1";
           outputs = [
             {
-              criteria = "LG Electronics LG ULTRAGEAR 0x00023FE9";
+              criteria = "eDP-1";
+              status = "enable";
+              mode = "2560x1440@240";
+              position = "0,0";
+              scale = 1.0;
+            }
+            {
+              criteria = "HDMI-A-1";
               status = "enable";
               mode = "2560x1080@60";
               position = "2560,0";
+              scale = 1.0;
+            }
+          ];
+        };
+      }
+      {
+        profile = {
+          name = "home_monitor_eDP2";
+          outputs = [
+            {
+              criteria = "eDP-2";
+              status = "enable";
+              mode = "2560x1440@240";
+              position = "0,0";
+              scale = 1.0;
             }
             {
-              criteria = "BOE NE173QHM-NZ2";
+              criteria = "HDMI-A-1";
               status = "enable";
-              position = "0,0";
+              mode = "2560x1080@60";
+              position = "2560,0";
               scale = 1.0;
             }
           ];
