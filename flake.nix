@@ -11,7 +11,7 @@
     };
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nur = {
       url = "github:nix-community/NUR";
@@ -30,6 +30,10 @@
     # zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     nixcord = {
       url = "github:kaylorben/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -72,6 +76,11 @@
         modules = [
           ./hosts/sparta/configuration.nix
           inputs.stylix.nixosModules.stylix
+          inputs.sops-nix.nixosModules.sops
+          {
+            sops.defaultSopsFile = "${self}/secrets/secrets.yaml";
+            sops.age.keyFile = "/home/tudor/.config/sops/age/keys.txt";
+          }
         ];
       };
       ark = nixpkgs.lib.nixosSystem {
@@ -80,6 +89,11 @@
         modules = [
           ./hosts/ark/configuration.nix
           inputs.stylix.nixosModules.stylix
+          inputs.sops-nix.nixosModules.sops
+          {
+            sops.defaultSopsFile = "${self}/secrets/secrets.yaml";
+            sops.age.keyFile = "/home/tudor/.config/sops/age/keys.txt";
+          }
         ];
       };
     };

@@ -27,6 +27,9 @@ with pkgs; [
   graphviz
   ffmpeg
   icu.dev
+  nvitop
+  htop-vim
+  gnome-disk-utility
 
   # Hyprland utilities
   hyprpicker

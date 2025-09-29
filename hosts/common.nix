@@ -24,7 +24,7 @@
     max-jobs = "auto";
     cores = 0;
     # Memory optimizations
-    max-free = 1073741824; # 1GB
+    max-free = 4294967296; # 4GB
     min-free = 134217728; # 128MB
   };
 
@@ -122,7 +122,6 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     LIBVA_DRIVER_NAME = "nvidia";
     EGL_PLATFORM = "wayland";
-    MOZ_DISABLE_RDD_SANDBOX = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     OBSIDIAN_USE_WAYLAND = "1";
     # Steam X11 compatibility
@@ -270,17 +269,27 @@
     };
   };
 
+  sops.secrets = {
+    wireguard_private_key = {
+      owner = "root";
+      group = "systemd-network";
+      mode = "0400";
+    };
+    wireguard_public_key = {};
+    wireguard_endpoint = {};
+  };
+
   networking.wireguard = {
     enable = true;
     interfaces = {
       wg0 = {
         ips = [ "192.168.0.6/32" ];
-        privateKeyFile = "/etc/wireguard/private.key";
+        privateKeyFile = config.sops.secrets.wireguard_private_key.path;
         peers = [
           {
-            publicKey = "tU19qljDj5+dT7OHT7MBrsca32wus9f0pbU3SRw36z0=";
+            publicKey = config.sops.secrets.wireguard_public_key.path;
             allowedIPs = [ "10.0.0.0/16" ];
-            endpoint = "bastion.dev.cogni-sync.net:51820";
+            endpoint = config.sops.secrets.wireguard_endpoint.path;
             persistentKeepalive = 25;
           }
         ];
@@ -292,8 +301,6 @@
 
   environment.systemPackages = with pkgs; [
     home-manager
-    nvitop
-    htop-vim
   ];
 
   programs = {

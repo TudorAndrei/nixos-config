@@ -1,1 +1,6 @@
 repomix-output.xml
+
+# sops-nix secrets management
+~/.config/sops/age/keys.txt
+.secrets/
+*.key
