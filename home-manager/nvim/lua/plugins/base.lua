@@ -104,7 +104,7 @@ return {
   --   end,
   -- },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     build = ":MasonUpdate",
     opts = {
       ensure_installed = {

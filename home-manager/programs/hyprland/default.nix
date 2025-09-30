@@ -48,7 +48,7 @@
         settings = {
           "$terminal" = "alacritty";
           "$fileManager" = "nautilus";
-          "$menu" = "vicinae";
+          "$menu" = "wofi --show drun";
           "$mainMod" = "SUPER";
           env = [
             "XCURSOR_SIZE,24"
@@ -141,6 +141,12 @@
             "workspace 10, class:^org.strawberrymusicplayer.strawberry$"
             "suppressevent maximize, class:.*"
             "workspace special:notes, class:^obsidian$"
+          ];
+
+          layerrule = [
+            "blur, vicinae"
+            "ignorealpha 0.79, vicinae"
+            "animation slide, vicinae"
           ];
 
           bind = [

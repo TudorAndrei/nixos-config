@@ -42,6 +42,7 @@
     self,
     nixpkgs,
     home-manager,
+    vicinae,
     ...
   } @ inputs: let
     inherit (self) outputs;
