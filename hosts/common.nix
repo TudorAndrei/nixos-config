@@ -193,14 +193,42 @@
     # cursor.package = pkgs.bibata-cursors;
     # cursor.name = "Bibata-Modern-Ice";
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    base16Scheme = {
+      base00 = "282a36";  # Background
+      base01 = "44475a";  # Current Line
+      base02 = "44475a";  # Selection
+      base03 = "6272a4";  # Comment
+      base04 = "f8f8f2";  # Foreground
+      base05 = "f8f8f2";  # Foreground
+      base06 = "f8f8f2";  # Foreground
+      base07 = "f8f8f2";  # Foreground
+      base08 = "ff5555";  # Red
+      base09 = "ffb86c";  # Orange
+      base0A = "f1fa8c";  # Yellow
+      base0B = "50fa7b";  # Green
+      base0C = "8be9fd";  # Cyan
+      base0D = "bd93f9";  # Purple
+      base0E = "ff79c6";  # Pink
+      base0F = "ff79c6";  # Pink
+    };
     polarity = "dark";
     fonts = {
-      serif.package = pkgs.nerd-fonts.iosevka;
-      sansSerif.package = pkgs.nerd-fonts.iosevka;
-      monospace.package = pkgs.nerd-fonts.iosevka;
-      emoji.package = pkgs.noto-fonts-emoji;
-      emoji.name = "Noto Color Emoji";
+      serif = {
+        package = pkgs.nerd-fonts.iosevka;
+        name = "Iosevka NF";
+      };
+      sansSerif = {
+        package = pkgs.nerd-fonts.iosevka;
+        name = "Iosevka NF";
+      };
+      monospace = {
+        package = pkgs.nerd-fonts.iosevka;
+        name = "Iosevka NF";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji";
+      };
     };
     targets = {
       plymouth = {enable = false;};

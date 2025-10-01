@@ -105,25 +105,31 @@ in {
       set -g status-left-length 80
       set -g status-right-length 80
 
-      # Stylix color definitions
-      BG="#282A36"
-      FG="#F8F8F2"
-      SELECTION="#44475A"
-      COMMENT="#6272A4"
-      PURPLE="#BD93F9"
+      # Stylix color definitions - Original Dracula colors
+      BG="#282A36"        # Background (base00)
+      FG="#F8F8F2"        # Foreground (base05)
+      SELECTION="#44475A" # Current Line/Selection (base01)
+      COMMENT="#6272A4"   # Comment (base03)
+      PURPLE="#BD93F9"    # Purple (base0D)
+      RED="#FF5555"       # Red (base08)
+      GREEN="#50FA7B"     # Green (base0B)
+      YELLOW="#F1FA8C"    # Yellow (base0A)
+      ORANGE="#FFB86C"    # Orange (base09)
+      CYAN="#8BE9FD"      # Cyan (base0C)
+      PINK="#FF79C6"      # Pink (base0E)
 
       # Colors and styles
       set -g status-style "fg=$FG,bg=$BG,none"
       set -g pane-border-style "fg=$SELECTION,bg=$BG"
-      set -g pane-active-border-style "fg=$COMMENT,bg=$BG"
+      set -g pane-active-border-style "fg=$CYAN,bg=$BG"
       set -g display-panes-colour "$COMMENT"
-      set -g display-panes-active-colour "$PURPLE"
+      set -g display-panes-active-colour "$CYAN"
       setw -g clock-mode-colour "$PURPLE"
       set -g message-style "fg=$FG,bg=$SELECTION"
       set -g message-command-style "fg=$FG,bg=$SELECTION"
 
-      set -g window-status-format "#[fg=$BG,bg=$COMMENT,nobold,noitalics,nounderscore] #[fg=$FG,bg=$COMMENT]#I#[fg=$BACKGROUND,bg=$COMMENT,nobold,noitalics,nounderscore] #[fg=$FG,bg=$COMMENT]#W "
-      set -g window-status-current-format "#[fg=$BG,bg=$PURPLE,nobold,noitalics,nounderscore] #[fg=$BG,bg=$PURPLE]#I#[fg=$BACKGROUND,bg=$PURPLE,nobold,noitalics,nounderscore] #[fg=$BG,bg=$PURPLE]#W "
+      set -g window-status-format "#[fg=$COMMENT,bg=$BG,nobold,noitalics,nounderscore] #[fg=$FG,bg=$BG]#I#[fg=$COMMENT,bg=$BG,nobold,noitalics,nounderscore] #[fg=$FG,bg=$BG]#W "
+      set -g window-status-current-format "#[fg=$BG,bg=$CYAN,nobold,noitalics,nounderscore] #[fg=$BG,bg=$CYAN]#I#[fg=$BG,bg=$CYAN,nobold,noitalics,nounderscore] #[fg=$BG,bg=$CYAN]#W "
       set -g window-status-separator ""
 
       set -g status-left "#[fg=$BG,bg=$PURPLE,bold] #S #[fg=$PURPLE,bg=$COMMENT,nobold]#[fg=$FG,bg=$COMMENT] #H #[fg=$COMMENT,bg=$BG,nobold]"

@@ -3,43 +3,21 @@
   inputs,
 }:
 with pkgs; [
-  delta
-  unstable.bun
-  unstable.devenv
-  unstable.pnpm
-  unstable.claude-code
-  beets
-  picard
-  nicotine-plus
-  scrcpy
-  grimblast
-  libnotify
+  # CLI-specific tools
+  fd
+  tree
+  zip
+  unzip
   hyperfine
-  fnm
-  unstable.uv
   brightnessctl
   feh
-  fd
-  zip
-  cargo
-  nixd
-  distrobox
-  alejandra
-  hyprshot
-  wofi
   pamixer
-  tree
   fastfetch
   eza
-  unstable.lazydocker
-  wttrbar
-  jq
-  yt-dlp
-  imagemagick
   dust
   slurp
+  jq
   pandoc
-  opustags
-  unzip
-  # nur.repos.falconprogrammer.opencode-sst
+  scrcpy
+  libnotify
 ]

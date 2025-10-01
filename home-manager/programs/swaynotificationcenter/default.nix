@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   xdg.configFile."swaync/style.css".text = ''
     /* Dracula Theme */
     @define-color foreground rgb(248, 248, 242);
@@ -326,4 +326,8 @@
       };
     };
   };
+
+  home.packages = with pkgs; [
+    swaynotificationcenter
+  ];
 }

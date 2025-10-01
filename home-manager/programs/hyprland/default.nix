@@ -222,4 +222,13 @@
       };
     };
   };
+
+  home.packages = with pkgs; [
+    wofi
+    grimblast
+    hyprshot
+    hyprpicker
+    hyprcursor
+    hyprpaper
+  ];
 }
