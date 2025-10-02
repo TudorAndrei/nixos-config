@@ -1,4 +1,8 @@
-{ pkgs, inputs, system }:
+{
+  pkgs,
+  inputs,
+  system,
+}:
 with pkgs; [
   # Programming languages and runtimes
   go
@@ -9,7 +13,7 @@ with pkgs; [
   stdenv.cc.cc
   zlib
   luajitPackages.luarocks
-  
+
   # Development utilities
   delta
   unstable.bun
@@ -21,15 +25,16 @@ with pkgs; [
   cargo
   nixd
   alejandra
-  
+
   # IDEs and development tools
   unstable.code-cursor-fhs
   unstable.lmstudio
   unstable.postman
   unstable.bruno
   unstable.dbeaver-bin
-  
+
   # Container and virtualization
   distrobox
   unstable.lazydocker
+  docker-buildx
 ]
