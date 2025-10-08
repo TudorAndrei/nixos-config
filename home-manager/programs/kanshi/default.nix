@@ -3,19 +3,6 @@
     enable = true;
     systemdTarget = "hyprland-session.target";
     settings = [
-      # {
-      #   profile = {
-      #     name = "laptop-only";
-      #     outputs = [
-      #       {
-      #         criteria = "BOE NE173QHM-NZ2";
-      #         status = "enable";
-      #         mode = "2560x1440@240.00";
-      #         scale = 1.0;
-      #       }
-      #     ];
-      #   };
-      # }
       {
         profile = {
           name = "laptop-only";
@@ -48,10 +35,10 @@
           outputs = [
             {
               criteria = "eDP-1";
-              status = "enable";
-              mode = "2560x1440@240";
-              position = "0,0";
-              scale = 1.0;
+              status = "disable";
+              # mode = "2560x1440@240";
+              # position = "0,0";
+              # scale = 1.0;
             }
             {
               criteria = "HDMI-A-1";
@@ -69,10 +56,10 @@
           outputs = [
             {
               criteria = "eDP-2";
-              status = "enable";
-              mode = "2560x1440@240";
-              position = "0,0";
-              scale = 1.0;
+              status = "disable";
+              # mode = "2560x1440@240";
+              # position = "0,0";
+              # scale = 1.0;
             }
             {
               criteria = "HDMI-A-1";

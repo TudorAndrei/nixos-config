@@ -218,7 +218,7 @@
       };
     };
     style = ''
-      @define-color background-darker rgba(30, 31, 41, 230);
+      @define-color background-darker #1e1f29;
       @define-color background #282a36;
       @define-color selection #44475a;
       @define-color foreground #f8f8f2;
@@ -239,7 +239,6 @@
           min-height: 0;
       }
       window#waybar {
-          opacity: 0.9;
           background: @background-darker;
           color: @foreground;
           border-bottom: 2px solid @background;

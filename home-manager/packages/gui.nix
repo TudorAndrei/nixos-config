@@ -24,4 +24,5 @@ in
     libsForQt5.okular
     obsidian
     pavucontrol
+    ianny
   ]
