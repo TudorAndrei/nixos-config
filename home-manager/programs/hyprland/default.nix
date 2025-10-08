@@ -49,7 +49,7 @@
           "$terminal" = "alacritty";
           "$fileManager" = "nautilus";
           "$menu" = "wofi --show drun";
-          "$mainMod" = "SUPER";
+          "$mainMod" = "ALT";
           env = [
             "XCURSOR_SIZE,24"
             "NVD_BACKEND,direct"

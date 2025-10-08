@@ -27,7 +27,7 @@ with pkgs; [
   alejandra
 
   # IDEs and development tools
-  unstable.code-cursor-fhs
+  inputs.cursor.packages.${system}.cursor
   unstable.lmstudio
   unstable.postman
   unstable.bruno
