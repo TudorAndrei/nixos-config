@@ -194,22 +194,22 @@
     # cursor.name = "Bibata-Modern-Ice";
     enable = true;
     base16Scheme = {
-      base00 = "282a36";  # Background
-      base01 = "44475a";  # Current Line
-      base02 = "44475a";  # Selection
-      base03 = "6272a4";  # Comment
-      base04 = "f8f8f2";  # Foreground
-      base05 = "f8f8f2";  # Foreground
-      base06 = "f8f8f2";  # Foreground
-      base07 = "f8f8f2";  # Foreground
-      base08 = "ff5555";  # Red
-      base09 = "ffb86c";  # Orange
-      base0A = "f1fa8c";  # Yellow
-      base0B = "50fa7b";  # Green
-      base0C = "8be9fd";  # Cyan
-      base0D = "bd93f9";  # Purple
-      base0E = "ff79c6";  # Pink
-      base0F = "ff79c6";  # Pink
+      base00 = "282a36"; # Background
+      base01 = "44475a"; # Current Line
+      base02 = "44475a"; # Selection
+      base03 = "6272a4"; # Comment
+      base04 = "f8f8f2"; # Foreground
+      base05 = "f8f8f2"; # Foreground
+      base06 = "f8f8f2"; # Foreground
+      base07 = "f8f8f2"; # Foreground
+      base08 = "ff5555"; # Red
+      base09 = "ffb86c"; # Orange
+      base0A = "f1fa8c"; # Yellow
+      base0B = "50fa7b"; # Green
+      base0C = "8be9fd"; # Cyan
+      base0D = "bd93f9"; # Purple
+      base0E = "ff79c6"; # Pink
+      base0F = "ff79c6"; # Pink
     };
     polarity = "dark";
     fonts = {
@@ -317,12 +317,12 @@
     enable = true;
     interfaces = {
       wg0 = {
-        ips = [ "192.168.0.6/32" ];
+        ips = ["192.168.0.6/32"];
         privateKeyFile = config.sops.secrets.wireguard_private_key.path;
         peers = [
           {
             publicKey = "cBKoyeUrqhun08FtGe+phFmvEzK6y78Y+qDD2YTl73o=";
-            allowedIPs = [ "10.0.0.0/16" ];
+            allowedIPs = ["10.0.0.0/16"];
             endpoint = "bastion.dev.cogni-sync.net:51820";
             persistentKeepalive = 25;
           }
