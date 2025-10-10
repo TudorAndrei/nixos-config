@@ -168,11 +168,10 @@
     nvidia-container-toolkit.enable = true;
     nvidia = {
       modesetting.enable = true;
-      powerManagement.finegrained = true;
+      # powerManagement.finegrained = true;
       open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
-      forceFullCompositionPipeline = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
   };
 
