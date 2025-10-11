@@ -78,10 +78,11 @@
 
   hardware.nvidia = {
     prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = lib.mkIf config.hardware.nvidia.prime.offload.enable true;
-      };
+      sync.enable = true;
+      # offload = {
+      #   enable = true;
+      #   enableOffloadCmd = lib.mkIf config.hardware.nvidia.prime.offload.enable true;
+      # };
       nvidiaBusId = "PCI:1:0:0";
       amdgpuBusId = "PCI:8:0:0";
     };

@@ -5,7 +5,7 @@
     settings = [
       {
         profile = {
-          name = "laptop-only";
+          name = "laptop-only-eDP-1";
           outputs = [
             {
               criteria = "eDP-1";
@@ -18,7 +18,7 @@
       }
       {
         profile = {
-          name = "laptop-only-alt";
+          name = "laptop-only-eDP-2";
           outputs = [
             {
               criteria = "eDP-2";
@@ -31,7 +31,7 @@
       }
       {
         profile = {
-          name = "home_monitor_eDP1";
+          name = "home_monitor_eDP-1";
           outputs = [
             {
               criteria = "eDP-1";
@@ -50,9 +50,10 @@
           ];
         };
       }
+
       {
         profile = {
-          name = "home_monitor_eDP2";
+          name = "home_monitor_eDP-2";
           outputs = [
             {
               criteria = "eDP-2";
@@ -66,6 +67,42 @@
               status = "enable";
               mode = "2560x1080@60";
               position = "2560,0";
+              scale = 1.0;
+            }
+          ];
+        };
+      }
+      {
+        profile = {
+          name = "home_monitor_DP1_eDP1";
+          outputs = [
+            {
+              criteria = "eDP-1";
+              status = "disable";
+            }
+            {
+              criteria = "DP-1";
+              status = "enable";
+              mode = "2560x1080@143.94";
+              position = "0,0";
+              scale = 1.0;
+            }
+          ];
+        };
+      }
+      {
+        profile = {
+          name = "home_monitor_DP1_eDP2";
+          outputs = [
+            {
+              criteria = "eDP-2";
+              status = "disable";
+            }
+            {
+              criteria = "DP-1";
+              status = "enable";
+              mode = "2560x1080@143.94";
+              position = "0,0";
               scale = 1.0;
             }
           ];
