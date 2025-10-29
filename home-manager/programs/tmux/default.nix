@@ -94,8 +94,8 @@ in {
 
       # Manual save/restore bindings
       bind-key S run-shell 'tmux save-buffer - | tmux load-buffer -'
-      bind-key C-s run-shell 'tmux display-message "Saving session..." && tmux run-shell "~/.config/tmux/plugins/tmux-resurrect/scripts/save.sh"'
-      bind-key C-r run-shell 'tmux display-message "Restoring session..." && tmux run-shell "~/.config/tmux/plugins/tmux-resurrect/scripts/restore.sh"'
+      bind-key C-s run-shell 'tmux display-message "Saving session..." && tmux run-shell "${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/scripts/save.sh"'
+      bind-key C-r run-shell 'tmux display-message "Restoring session..." && tmux run-shell "${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/scripts/restore.sh"'
 
       # Window management
       unbind n

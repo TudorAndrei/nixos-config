@@ -15,6 +15,13 @@
       "https://nix-gaming.cachix.org?priority=25"
       "https://nixpkgs-wayland.cachix.org?priority=30"
     ];
+    trusted-substituters = [
+      "https://hyprland.cachix.org"
+      "https://vicinae.cachix.org"
+      "https://nix-community.cachix.org"
+      "https://nix-gaming.cachix.org"
+      "https://nixpkgs-wayland.cachix.org"
+    ];
     trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -163,6 +170,8 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+      package = pkgs.mesa;
+      package32 = pkgs.pkgsi686Linux.mesa;
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
       ];
@@ -340,8 +349,6 @@
 
   programs = {
     hyprland = {
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       enable = true;
       xwayland.enable = true;
       withUWSM = true;

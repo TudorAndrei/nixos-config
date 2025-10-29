@@ -43,13 +43,13 @@
         systemd.enableXdgAutostart = true;
         xwayland.enable = true;
         enable = true;
-        package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-        portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+        package = pkgs.hyprland;
+        portalPackage = pkgs.xdg-desktop-portal-hyprland;
         settings = {
           "$terminal" = "alacritty";
           "$fileManager" = "nautilus";
           "$menu" = "wofi --show drun";
-          "$mainMod" = "ALT";
+          "$mainMod" = "SUPER";
           env = [
             "XCURSOR_SIZE,24"
             "NVD_BACKEND,direct"

@@ -31,10 +31,15 @@ with pkgs; [
   unstable.lmstudio
   unstable.postman
   unstable.bruno
+  unstable.yaak
   unstable.dbeaver-bin
+  unstable.zed-editor
 
   # Container and virtualization
   distrobox
   unstable.lazydocker
   docker-buildx
+  awsume
+  k9s
+  awscli2
 ]

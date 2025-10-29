@@ -10,7 +10,7 @@
     inputs.zen-browser.homeModules.beta
     inputs.stylix.homeModules.stylix
     inputs.nur.modules.homeManager.default
-    inputs.vicinae.homeManagerModules.default
+    # inputs.vicinae.homeManagerModules.default
     ./programs/waybar
     ./programs/starship
     ./programs/terminal
@@ -34,6 +34,7 @@
     ./programs/nixcord
     ./programs/spicetify
     ./programs/cursor-cli
+    ./programs/helium
     # ./programs/kunkun
     # ./programs/jan
     # ./programs/llm
@@ -120,22 +121,22 @@
   programs.zen-browser.enable = true;
   programs.zen-browser.nativeMessagingHosts = [pkgs.vdhcoapp];
 
-  services.vicinae = {
-    enable = true;
-    autoStart = true;
-    settings = {
-      faviconService = "twenty";
-      font.size = 11;
-      popToRootOnClose = false;
-      rootSearch.searchFiles = false;
-      theme.name = "vicinae-dark";
-      window = {
-        csd = true;
-        opacity = 0.95;
-        rounding = 10;
-      };
-    };
-  };
+  # services.vicinae = {
+  #   enable = true;
+  #   autoStart = true;
+  #   settings = {
+  #     faviconService = "twenty";
+  #     font.size = 11;
+  #     popToRootOnClose = false;
+  #     rootSearch.searchFiles = false;
+  #     theme.name = "vicinae-dark";
+  #     window = {
+  #       csd = true;
+  #       opacity = 0.95;
+  #       rounding = 10;
+  #     };
+  #   };
+  # };
   stylix = {
     cursor = {
       package = pkgs.bibata-cursors;
@@ -145,22 +146,22 @@
     enable = true;
     image = ../bigsun.jpg;
     base16Scheme = {
-      base00 = "282a36";  # Background
-      base01 = "44475a";  # Current Line
-      base02 = "44475a";  # Selection
-      base03 = "6272a4";  # Comment
-      base04 = "f8f8f2";  # Foreground
-      base05 = "f8f8f2";  # Foreground
-      base06 = "f8f8f2";  # Foreground
-      base07 = "f8f8f2";  # Foreground
-      base08 = "ff5555";  # Red
-      base09 = "ffb86c";  # Orange
-      base0A = "f1fa8c";  # Yellow
-      base0B = "50fa7b";  # Green
-      base0C = "8be9fd";  # Cyan
-      base0D = "bd93f9";  # Purple
-      base0E = "ff79c6";  # Pink
-      base0F = "ff79c6";  # Pink
+      base00 = "282a36"; # Background
+      base01 = "44475a"; # Current Line
+      base02 = "44475a"; # Selection
+      base03 = "6272a4"; # Comment
+      base04 = "f8f8f2"; # Foreground
+      base05 = "f8f8f2"; # Foreground
+      base06 = "f8f8f2"; # Foreground
+      base07 = "f8f8f2"; # Foreground
+      base08 = "ff5555"; # Red
+      base09 = "ffb86c"; # Orange
+      base0A = "f1fa8c"; # Yellow
+      base0B = "50fa7b"; # Green
+      base0C = "8be9fd"; # Cyan
+      base0D = "bd93f9"; # Purple
+      base0E = "ff79c6"; # Pink
+      base0F = "ff79c6"; # Pink
     };
     polarity = "dark";
     fonts = {
