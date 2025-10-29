@@ -34,7 +34,6 @@
     ./programs/nixcord
     ./programs/spicetify
     ./programs/cursor-cli
-    ./programs/helium
     # ./programs/kunkun
     # ./programs/jan
     # ./programs/llm
