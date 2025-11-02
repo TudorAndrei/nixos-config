@@ -35,10 +35,10 @@
           outputs = [
             {
               criteria = "eDP-1";
-              status = "disable";
-              # mode = "2560x1440@240";
-              # position = "0,0";
-              # scale = 1.0;
+              status = "enable";
+              mode = "2560x1440@240";
+              position = "0,0";
+              scale = 1.0;
             }
             {
               criteria = "HDMI-A-1";
@@ -57,10 +57,10 @@
           outputs = [
             {
               criteria = "eDP-2";
-              status = "disable";
-              # mode = "2560x1440@240";
-              # position = "0,0";
-              # scale = 1.0;
+              status = "enable";
+              mode = "2560x1440@240";
+              position = "0,0";
+              scale = 1.0;
             }
             {
               criteria = "HDMI-A-1";
