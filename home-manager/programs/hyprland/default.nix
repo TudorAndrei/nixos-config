@@ -61,7 +61,6 @@
             "swaync"
             "zen"
             "easyeffects"
-            "obsidian"
             "slack"
           ];
           general = {
@@ -140,7 +139,7 @@
             "workspace 10, class:spotify"
             "workspace 10, class:^org.strawberrymusicplayer.strawberry$"
             "suppressevent maximize, class:.*"
-            "workspace special:notes, class:^obsidian$"
+            "workspace special:notes, class:^Alacritty$, title:.*littlebrain.*"
           ];
 
           layerrule = [
@@ -195,7 +194,7 @@
             "$mainMod SHIFT,p, exec, grimblast  copysave area"
             "$mainMod ALT,p, exec, grimblast copysave output"
             "$mainMod CTRL,p, exec, grimblast copysave screen"
-            "$mainMod, N, togglespecialworkspace, notes"
+            "$mainMod, N, exec, $terminal -e sh -c 'cd /home/tudor/cave/littlebrain && nvim'"
             "$mainMod SHIFT, N, movetoworkspacesilent, special:notes"
             "$mainMod, V, exec, wireguard-ui"
             "$mainMod, C, togglespecialworkspace, slack"

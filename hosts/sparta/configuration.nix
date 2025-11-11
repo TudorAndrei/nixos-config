@@ -30,7 +30,7 @@
       "rd.udev.log_level=3"
       "udev.log_priority=3"
       "amd_pstate=active"
-      "pcie_aspm=off"
+      "pcie_aspm=force"
       "iommu=pt"
       "acpi=force"
       "acpi_backlight=vendor"
@@ -97,6 +97,22 @@
       };
     };
     pipewire.jack.enable = true;
+    logind = {
+      extraConfig = ''
+        HandleSuspendKey=suspend
+        HandleHibernateKey=suspend
+      '';
+    };
+  };
+
+  systemd.sleep.extraConfig = ''
+    [Sleep]
+    HibernateMode=shutdown
+  '';
+
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "ondemand";
   };
 
   programs = {
