@@ -62,6 +62,7 @@
             "zen"
             "easyeffects"
             "slack"
+            "$terminal --title notes-nvim -e sh -c 'cd /home/tudor/cave/littlebrain && nvim'"
           ];
           general = {
             gaps_in = 5;
@@ -139,7 +140,7 @@
             "workspace 10, class:spotify"
             "workspace 10, class:^org.strawberrymusicplayer.strawberry$"
             "suppressevent maximize, class:.*"
-            "workspace special:notes, class:^Alacritty$, title:.*littlebrain.*"
+            "workspace special:notes, class:^Alacritty$, title:^notes-nvim$"
           ];
 
           layerrule = [
@@ -194,7 +195,7 @@
             "$mainMod SHIFT,p, exec, grimblast  copysave area"
             "$mainMod ALT,p, exec, grimblast copysave output"
             "$mainMod CTRL,p, exec, grimblast copysave screen"
-            "$mainMod, N, exec, $terminal -e sh -c 'cd /home/tudor/cave/littlebrain && nvim'"
+            "$mainMod, N, togglespecialworkspace, notes"
             "$mainMod SHIFT, N, movetoworkspacesilent, special:notes"
             "$mainMod, V, exec, wireguard-ui"
             "$mainMod, C, togglespecialworkspace, slack"
