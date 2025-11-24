@@ -42,4 +42,29 @@ with pkgs; [
   awsume
   k9s
   awscli2
+
+  # learn
+  exercism
+
+  # Neovim LSP servers and formatters
+  basedpyright
+  hadolint
+  unstable.vscode-json-languageserver
+  lua-language-server
+  docker-compose-language-service
+  dockerfile-language-server-nodejs
+  djlint
+  biome
+  rustywind
+  jinja-lsp
+  marksman
+  stylua
+  selene
+  taplo
+  rust-analyzer
+  tailwindcss-language-server
+  unstable.prettier
+  prettierd
+  yamlfmt
+  markdownlint-cli2
 ]

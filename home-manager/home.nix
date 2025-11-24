@@ -20,8 +20,7 @@
     ./programs/kanshi
     ./programs/easyeffects
     ./programs/swaynotificationcenter
-    # ./programs/qutebrowser
-    # ./programs/brave
+    ./programs/helium
     ./programs/vscode
     ./programs/git
     ./programs/zsh
@@ -33,10 +32,6 @@
     ./programs/neovim
     ./programs/nixcord
     ./programs/spicetify
-    ./programs/cursor-cli
-    # ./programs/kunkun
-    # ./programs/jan
-    # ./programs/llm
   ];
   nixpkgs = {
     overlays = [
