@@ -53,32 +53,35 @@
 
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
-  xdg.mimeApps.enable = true;
-  xdg.mimeApps = {
-    defaultApplications = {
-      "x-scheme-handler/http" = "zen-browser.desktop";
-      "x-scheme-handler/https" = "zen-browser.desktop";
-      "x-scheme-handler/chrome" = "zen-browser.desktop";
-      "text/html" = "zen-browser.desktop";
-      "application/x-extension-htm" = "zen-browser.desktop";
-      "application/x-extension-html" = "zen-browser.desktop";
-      "application/x-extension-shtml" = "zen-browser.desktop";
-      "application/xhtml+xml" = "zen-browser.desktop";
-      "application/x-extension-xhtml" = "zen-browser.desktop";
-      "application/x-extension-xht" = "zen-browser.desktop";
-    };
-    associations.added = {
-      "x-scheme-handler/http" = "zen-browser.desktop";
-      "x-scheme-handler/https" = "zen-browser.desktop";
-      "text/html" = "zen-browser.desktop";
-      "application/xhtml+xml" = "zen-browser.desktop";
-    };
-    associations.removed = {
-      "x-scheme-handler/http" = ["com.google.Chrome.desktop" "chromium-browser.desktop"];
-      "x-scheme-handler/https" = ["com.google.Chrome.desktop" "chromium-browser.desktop"];
-      "text/html" = ["com.google.Chrome.desktop" "chromium-browser.desktop"];
-      "application/xhtml+xml" = ["com.google.Chrome.desktop" "chromium-browser.desktop"];
-    };
+  xdg.mimeApps = let
+    value = let
+      zen-browser = inputs.zen-browser.packages.${system}.beta;
+    in
+      zen-browser.meta.desktopFileName;
+
+    associations = builtins.listToAttrs (map (name: {
+        inherit name value;
+      }) [
+        "application/x-extension-shtml"
+        "application/x-extension-xhtml"
+        "application/x-extension-html"
+        "application/x-extension-xht"
+        "application/x-extension-htm"
+        "x-scheme-handler/unknown"
+        "x-scheme-handler/mailto"
+        "x-scheme-handler/chrome"
+        "x-scheme-handler/about"
+        "x-scheme-handler/https"
+        "x-scheme-handler/http"
+        "application/xhtml+xml"
+        "application/json"
+        "text/plain"
+        "text/html"
+      ]);
+  in {
+    enable = true;
+    associations.added = associations;
+    defaultApplications = associations;
   };
   xdg.configFile = {
     "nvim" = {
