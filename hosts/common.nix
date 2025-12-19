@@ -55,6 +55,28 @@
     "vm.dirty_ratio" = 15;
     "vm.dirty_background_ratio" = 5;
     "vm.overcommit_memory" = 1;
+    "net.core.rmem_max" = 134217728;
+    "net.core.wmem_max" = 134217728;
+    "net.core.rmem_default" = 16777216;
+    "net.core.wmem_default" = 16777216;
+    "net.core.netdev_max_backlog" = 5000;
+    "net.core.netdev_budget" = 600;
+    "net.ipv4.tcp_rmem" = "4096 87380 134217728";
+    "net.ipv4.tcp_wmem" = "4096 65536 134217728";
+    "net.ipv4.tcp_fin_timeout" = 10;
+    "net.ipv4.tcp_keepalive_time" = 120;
+    "net.ipv4.tcp_keepalive_probes" = 5;
+    "net.ipv4.tcp_keepalive_intvl" = 15;
+    "net.ipv4.tcp_slow_start_after_idle" = 0;
+    "net.ipv4.tcp_tw_reuse" = 1;
+    "net.ipv4.tcp_fastopen" = 3;
+    "net.ipv4.tcp_sack" = 1;
+    "net.ipv4.tcp_timestamps" = 1;
+    "net.ipv4.tcp_syncookies" = 1;
+    "net.ipv4.tcp_max_syn_backlog" = 8192;
+    "net.ipv4.ip_local_port_range" = "1024 65535";
+    "net.ipv4.tcp_congestion_control" = "bbr";
+    "net.core.default_qdisc" = "fq";
   };
 
   networking = {
@@ -65,6 +87,7 @@
     networkmanager = {
       enable = true;
       wifi.powersave = false;
+      settings.main.dns = "systemd-resolved";
     };
     firewall = {
       enable = true;
@@ -72,6 +95,7 @@
       allowedTCPPorts = [ 53317 ];
       allowedUDPPorts = [ 53317 ];
     };
+    useNetworkd = false;
   };
 
   users.defaultUserShell = pkgs.zsh;
@@ -250,6 +274,16 @@
   virtualisation.docker.enableOnBoot = false;
 
   services = {
+    resolved = {
+      enable = true;
+      dnssec = "allow-downgrade";
+      fallbackDns = ["1.1.1.1" "1.0.0.1"];
+      extraConfig = ''
+        DNSOverTLS=opportunistic
+        Cache=yes
+        CacheFromLocalhost=no
+      '';
+    };
     gvfs.enable = true;
     udev.packages = [pkgs.android-udev-rules];
     gnome.gnome-keyring.enable = true;
@@ -309,39 +343,11 @@
     };
   };
 
-  sops.secrets = {
-    wireguard_private_key = {
-      owner = "root";
-      group = "systemd-network";
-      mode = "0400";
-    };
-    wireguard_public_key = {
-      owner = "root";
-      group = "systemd-network";
-      mode = "0400";
-    };
-    wireguard_endpoint = {};
-  };
 
-  networking.wireguard = {
-    enable = true;
-    interfaces = {
-      wg0 = {
-        ips = ["192.168.0.6/32"];
-        privateKeyFile = config.sops.secrets.wireguard_private_key.path;
-        peers = [
-          {
-            publicKey = "cBKoyeUrqhun08FtGe+phFmvEzK6y78Y+qDD2YTl73o=";
-            allowedIPs = ["10.0.0.0/16"];
-            endpoint = "bastion.dev.cogni-sync.net:51820";
-            persistentKeepalive = 25;
-          }
-        ];
-      };
-    };
+  systemd.services.NetworkManager-wait-online.enable = true;
+  systemd.services.NetworkManager-wait-online.serviceConfig = {
+    TimeoutStartSec = "10s";
   };
-
-  systemd.services.NetworkManager-wait-online.enable = false;
 
   environment.systemPackages = with pkgs; [
     home-manager

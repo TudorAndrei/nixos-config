@@ -6,8 +6,6 @@
 in
   with pkgs; [
     unstable.zoom-us
-    wireguard-tools
-    unstable.wireguard-ui
     # google-chrome
     slack
     signal-desktop

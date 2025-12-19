@@ -199,7 +199,6 @@
             "$mainMod CTRL,p, exec, grimblast copysave screen"
             "$mainMod, N, togglespecialworkspace, notes"
             "$mainMod SHIFT, N, movetoworkspacesilent, special:notes"
-            "$mainMod, V, exec, wireguard-ui"
             "$mainMod, C, togglespecialworkspace, slack"
           ];
           bindel = [
