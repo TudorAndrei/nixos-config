@@ -119,31 +119,6 @@ local location = {
 }
 
 return {
-  -- {
-  --   "folke/edgy.nvim",
-  --   enable = false,
-  --   event = "VeryLazy",
-  --   init = function()
-  --     vim.opt.laststatus = 3
-  --     vim.opt.splitkeep = "screen"
-  --   end,
-  --   opts = {
-  --     bottom = {},
-  --     left = {
-  --       {
-  --         ft = "nvim-tree",
-  --         pinned = true,
-  --         open = "NvimTreeToggle",
-  --       },
-  --       {
-  --         ft = "Outline",
-  --         pinned = true,
-  --         open = "SymbolsOutlineOpen",
-  --         height = { 0.4 },
-  --       },
-  --     },
-  --   },
-  -- },
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
@@ -197,51 +172,6 @@ return {
       },
     },
   },
-  -- {
-  --   "kyazdani42/nvim-tree.lua",
-  --   keys = {
-  --     { "<C-n>", "<cmd>NvimTreeToggle<cr>", desc = "Open file tree", mode = { "n", "v" } },
-  --   },
-  --   lazy = false,
-  --   opts = {
-  --     disable_netrw = true,
-  --     hijack_netrw = true,
-  --     diagnostics = {
-  --       enable = false,
-  --     },
-  --     filters = {
-  --       custom = {
-  --         "^.git$",
-  --         ".*.aux$",
-  --         ".*.bbl$",
-  --         ".*.fls$",
-  --         ".*.fdb_latexmk$",
-  --         ".*.toc$",
-  --         ".*.out$",
-  --         ".*.bcf$",
-  --         ".*.lbx$",
-  --         ".*.run.xml$",
-  --         ".*.synctex.gz$",
-  --       },
-  --       exclude = { "data", ".env", ".db_conf" },
-  --     },
-  --     view = {
-  --       width = 30,
-  --       side = "right",
-  --     },
-  --     renderer = {
-  --       icons = {
-  --         show = {
-  --           file = true,
-  --           folder = true,
-  --           folder_arrow = false,
-  --           git = true,
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
-
   {
     "windwp/nvim-autopairs",
     opts = {
