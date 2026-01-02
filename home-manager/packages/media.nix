@@ -1,9 +1,12 @@
-{ pkgs, inputs, system }:
+{
+  pkgs,
+  inputs,
+  system,
+}:
 with pkgs; [
   qbittorrent-enhanced
   unstable.zotero
   foliate
-  stremio
   strawberry
   beets
   mpv

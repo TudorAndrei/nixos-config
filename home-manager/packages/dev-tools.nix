@@ -30,7 +30,6 @@ with pkgs; [
   inputs.cursor.packages.${system}.cursor
   unstable.lmstudio
   unstable.postman
-  unstable.bruno
   unstable.yaak
   unstable.dbeaver-bin
   unstable.zed-editor

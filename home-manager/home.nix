@@ -46,9 +46,9 @@
   home = {
     username = "tudor";
     homeDirectory = "/home/tudor";
-    stateVersion = "25.05";
+    stateVersion = "25.11";
 
-    packages = with pkgs; (import ./packages {inherit pkgs inputs system;});
+    packages = import ./packages {inherit pkgs inputs system;};
   };
 
   # TODO: Link .config/easyeffects with nixos
@@ -175,10 +175,11 @@
         name = "Iosevka NF";
       };
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
     };
+    targets.zen-browser.profileNames = ["Default"];
   };
 
   home.sessionVariables = {

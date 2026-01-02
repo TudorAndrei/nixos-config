@@ -215,7 +215,7 @@
     nerd-fonts.iosevka
     nerd-fonts.fira-code
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     liberation_ttf
     font-awesome
     mplus-outline-fonts.githubRelease
@@ -260,7 +260,7 @@
         name = "Iosevka NF";
       };
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
     };
@@ -285,7 +285,6 @@
       '';
     };
     gvfs.enable = true;
-    udev.packages = [pkgs.android-udev-rules];
     gnome.gnome-keyring.enable = true;
     power-profiles-daemon.enable = true;
     thermald.enable = true;
@@ -295,14 +294,11 @@
       openFirewall = true;
     };
     printing.enable = true;
-    logind = {
-      lidSwitch = "suspend";
-      lidSwitchDocked = "ignore";
-      lidSwitchExternalPower = "suspend";
-      extraConfig = ''
-        # don't shutdown when power button is short-pressed
-        HandlePowerKey=ignore
-      '';
+    logind.settings.Login = {
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchDocked = "ignore";
+      HandleLidSwitchExternalPower = "suspend";
+      HandlePowerKey = "ignore";
     };
     pipewire = {
       enable = true;
@@ -312,7 +308,7 @@
     };
     xserver.videoDrivers = ["nvidia"];
     blueman.enable = true;
-    xserver.displayManager.gdm = {
+    displayManager.gdm = {
       enable = true;
       wayland = true;
       debug = false;

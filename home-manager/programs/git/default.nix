@@ -1,9 +1,9 @@
 {pkgs, ...}: {
   programs.git = {
     enable = true;
-    userName = "TudorAndrei";
-    userEmail = "tudorandrei.dumitrascu@gmail.com";
-    extraConfig = {
+    settings = {
+      user.name = "TudorAndrei";
+      user.email = "tudorandrei.dumitrascu@gmail.com";
       # core.pager = "delta";
       # interactive.diffFilter = "delta --color-only";
       # delta.navigate = true;

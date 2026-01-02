@@ -69,7 +69,7 @@
   hardware.bluetooth.powerOnBoot = true;
 
   hardware.graphics.extraPackages = with pkgs; [
-    vaapiVdpau
+    libva-vdpau-driver
     libvdpau
     libvdpau-va-gl
     vdpauinfo
@@ -99,11 +99,9 @@
       };
     };
     pipewire.jack.enable = true;
-    logind = {
-      extraConfig = ''
-        HandleSuspendKey=suspend
-        HandleHibernateKey=suspend
-      '';
+    logind.settings.Login = {
+      HandleSuspendKey = "suspend";
+      HandleHibernateKey = "suspend";
     };
   };
 

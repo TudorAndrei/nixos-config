@@ -13,7 +13,6 @@ in
     localsend
     czkawka
     pika-backup
-    libsForQt5.okular
     obsidian
     pavucontrol
   ]
