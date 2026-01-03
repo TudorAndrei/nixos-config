@@ -2,10 +2,13 @@
   outputs,
   config,
   pkgs,
+  lib,
   inputs,
-  system,
   ...
-}: {
+}: let
+  theme = import ../lib/theme.nix;
+  getPackage = path: lib.getAttrFromPath path pkgs;
+in {
   imports = [
     inputs.zen-browser.homeModules.beta
     inputs.stylix.homeModules.stylix
@@ -48,14 +51,14 @@
     homeDirectory = "/home/tudor";
     stateVersion = "25.11";
 
-    packages = import ./packages {inherit pkgs inputs system;};
+    packages = import ./packages {inherit pkgs inputs;};
   };
 
   # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
   xdg.mimeApps = let
     value = let
-      zen-browser = inputs.zen-browser.packages.${system}.beta;
+      zen-browser = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta;
     in
       zen-browser.meta.desktopFileName;
 
@@ -135,66 +138,39 @@
   #   };
   # };
   stylix = {
-    cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
-      size = 24;
-    };
     enable = true;
     image = ../bigsun.jpg;
-    base16Scheme = {
-      base00 = "282a36"; # Background
-      base01 = "44475a"; # Current Line
-      base02 = "44475a"; # Selection
-      base03 = "6272a4"; # Comment
-      base04 = "f8f8f2"; # Foreground
-      base05 = "f8f8f2"; # Foreground
-      base06 = "f8f8f2"; # Foreground
-      base07 = "f8f8f2"; # Foreground
-      base08 = "ff5555"; # Red
-      base09 = "ffb86c"; # Orange
-      base0A = "f1fa8c"; # Yellow
-      base0B = "50fa7b"; # Green
-      base0C = "8be9fd"; # Cyan
-      base0D = "bd93f9"; # Purple
-      base0E = "ff79c6"; # Pink
-      base0F = "ff79c6"; # Pink
+    base16Scheme = theme.colors;
+    polarity = theme.polarity;
+    cursor = {
+      package = getPackage theme.cursor.path;
+      name = theme.cursor.name;
+      size = theme.cursor.size;
     };
-    polarity = "dark";
     fonts = {
       serif = {
-        package = pkgs.nerd-fonts.iosevka;
-        name = "Iosevka NF";
+        package = getPackage theme.fonts.serif.path;
+        name = theme.fonts.serif.name;
       };
       sansSerif = {
-        package = pkgs.nerd-fonts.iosevka;
-        name = "Iosevka NF";
+        package = getPackage theme.fonts.sansSerif.path;
+        name = theme.fonts.sansSerif.name;
       };
       monospace = {
-        package = pkgs.nerd-fonts.iosevka;
-        name = "Iosevka NF";
+        package = getPackage theme.fonts.monospace.path;
+        name = theme.fonts.monospace.name;
       };
       emoji = {
-        package = pkgs.noto-fonts-color-emoji;
-        name = "Noto Color Emoji";
+        package = getPackage theme.fonts.emoji.path;
+        name = theme.fonts.emoji.name;
       };
     };
     targets.zen-browser.profileNames = ["Default"];
   };
 
   home.sessionVariables = {
-    BROWSER = "zen-browser";
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    OBSIDIAN_USE_WAYLAND = "1";
     LD_LIBRARY_PATH = "${pkgs.graphviz}/lib";
     LDFLAGS = "-L${pkgs.graphviz}/lib";
     CFLAGS = "-I${pkgs.graphviz}/include";
-    XDG_SCREENSHOTS_DIR = "$HOME/Pictures/screenshots";
-    # Steam X11 compatibility
-    XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
-    STEAM_USE_GPU_SCREEN_CAPTURE = "1";
-    # Qt Wayland support for vicinae
-    QT_QPA_PLATFORM = "wayland";
-    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
   };
 }

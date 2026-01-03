@@ -8,9 +8,20 @@
     ./hardware-configuration.nix
     ../common.nix
     ../modules/asus
+    ../modules/nvidia
   ];
 
   asus.enable = true;
+
+  nvidia = {
+    enable = true;
+    prime = {
+      mode = "sync";
+      nvidiaBusId = "PCI:1:0:0";
+      amdBusId = "PCI:8:0:0";
+    };
+    powerManagement.enable = true;
+  };
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-33.4.11"
@@ -125,14 +136,6 @@
       libva
       libva-utils
     ];
-    nvidia = {
-      prime = {
-        sync.enable = true;
-        nvidiaBusId = "PCI:1:0:0";
-        amdgpuBusId = "PCI:8:0:0";
-      };
-      powerManagement.enable = true;
-    };
   };
 
   services = {
@@ -215,7 +218,6 @@
   };
 
   environment = {
-    sessionVariables.XDG_SCREENSHOTS_DIR = "$HOME/Pictures/screenshots";
     etc."systemd/system-sleep/display-resume" = {
       mode = "0755";
       text = ''

@@ -1,9 +1,13 @@
 {
   pkgs,
+  lib,
   inputs,
   config,
   ...
-}: {
+}: let
+  theme = import ../lib/theme.nix;
+  getPackage = path: lib.getAttrFromPath path pkgs;
+in {
   nix.settings = {
     auto-optimise-store = true;
     experimental-features = ["nix-command" "flakes" "ca-derivations"];
@@ -42,6 +46,11 @@
   '';
 
   nixpkgs.config.allowUnfree = true;
+
+  sops = {
+    defaultSopsFile = ../secrets/secrets.yaml;
+    age.keyFile = "/home/tudor/.config/sops/age/keys.txt";
+  };
 
   boot.loader = {
     systemd-boot.enable = true;
@@ -152,15 +161,15 @@
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
-    GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    LIBVA_DRIVER_NAME = "nvidia";
     EGL_PLATFORM = "wayland";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     OBSIDIAN_USE_WAYLAND = "1";
-    # Steam X11 compatibility
     XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
     STEAM_USE_GPU_SCREEN_CAPTURE = "1";
+    BROWSER = "zen-browser";
+    QT_QPA_PLATFORM = "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    XDG_SCREENSHOTS_DIR = "$HOME/Pictures/screenshots";
   };
 
   users.users.tudor = {
@@ -190,23 +199,6 @@
       };
     };
     firmware = [pkgs.linux-firmware];
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-      package = pkgs.mesa;
-      package32 = pkgs.pkgsi686Linux.mesa;
-      extraPackages = with pkgs; [
-        nvidia-vaapi-driver
-      ];
-    };
-    nvidia-container-toolkit.enable = true;
-    nvidia = {
-      modesetting.enable = true;
-      # powerManagement.finegrained = true;
-      open = false;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
   };
 
   fonts.packages = with pkgs; [
@@ -223,44 +215,25 @@
   ];
 
   stylix = {
-    # cursor.package = pkgs.bibata-cursors;
-    # cursor.name = "Bibata-Modern-Ice";
     enable = true;
-    base16Scheme = {
-      base00 = "282a36"; # Background
-      base01 = "44475a"; # Current Line
-      base02 = "44475a"; # Selection
-      base03 = "6272a4"; # Comment
-      base04 = "f8f8f2"; # Foreground
-      base05 = "f8f8f2"; # Foreground
-      base06 = "f8f8f2"; # Foreground
-      base07 = "f8f8f2"; # Foreground
-      base08 = "ff5555"; # Red
-      base09 = "ffb86c"; # Orange
-      base0A = "f1fa8c"; # Yellow
-      base0B = "50fa7b"; # Green
-      base0C = "8be9fd"; # Cyan
-      base0D = "bd93f9"; # Purple
-      base0E = "ff79c6"; # Pink
-      base0F = "ff79c6"; # Pink
-    };
-    polarity = "dark";
+    base16Scheme = theme.colors;
+    polarity = theme.polarity;
     fonts = {
       serif = {
-        package = pkgs.nerd-fonts.iosevka;
-        name = "Iosevka NF";
+        package = getPackage theme.fonts.serif.path;
+        name = theme.fonts.serif.name;
       };
       sansSerif = {
-        package = pkgs.nerd-fonts.iosevka;
-        name = "Iosevka NF";
+        package = getPackage theme.fonts.sansSerif.path;
+        name = theme.fonts.sansSerif.name;
       };
       monospace = {
-        package = pkgs.nerd-fonts.iosevka;
-        name = "Iosevka NF";
+        package = getPackage theme.fonts.monospace.path;
+        name = theme.fonts.monospace.name;
       };
       emoji = {
-        package = pkgs.noto-fonts-color-emoji;
-        name = "Noto Color Emoji";
+        package = getPackage theme.fonts.emoji.path;
+        name = theme.fonts.emoji.name;
       };
     };
     targets = {
@@ -304,7 +277,6 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
-    xserver.videoDrivers = ["nvidia"];
     blueman.enable = true;
     displayManager.gdm = {
       enable = true;

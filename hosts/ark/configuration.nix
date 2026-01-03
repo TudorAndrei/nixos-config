@@ -6,7 +6,17 @@
   imports = [
     ./hardware-configuration.nix
     ../common.nix
+    ../modules/nvidia
   ];
+
+  nvidia = {
+    enable = true;
+    prime = {
+      mode = "offload";
+      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:0:2:0";
+    };
+  };
 
   nixpkgs.config.packageOverrides = pkgs: {
     intel-vaapi-driver = pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};
@@ -37,18 +47,6 @@
       intel-media-driver
     ];
     extraPackages32 = with pkgs.pkgsi686Linux; [intel-vaapi-driver];
-  };
-
-  hardware.nvidia = {
-    prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true; # Provides `nvidia-offload` command.
-      };
-      # sync.enable = true;  # Disabled to allow power management
-      nvidiaBusId = "PCI:1:0:0";
-      intelBusId = "PCI:0:2:0";
-    };
   };
 
   virtualisation.waydroid.enable = true;

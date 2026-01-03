@@ -78,10 +78,6 @@
           ./hosts/sparta/configuration.nix
           inputs.stylix.nixosModules.stylix
           inputs.sops-nix.nixosModules.sops
-          {
-            sops.defaultSopsFile = "${self}/secrets/secrets.yaml";
-            sops.age.keyFile = "/home/tudor/.config/sops/age/keys.txt";
-          }
         ];
       };
       ark = nixpkgs.lib.nixosSystem {
@@ -91,10 +87,6 @@
           ./hosts/ark/configuration.nix
           inputs.stylix.nixosModules.stylix
           inputs.sops-nix.nixosModules.sops
-          {
-            sops.defaultSopsFile = "${self}/secrets/secrets.yaml";
-            sops.age.keyFile = "/home/tudor/.config/sops/age/keys.txt";
-          }
         ];
       };
     };
