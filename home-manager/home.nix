@@ -52,7 +52,7 @@ in {
     homeDirectory = "/home/tudor";
     stateVersion = "25.11";
 
-    packages = import ./packages {inherit pkgs inputs;};
+    packages = import ./packages {inherit pkgs inputs system;};
   };
 
   # TODO: Link .config/easyeffects with nixos
