@@ -1,10 +1,5 @@
-{
-  pkgs,
-  inputs,
-  system,
-}: let
-in
-  with pkgs; [
+{pkgs}:
+with pkgs; [
     unstable.zoom-us
     # google-chrome
     slack

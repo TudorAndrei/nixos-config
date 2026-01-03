@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  system,
-}:
+{pkgs}:
 with pkgs; [
   qbittorrent-enhanced
   unstable.zotero

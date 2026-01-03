@@ -1,4 +1,4 @@
-{ pkgs, inputs, system }:
+{pkgs}:
 with pkgs; [
   # Core system utilities
   wl-clipboard
@@ -7,8 +7,6 @@ with pkgs; [
   curl
   vim
   ripgrep
-  fd
-  tree
   killall
   
   # System monitoring and management

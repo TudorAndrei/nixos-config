@@ -10,7 +10,7 @@
         position = "top";
         # mode": "dock",
         exclusive = true;
-        passtrough = false;
+        passthrough = false;
         gtk-layer-shell = true;
         height = 0;
         modules-left = ["hyprland/workspaces"];
@@ -217,10 +217,9 @@
       @define-color red #ff5555;
       @define-color yellow #f1fa8c;
       * {
-          font-family: 'CaskaydiaCove NF';
+          font-family: 'Iosevka NF';
           border: none;
           border-radius: 0;
-          font-family: Iosevka;
           font-size: 11pt;
           min-height: 0;
       }

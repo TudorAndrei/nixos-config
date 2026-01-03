@@ -51,7 +51,7 @@ with pkgs; [
   unstable.vscode-json-languageserver
   lua-language-server
   docker-compose-language-service
-  dockerfile-language-server-nodejs
+  dockerfile-language-server
   djlint
   biome
   rustywind
