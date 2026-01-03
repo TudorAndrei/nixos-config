@@ -59,7 +59,6 @@
     "net.core.wmem_max" = 134217728;
     "net.core.rmem_default" = 16777216;
     "net.core.wmem_default" = 16777216;
-    "net.core.netdev_max_backlog" = 5000;
     "net.core.netdev_budget" = 600;
     "net.ipv4.tcp_rmem" = "4096 87380 134217728";
     "net.ipv4.tcp_wmem" = "4096 65536 134217728";
@@ -92,8 +91,8 @@
     firewall = {
       enable = true;
       allowPing = false;
-      allowedTCPPorts = [ 53317 ];
-      allowedUDPPorts = [ 53317 ];
+      allowedTCPPorts = [53317];
+      allowedUDPPorts = [53317];
     };
     useNetworkd = false;
   };
@@ -287,7 +286,6 @@
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
     power-profiles-daemon.enable = true;
-    thermald.enable = true;
     avahi = {
       enable = true;
       nssmdns4 = true;
@@ -338,7 +336,6 @@
       };
     };
   };
-
 
   systemd.services.NetworkManager-wait-online.enable = true;
   systemd.services.NetworkManager-wait-online.serviceConfig = {
