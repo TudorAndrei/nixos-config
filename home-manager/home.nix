@@ -4,6 +4,7 @@
   pkgs,
   lib,
   inputs,
+  system,
   ...
 }: let
   theme = import ../lib/theme.nix;
@@ -58,7 +59,7 @@ in {
   fonts.fontconfig.enable = true;
   xdg.mimeApps = let
     value = let
-      zen-browser = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta;
+      zen-browser = inputs.zen-browser.packages.${system}.beta;
     in
       zen-browser.meta.desktopFileName;
 
