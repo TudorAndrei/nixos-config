@@ -37,6 +37,10 @@
       url = "github:TudorAndrei/cursor-nixos-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    opencode = {
+      url = "github:anomalyco/opencode";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

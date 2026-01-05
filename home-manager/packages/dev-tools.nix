@@ -28,6 +28,7 @@ with pkgs; [
 
   # IDEs and development tools
   inputs.cursor.packages.${system}.cursor
+  inputs.opencode.packages.${system}.default
   unstable.lmstudio
   unstable.postman
   unstable.yaak
