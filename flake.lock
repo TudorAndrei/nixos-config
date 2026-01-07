@@ -75,11 +75,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767598165,
-        "narHash": "sha256-htg5gn8EH3zit0zdEXxHZ24VvGc+9xhDLjLCnOtqd4E=",
+        "lastModified": 1767795736,
+        "narHash": "sha256-gBN3W5DHjOl9jb/jwmrbRMAOeBlnmqOvYskslBsBXB8=",
         "owner": "TudorAndrei",
         "repo": "cursor-nixos-flake",
-        "rev": "70397f0d471dcb0665d4f3f7161ccfd1eeca2d38",
+        "rev": "1f28d7935d4d51f4ef722533bcb687c78ed93531",
         "type": "github"
       },
       "original": {

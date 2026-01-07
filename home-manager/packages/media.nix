@@ -12,4 +12,5 @@ with pkgs; [
   yt-dlp
   imagemagick
   opustags
+  obs-studio
 ]
