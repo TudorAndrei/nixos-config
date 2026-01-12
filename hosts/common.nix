@@ -182,6 +182,7 @@ in {
       "wheel"
       "audio"
       "docker"
+      "openrazer"
     ];
   };
 
@@ -199,6 +200,10 @@ in {
       };
     };
     firmware = [pkgs.linux-firmware];
+    openrazer = {
+      enable = true;
+      users = ["tudor"];
+    };
   };
 
   fonts.packages = with pkgs; [

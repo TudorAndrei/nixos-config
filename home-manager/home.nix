@@ -42,6 +42,7 @@ in {
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
+      inputs.claude-code.overlays.default
     ];
     config = {
       allowUnfree = true;

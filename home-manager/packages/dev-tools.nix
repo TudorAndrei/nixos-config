@@ -19,7 +19,7 @@ with pkgs; [
   unstable.bun
   unstable.devenv
   unstable.pnpm
-  unstable.claude-code
+  claude-code
   fnm
   unstable.uv
   cargo
@@ -33,7 +33,6 @@ with pkgs; [
   unstable.postman
   unstable.yaak
   unstable.dbeaver-bin
-  unstable.zed-editor
 
   # Container and virtualization
   distrobox
