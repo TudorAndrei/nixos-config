@@ -8,19 +8,20 @@ with pkgs; [
   vim
   ripgrep
   killall
-  
+
   # System monitoring and management
   nvitop
   htop-vim
   gnome-disk-utility
-  
+
   # Fonts and graphics
   font-awesome
   ghostscript
   graphviz
   ffmpeg
   icu.dev
-  
+
+  polychromatic
   # File management
   nautilus
 ]
