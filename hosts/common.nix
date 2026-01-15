@@ -319,6 +319,25 @@ in {
     TimeoutStartSec = "10s";
   };
 
+  # Vial keyboard programming udev rules
+  services.udev.extraRules = ''
+    # VID/PID for Vial-enabled keyboards
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="feed", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+    # For STM32 bootloader
+    ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+    # For USBaspLoader
+    ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="05df", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+    # For HID Bootloaders
+    ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff0", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+    # For HID Bootloaders - USBAsp
+    ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="05dc", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+    # For atmega32u4 (qmk)
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff4", MODE:="0666"
+    # For atmega32u2 (qmk)
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff0", MODE:="0666"
+  '';
+
   environment.systemPackages = with pkgs; [
     home-manager
   ];
