@@ -50,7 +50,7 @@
         settings = {
           "$terminal" = "alacritty";
           "$fileManager" = "nautilus";
-          "$menu" = "wofi --show drun";
+          "$menu" = "vicinae toggle";
           "$mainMod" = "SUPER";
           env = [
             "XCURSOR_SIZE,24"
@@ -225,7 +225,6 @@
   };
 
   home.packages = with pkgs; [
-    wofi
     grimblast
     hyprshot
     hyprpicker

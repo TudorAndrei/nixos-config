@@ -14,7 +14,7 @@ in {
     inputs.zen-browser.homeModules.beta
     inputs.stylix.homeModules.stylix
     inputs.nur.modules.homeManager.default
-    # inputs.vicinae.homeManagerModules.default
+    inputs.vicinae.homeManagerModules.default
     ./programs/waybar
     ./programs/starship
     ./programs/terminal
@@ -123,22 +123,25 @@ in {
   programs.zen-browser.enable = true;
   programs.zen-browser.nativeMessagingHosts = [pkgs.vdhcoapp];
 
-  # services.vicinae = {
-  #   enable = true;
-  #   autoStart = true;
-  #   settings = {
-  #     faviconService = "twenty";
-  #     font.size = 11;
-  #     popToRootOnClose = false;
-  #     rootSearch.searchFiles = false;
-  #     theme.name = "vicinae-dark";
-  #     window = {
-  #       csd = true;
-  #       opacity = 0.95;
-  #       rounding = 10;
-  #     };
-  #   };
-  # };
+  services.vicinae = {
+    enable = true;
+    systemd = {
+      enable = true;
+      autoStart = true;
+    };
+    settings = {
+      faviconService = lib.mkForce "twenty";
+      font.size = lib.mkForce 11;
+      popToRootOnClose = lib.mkForce false;
+      rootSearch.searchFiles = lib.mkForce false;
+      theme.name = lib.mkForce "vicinae-dark";
+      window = {
+        csd = lib.mkForce true;
+        opacity = lib.mkForce 0.95;
+        rounding = lib.mkForce 10;
+      };
+    };
+  };
   stylix = {
     enable = true;
     image = ../bigsun.jpg;
