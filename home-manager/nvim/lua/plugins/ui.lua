@@ -53,12 +53,17 @@ local function conda_env()
 end
 
 local function venv_env()
-  local venv = os.getenv("VIRTUAL_ENV")
-  if venv then
-    local env = mysplit(venv, "/")
-    return (string.format("(%s)", env[#env]))
+  local venv_prompt = os.getenv("VIRTUAL_ENV_PROMPT")
+  if venv_prompt then
+    return venv_prompt
   else
-    return ""
+    local venv = os.getenv("VIRTUAL_ENV")
+    if venv then
+      local env = mysplit(venv, "/")
+      return (string.format("(%s)", env[#env]))
+    else
+      return ""
+    end
   end
 end
 
