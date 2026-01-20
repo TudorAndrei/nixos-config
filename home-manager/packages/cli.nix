@@ -3,7 +3,6 @@
   inputs,
 }:
 with pkgs; [
-  # CLI-specific tools
   fd
   tree
   zip
@@ -20,4 +19,11 @@ with pkgs; [
   pandoc
   scrcpy
   libnotify
+  lsof
+  viu
+  chafa
+  ueberzugpp
+  lazygit
+  tectonic
+  mermaid-cli
 ]

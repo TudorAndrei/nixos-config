@@ -34,7 +34,6 @@ in {
     ./programs/zoxide
     ./programs/syncthing
     ./programs/neovim
-    ./programs/nixcord
     ./programs/spicetify
   ];
   nixpkgs = {

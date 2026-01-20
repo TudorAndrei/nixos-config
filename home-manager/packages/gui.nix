@@ -2,6 +2,7 @@
 with pkgs; [
   # unstable.zoom-us
   # google-chrome
+  discord
   slack
   signal-desktop
   libreoffice

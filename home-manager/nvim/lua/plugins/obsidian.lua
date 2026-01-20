@@ -9,8 +9,7 @@ return {
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "hrsh7th/nvim-cmp",
-    "nvim-telescope/telescope.nvim",
+    "folke/snacks.nvim",
   },
   opts = {
     workspaces = {
@@ -30,8 +29,11 @@ return {
       time_format = "%H:%M",
     },
     completion = {
-      nvim_cmp = true,
+      blink = true,
       min_chars = 2,
+    },
+    picker = {
+      use_snacks = true,
     },
     new_notes_location = "current_dir",
     note_id_func = function(title)

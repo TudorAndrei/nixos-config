@@ -1,0 +1,20 @@
+diff --git a/packages/script/src/index.ts b/packages/script/src/index.ts
+index 7776df14c..56478e9b3 100644
+--- a/packages/script/src/index.ts
++++ b/packages/script/src/index.ts
+@@ -5,12 +5,9 @@ const rootPkgPath = path.resolve(import.meta.dir, "../../../package.json")
+ const rootPkg = await Bun.file(rootPkgPath).json()
+ const expectedBunVersion = rootPkg.packageManager?.split("@")[1]
+ 
+-if (!expectedBunVersion) {
+-  throw new Error("packageManager field not found in root package.json")
+-}
+-
+-if (process.versions.bun !== expectedBunVersion) {
+-  throw new Error(`This script requires bun@${expectedBunVersion}, but you are using bun@${process.versions.bun}`)
++// DISABLED: Version check is causing issues with Nix builds
++if (expectedBunVersion) {
++  console.log(`Using Bun version ${process.versions.bun} (expected: ${expectedBunVersion})`)
+ }
+ 
+ const env = {

@@ -1,0 +1,31 @@
+{pkgs}:
+with pkgs; [
+  lua-language-server
+  nixd
+  jinja-lsp
+  clang-tools
+  docker-compose-language-service
+  docker-language-server
+  rust-analyzer
+  tailwindcss-language-server
+  taplo
+  typescript-language-server
+  yaml-language-server
+  biome
+  ruff
+  basedpyright
+  stylua
+  djlint
+  rustywind
+  prettierd
+  yamlfmt
+  selene
+  stylelint
+  markdownlint-cli2
+  markdown-toc
+  yamllint
+  hadolint
+  fish
+  shfmt
+  tex-fmt
+]

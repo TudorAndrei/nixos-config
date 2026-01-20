@@ -1,30 +1,33 @@
 local pypath = vim.g.current_python_path
 local nixos_dir = "~/nixos-config/"
 
+vim.diagnostic.config({
+  signs = {
+    Text = " ",
+    Num = " ",
+    Error = "x",
+    Warn = "!",
+    Hint = "i",
+    Info = ">",
+  },
+})
+
 return {
   { "lepture/vim-jinja" },
   {
     "neovim/nvim-lspconfig",
     opts = {
-      setup = {
-        ruff = function()
-          LazyVim.lsp.on_attach(function(client, _)
-            if client.name == "ruff" then
-              -- Disable hover in favor of Pyright
-              client.server_capabilities.hoverProvider = false
-            end
-          end)
-        end,
-      },
       inlay_hints = { enabled = false },
-      capabilities = {
-        workspace = {
-          didChangeWatchedFiles = {
-            dynamicRegistration = false,
+      servers = {
+        ["*"] = {
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = {
+                dynamicRegistration = false,
+              },
+            },
           },
         },
-      },
-      servers = {
         lua_ls = {
           settings = {
             Lua = {
@@ -72,6 +75,9 @@ return {
         yamlls = {},
         biome = {},
         ruff = {
+          capabilities = {
+            hoverProvider = false,
+          },
           keys = {
             {
               "<leader>co",
@@ -158,15 +164,6 @@ return {
             annotation_convention = "google_docstrings",
           },
         },
-      },
-    },
-  },
-  {
-    "glepnir/lspsaga.nvim",
-    opts = {
-      ui = {
-        title = false,
-        border = false,
       },
     },
   },

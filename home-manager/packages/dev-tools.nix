@@ -28,7 +28,7 @@ with pkgs; [
 
   # IDEs and development tools
   inputs.cursor.packages.${system}.cursor
-  inputs.opencode.packages.${system}.default
+  pkgs.opencode # Using patched version from overlay
   unstable.lmstudio
   unstable.postman
   unstable.yaak

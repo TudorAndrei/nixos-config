@@ -25,10 +25,6 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    nixcord = {
-      url = "github:kaylorben/nixcord";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,7 +34,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     opencode = {
-      url = "github:anomalyco/opencode/v1.1.25";
+      url = "path:/home/tudor/nixos-config/packages/opencode";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     claude-code.url = "github:sadjow/claude-code-nix";

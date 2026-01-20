@@ -18,6 +18,16 @@
       });
       fetchPnpmDeps = unstable.fetchPnpmDeps;
     };
+    
+  # OpenCode overlay to patch the Bun version check
+  opencodeOverlay = final: prev: {
+    opencode = inputs.opencode.packages.${final.system}.default.overrideAttrs (oldAttrs: {
+      # Apply our patch to disable the Bun version check
+      patches = (oldAttrs.patches or []) ++ [
+        ../patches/opencode/disable-bun-check.patch
+      ];
+    });
+  };
 
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
