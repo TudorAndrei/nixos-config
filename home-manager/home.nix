@@ -35,6 +35,7 @@ in {
     ./programs/syncthing
     ./programs/neovim
     ./programs/spicetify
+    ./programs/systemd
   ];
   nixpkgs = {
     overlays = [
