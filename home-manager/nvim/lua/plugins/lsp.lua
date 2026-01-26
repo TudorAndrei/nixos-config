@@ -136,7 +136,6 @@ return {
       linters_by_ft = {
         lua = { "selene" },
         css = { "stylelint" },
-        markdown = { "markdownlint" },
         yaml = { "yamllint" },
         dockerfile = { "hadolint" },
       },
