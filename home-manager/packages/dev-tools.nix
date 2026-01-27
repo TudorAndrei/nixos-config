@@ -28,6 +28,7 @@ with pkgs; [
 
   # IDEs and development tools
   inputs.cursor.packages.${system}.cursor
+  inputs.zed-editor.packages.${system}.default
   pkgs.opencode # Using patched version from overlay
   unstable.lmstudio
   unstable.postman
@@ -39,6 +40,8 @@ with pkgs; [
   unstable.lazydocker
   docker-buildx
   awsume
+  kubectl
+  granted
   k9s
   awscli2
 

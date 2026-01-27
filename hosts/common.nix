@@ -183,6 +183,7 @@ in {
       "audio"
       "docker"
       "openrazer"
+      "dialout"
     ];
   };
 
@@ -336,6 +337,10 @@ in {
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff4", MODE:="0666"
     # For atmega32u2 (qmk)
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff0", MODE:="0666"
+    # ESP32-C3 serial ports (for crosspoint-reader and other ESP32 development)
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="55d4", MODE="0666", GROUP="dialout"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", MODE="0666", GROUP="dialout"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="1001", MODE="0666", GROUP="dialout"
   '';
 
   environment.systemPackages = with pkgs; [

@@ -87,6 +87,21 @@
         "type": "github"
       }
     },
+    "crane": {
+      "locked": {
+        "lastModified": 1768873933,
+        "narHash": "sha256-CfyzdaeLNGkyAHp3kT5vjvXhA1pVVK7nyDziYxCPsNk=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "0bda7e7d005ccb5522a76d11ccfbf562b71953ca",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "cursor": {
       "inputs": {
         "nixpkgs": [
@@ -120,6 +135,21 @@
       "original": {
         "owner": "rafaelmardojai",
         "repo": "firefox-gnome-theme",
+        "type": "github"
+      }
+    },
+    "flake-compat": {
+      "locked": {
+        "lastModified": 1767039857,
+        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
         "type": "github"
       }
     },
@@ -411,7 +441,29 @@
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
         "vicinae": "vicinae",
+        "zed-editor": "zed-editor",
         "zen-browser": "zen-browser"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "zed-editor",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769136478,
+        "narHash": "sha256-8UNd5lmGf8phCr/aKxagJ4kNsF0pCHLish2G4ZKCFFY=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "470ee44393bb19887056b557ea2c03fc5230bd5a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "sops-nix": {
@@ -645,6 +697,29 @@
       "original": {
         "owner": "vicinaehq",
         "repo": "vicinae",
+        "type": "github"
+      }
+    },
+    "zed-editor": {
+      "inputs": {
+        "crane": "crane",
+        "flake-compat": "flake-compat",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1769425621,
+        "narHash": "sha256-Yxq029SQED4BFps9jzeM3ElHEIOMGySOH3IzO+j3Kto=",
+        "owner": "zed-industries",
+        "repo": "zed",
+        "rev": "3b5443ba9698016a9831c22943a71d6fdc3cf04f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zed-industries",
+        "repo": "zed",
         "type": "github"
       }
     },

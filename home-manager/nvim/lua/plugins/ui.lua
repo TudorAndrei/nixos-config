@@ -142,7 +142,18 @@ return {
           lualine_a = { "mode" },
           lualine_b = { branch },
           lualine_c = { "filename", diagnostics },
-          lualine_x = { { copilot, cond_copilot, color_copilot }, { ollama_status }, diff, "encoding", { getWords } },
+          lualine_x = {
+            { copilot, cond_copilot, color_copilot },
+            { ollama_status },
+            {
+              function()
+                return require("direnv").status_line()
+              end,
+            },
+            diff,
+            "encoding",
+            { getWords },
+          },
           lualine_y = { filetype, conda_env, venv_env },
           lualine_z = { location },
         },
