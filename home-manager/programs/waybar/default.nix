@@ -1,23 +1,23 @@
 {pkgs, ...}: let
   razer-battery-script = pkgs.writeShellScript "razer-battery" ''
-    battery=$(${pkgs.python3Packages.openrazer}/bin/python3 -c '
-from openrazer.client import DeviceManager
-import json
+        battery=$(${pkgs.python3Packages.openrazer}/bin/python3 -c '
+    from openrazer.client import DeviceManager
+    import json
 
-dm = DeviceManager()
-for device in dm.devices:
-    if device.has("battery"):
-        level = device.battery_level
-        charging = device.is_charging
-        icon = "󱊦" if charging else ("󰁹" if level > 80 else "󰁾" if level > 60 else "󰁽" if level > 40 else "󰁻" if level > 20 else "󰁺")
-        status_class = "charging" if charging else ("low" if level < 20 else "")
-        tooltip = f"{device.name}: {level}%" + (" (charging)" if charging else "")
-        print(json.dumps({"text": f"{icon} {level}%", "tooltip": tooltip, "class": status_class}))
-        break
-else:
-    print(json.dumps({"text": "", "tooltip": "No Razer device with battery found"}))
-' 2>/dev/null || echo '{"text": "", "tooltip": "OpenRazer not available"}')
-    echo "$battery"
+    dm = DeviceManager()
+    for device in dm.devices:
+        if device.has("battery"):
+            level = device.battery_level
+            charging = device.is_charging
+            icon = "󱊦" if charging else ("󰁹" if level > 80 else "󰁾" if level > 60 else "󰁽" if level > 40 else "󰁻" if level > 20 else "󰁺")
+            status_class = "charging" if charging else ("low" if level < 20 else "")
+            tooltip = f"{device.name}: {level}%" + (" (charging)" if charging else "")
+            print(json.dumps({"text": f"{icon} {level}%", "tooltip": tooltip, "class": status_class}))
+            break
+    else:
+        print(json.dumps({"text": "", "tooltip": "No Razer device with battery found"}))
+    ' 2>/dev/null || echo '{"text": "", "tooltip": "OpenRazer not available"}')
+        echo "$battery"
   '';
 in {
   programs.waybar = {

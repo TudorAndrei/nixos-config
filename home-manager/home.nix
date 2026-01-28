@@ -56,7 +56,6 @@ in {
     packages = import ./packages {inherit pkgs inputs system;};
   };
 
-  # TODO: Link .config/easyeffects with nixos
   fonts.fontconfig.enable = true;
   xdg.mimeApps = let
     value = let

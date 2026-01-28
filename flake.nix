@@ -33,15 +33,7 @@
       url = "github:TudorAndrei/cursor-nixos-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    opencode = {
-      url = "path:/home/tudor/nixos-config/packages/opencode";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     claude-code.url = "github:sadjow/claude-code-nix";
-    zed-editor = {
-      url = "github:zed-industries/zed";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {

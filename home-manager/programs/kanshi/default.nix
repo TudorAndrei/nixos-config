@@ -34,16 +34,16 @@
           name = "home_monitor_eDP-1";
           outputs = [
             {
-              criteria = "eDP-1";
+              criteria = "HDMI-A-1";
               status = "enable";
-              mode = "2560x1440@240";
+              mode = "2560x1080@60";
               position = "0,0";
               scale = 1.0;
             }
             {
-              criteria = "HDMI-A-1";
+              criteria = "eDP-1";
               status = "enable";
-              mode = "2560x1080@60";
+              mode = "2560x1440@240";
               position = "2560,0";
               scale = 1.0;
             }
@@ -56,16 +56,16 @@
           name = "home_monitor_eDP-2";
           outputs = [
             {
-              criteria = "eDP-2";
+              criteria = "HDMI-A-1";
               status = "enable";
-              mode = "2560x1440@240";
+              mode = "2560x1080@60";
               position = "0,0";
               scale = 1.0;
             }
             {
-              criteria = "HDMI-A-1";
+              criteria = "eDP-2";
               status = "enable";
-              mode = "2560x1080@60";
+              mode = "2560x1440@240";
               position = "2560,0";
               scale = 1.0;
             }

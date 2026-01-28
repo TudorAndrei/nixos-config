@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   neovim-unwrapped = pkgs.unstable.neovim-unwrapped.overrideAttrs (old: {
     meta =
       old.meta
@@ -9,8 +7,7 @@ let
         maintainers = [];
       };
   });
-in
-{
+in {
   programs.neovim = {
     package = neovim-unwrapped;
     enable = true;

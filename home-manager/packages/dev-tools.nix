@@ -28,8 +28,8 @@ with pkgs; [
 
   # IDEs and development tools
   inputs.cursor.packages.${system}.cursor
-  inputs.zed-editor.packages.${system}.default
-  pkgs.opencode # Using patched version from overlay
+  unstable.zed-editor-fhs
+  unstable.opencode
   unstable.lmstudio
   unstable.postman
   unstable.yaak
@@ -39,6 +39,7 @@ with pkgs; [
   distrobox
   unstable.lazydocker
   docker-buildx
+  unstable.antigravity-fhs
   awsume
   kubectl
   granted
