@@ -9,7 +9,7 @@
         if device.has("battery"):
             level = device.battery_level
             charging = device.is_charging
-            icon = "󱊦" if charging else ("󰁹" if level > 80 else "󰁾" if level > 60 else "󰁽" if level > 40 else "󰁻" if level > 20 else "󰁺")
+            icon = "CHG" if charging else ("BAT" if level > 80 else "BAT" if level > 60 else "BAT" if level > 40 else "BAT" if level > 20 else "BAT")
             status_class = "charging" if charging else ("low" if level < 20 else "")
             tooltip = f"{device.name}: {level}%" + (" (charging)" if charging else "")
             print(json.dumps({"text": f"{icon} {level}%", "tooltip": tooltip, "class": status_class}))
@@ -60,22 +60,22 @@ in {
           sort-by-number = true;
           format = "{icon}";
           format-icons = {
-            "1" = "1: ";
-            "2" = "2: ";
+            "1" = "1";
+            "2" = "2";
             "3" = "3";
             "4" = "4";
             "5" = "5";
             "6" = "6";
             "7" = "7";
             "8" = "8";
-            "9" = "9: ";
-            "10" = "0: ";
-            urgent = "";
-            focused = "";
-            default = "";
-            special = "";
-            "special:slack" = "";
-            "special:notes" = "";
+            "9" = "9";
+            "10" = "0";
+            urgent = "!";
+            focused = "*";
+            default = "";
+            special = "S";
+            "special:slack" = "SLACK";
+            "special:notes" = "NOTES";
           };
           show-special = true;
         };
@@ -95,14 +95,14 @@ in {
             warning = 30;
             critical = 15;
           };
-          format = "{capacity}% {icon}";
-          format-full = "{capacity}% {icon}";
-          format-charging = "{capacity}% ";
-          format-plugged = "{capacity}% ";
-          format-alt = "{time} {icon}";
+          format = "BAT {capacity}%";
+          format-full = "BAT {capacity}%";
+          format-charging = "BAT {capacity}% 🔌";
+          format-plugged = "BAT {capacity}% 🔌";
+          format-alt = "{time}";
           # // "format-good": "", // An empty format will hide the module
           # // "format-full": "",
-          # // "format-icons": [ "", "", "", "", "" ]
+          # // "format-icons": [ "", "", "", "", "" ]
         };
         "clock#calendar" = {
           format = "{:%F}";
@@ -110,29 +110,29 @@ in {
         };
         "cpu" = {
           interval = 10;
-          format = " {}%";
+          format = "CPU {}%";
           max-length = 10;
         };
         "disk" = {
           interval = 30;
-          format = " {free}";
+          format = "DISK {free}";
           path = "/";
         };
         "memory" = {
           interval = 30;
-          format = " {percentage}%";
+          format = "MEM {percentage}%";
           max-length = 10;
         };
         "clock2" = {
-          format = "<b>󰥔 {:%I:%M 󰃭 %d/%m}</b>";
+          format = "<b>{:%I:%M %d/%m}</b>";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
         "temperature" = {
           # // "thermal-zone": 2,
           # // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
           critical-threshold = 80;
-          # // "format-critical": "{temperatureC}°C ",
-          format = "{temperatureC}°C ";
+          # // "format-critical": "{temperatureC}°C ",
+          format = "TEMP {temperatureC}°C";
         };
         "bluetooth" = {
           format = "󰂯";
@@ -160,7 +160,7 @@ in {
           ];
           format-disconnected = "󰤫 Disconnected";
           tooltip-format = "wifi <span color='#ee99a0'>off</span>";
-          tooltip-format-wifi = "SSID: {essid}({signalStrength}%), {frequency} MHz\nInterface: {ifname}\nIP: {ipaddr}\nGW: {gwaddr}\n\n<span color='#a6da95'>{bandwidthUpBits}</span>\t<span color='#ee99a0'>{bandwidthDownBits}</span>\t<span color='#c6a0f6'>󰹹{bandwidthTotalBits}</span>";
+          tooltip-format-wifi = "SSID: {essid}({signalStrength}%), {frequency} MHz\nInterface: {ifname}\nIP: {ipaddr}\nGW: {gwaddr}\n\n<span color='#a6da95'>{bandwidthUpBits}</span>\t<span color='#ee99a0'>{bandwidthDownBits}</span>\t<span color='#c6a0f6'>󰹹{bandwidthTotalBits}</span>";
           tooltip-format-disconnected = "<span color='#ed8796'>disconnected</span>";
           format-ethernet = "󰈀 {ipaddr}/{cidr}";
           format-linked = "󰈀 {ifname} (No IP)";
@@ -168,27 +168,14 @@ in {
           on-click = "nm-connection-editor";
         };
         "pulseaudio" = {
-          format = "{icon} {volume}%";
-          format-bluetooth = "{volume}% {icon}";
+          format = "VOL {volume}%";
+          format-bluetooth = "BT VOL {volume}%";
           tooltip = false;
-          format-muted = " Muted";
+          format-muted = "MUTED";
           on-click = "pavucontrol";
           on-scroll-up = "pamixer -i 5";
           on-scroll-down = "pamixer -d 5";
           scroll-step = 5;
-          format-icons = {
-            headphone = "";
-            hands-free = "";
-            headset = "";
-            phone = "";
-            portable = "";
-            car = "";
-            default = [
-              ""
-              ""
-              ""
-            ];
-          };
           ignored-sinks = ["Easy Effects Sink"];
         };
         tray = {
@@ -214,14 +201,14 @@ in {
           tooltip = false;
           format = "{icon}";
           format-icons = {
-            "notification" = "󰂢<span foreground='red'><sup>󰄀</sup></span>";
-            "none" = "󰂢";
-            "dnd-notification" = "󰇷<span foreground='red'><sup>󰄀</sup></span>";
-            "dnd-none" = "󰇷";
-            "inhibited-notification" = "󰂢<span foreground='red'><sup>󰄀</sup></span>";
-            "inhibited-none" = "󰂢";
-            "dnd-inhibited-notification" = "󰇷<span foreground='red'><sup>󰄀</sup></span>";
-            "dnd-inhibited-none" = "󰇷";
+            "notification" = "NOTIF<span foreground='red'><sup>!</sup></span>";
+            "none" = "NOTIF";
+            "dnd-notification" = "DND<span foreground='red'><sup>!</sup></span>";
+            "dnd-none" = "DND";
+            "inhibited-notification" = "NOTIF<span foreground='red'><sup>!</sup></span>";
+            "inhibited-none" = "NOTIF";
+            "dnd-inhibited-notification" = "DND<span foreground='red'><sup>!</sup></span>";
+            "dnd-inhibited-none" = "DND";
           };
           "return-type" = "json";
           "exec-if" = "which swaync-client";
