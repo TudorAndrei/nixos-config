@@ -2,6 +2,8 @@ _: {
   programs.starship = {
     enable = true;
     settings = {
+      format = "$directory$git_branch$git_commit$git_state$git_metrics$git_status$python$aws$kubernetes$gcloud$custom\n$character";
+
       character = {
         error_symbol = "[λ](bold #ff5555)";
         success_symbol = "[λ](bold #50fa7b)";
@@ -21,6 +23,21 @@ _: {
         truncation_length = 5;
         style = "bold #50fa7b";
         format = "[$path]($style)[$lock_symbol]($lock_style) ";
+      };
+
+      kubernetes = {
+        disabled = false;
+        format = "[$symbol$context( \\($namespace\\))]($style) ";
+      };
+
+      aws = {
+        symbol = "AWS";
+        format = "[$symbol(\\($profile\\))( \\($region\\)) ]($style)";
+      };
+
+      gcloud = {
+        symbol = "GCP";
+        format = "[$symbol(\\($project\\))]($style)";
       };
 
       custom = {

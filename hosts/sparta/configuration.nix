@@ -67,13 +67,7 @@
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
       "nvidia.NVreg_EnableGpuFirmware=0"
     ];
-    kernelModules = [
-      "btusb"
-      "kvm-amd"
-    ];
-    extraModprobeConfig = ''
-      options btusb enable_autosuspend=n
-    '';
+    kernelModules = [];
     kernel.sysctl = {
       "vm.page-cluster" = 0;
       "vm.dirty_writeback_centisecs" = 1500;
@@ -127,7 +121,7 @@
 
   hardware = {
     cpu.amd.updateMicrocode = true;
-    bluetooth.powerOnBoot = true;
+    bluetooth.powerOnBoot = false;
     graphics.extraPackages = with pkgs; [
       libva-vdpau-driver
       libvdpau
@@ -177,6 +171,13 @@
   };
 
   systemd = {
+    services.bluetooth.wantedBy = lib.mkForce [];
+    
+    settings.Manager = {
+      DefaultTimeoutStartSec = "10s";
+      DefaultTimeoutStopSec = "10s";
+    };
+
     sleep.extraConfig = ''
       [Sleep]
       HibernateMode=shutdown

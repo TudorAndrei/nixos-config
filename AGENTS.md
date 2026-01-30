@@ -33,12 +33,11 @@ Both systems run Hyprland (Wayland compositor) with GDM as the display manager.
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `nix flake update` | Update all flake inputs |
-| `nos` | Rebuild NixOS configuration (`nh os switch`) |
-| `nhs` | Rebuild home-manager configuration (`home-manager switch --flake .#tudor`) |
-| `nix fmt` | Format all Nix files using alejandra |
+| Command            | Description                                                                |
+| ------------------ | -------------------------------------------------------------------------- |
+| `nix flake update` | Update all flake inputs                                                    |
+| `nos`              | Rebuild NixOS configuration (`nh os switch`)                               |
+| `nhs`              | Rebuild home-manager configuration (`home-manager switch --flake .#tudor`) |
 
 The `nos` and `nhs` aliases are defined in `home-manager/programs/zsh/default.nix`.
 
@@ -57,6 +56,7 @@ The `nos` and `nhs` aliases are defined in `home-manager/programs/zsh/default.ni
 3. Import it in `home-manager/home.nix`
 
 Example structure:
+
 ```nix
 {config, pkgs, ...}: {
   programs.<program> = {
@@ -68,6 +68,7 @@ Example structure:
 ## Adding Packages
 
 Packages are organized in `home-manager/packages/`:
+
 - `cli.nix` - Command-line utilities
 - `dev-tools.nix` - Development tools
 - `gui.nix` - Graphical applications
@@ -89,16 +90,10 @@ Uses sops-nix with age encryption. Secrets are in `secrets/secrets.yaml`.
 
 Key file location: `~/.config/sops/age/keys.txt`
 
-## Testing Changes
-
-Always rebuild after changes:
-```bash
-nix fmt
-nos   # for system changes
-nhs   # for home-manager changes
-```
+## Testing Change
 
 Check for evaluation errors before switching:
+
 ```bash
 nix flake check
 ```
@@ -108,4 +103,3 @@ nix flake check
 - The neovim config (`home-manager/nvim/`) is symlinked to `~/.config/nvim` via `mkOutOfStoreSymlink` for live editing
 - Unstable packages are available via `pkgs.unstable.<package>` overlay
 - Binary caches are configured for hyprland, nix-community, and other common sources
-

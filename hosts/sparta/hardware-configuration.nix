@@ -16,11 +16,8 @@
       availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
       kernelModules = [];
     };
-    kernelModules = ["kvm-amd" "hid-apple"];
+    kernelModules = [];
     extraModulePackages = [];
-    extraModprobeConfig = ''
-      options hid_apple fnmode=0
-    '';
   };
 
   fileSystems."/" = {

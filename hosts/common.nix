@@ -291,33 +291,13 @@ in {
     };
     openssh.enable = true;
     upower.enable = true;
-    kanata = {
-      enable = true;
-      keyboards = {
-        "logi".config = ''
-          (defsrc
-            grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-            tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-            caps a    s    d    f    g    h    j    k    l    ;    '    ret
-            lsft z    x    c    v    b    n    m    ,    .    /    rsft
-            lctl lmet lalt           spc            ralt rmet rctl
-          )
-
-          (deflayer swapcaps
-            grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-            tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-            esc a    s    d    f    g    h    j    k    l    ;    '    ret
-            lsft z    x    c    v    b    n    m    ,    .    /    rsft
-            lctl lmet lalt           spc            ralt rmet rctl
-          )
-        '';
-      };
-    };
   };
 
-  systemd.services.NetworkManager-wait-online.enable = true;
-  systemd.services.NetworkManager-wait-online.serviceConfig = {
-    TimeoutStartSec = "10s";
+  systemd.services = {
+    systemd-tmpfiles-clean.wantedBy = lib.mkForce [];
+    NetworkManager-wait-online.wantedBy = lib.mkForce [];
+    avahi-daemon.wantedBy = lib.mkForce [];
+    avahi-daemon.after = ["multi-user.target"];
   };
 
   # Vial keyboard programming udev rules

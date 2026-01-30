@@ -27,7 +27,9 @@ with pkgs; [
   alejandra
 
   # IDEs and development tools
-  inputs.cursor.packages.${system}.cursor
+  # inputs.cursor.packages.${system}.cursor
+  jetbrains.pycharm
+  unstable.code-cursor-fhs
   unstable.zed-editor-fhs
   unstable.opencode
   unstable.lmstudio
