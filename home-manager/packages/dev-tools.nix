@@ -19,7 +19,8 @@ with pkgs; [
   unstable.bun
   unstable.devenv
   unstable.pnpm
-  claude-code
+  llm-agents.claude-code
+  llm-agents.codex
   fnm
   unstable.uv
   cargo
@@ -30,7 +31,8 @@ with pkgs; [
   # inputs.cursor.packages.${system}.cursor
   unstable.code-cursor-fhs
   unstable.zed-editor-fhs
-  unstable.opencode
+  llm-agents.opencode
+  llm-agents.ccusage-opencode
   unstable.lmstudio
   unstable.postman
   unstable.yaak

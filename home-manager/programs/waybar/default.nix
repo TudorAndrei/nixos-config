@@ -19,6 +19,33 @@
     ' 2>/dev/null || echo '{"text": "", "tooltip": "OpenRazer not available"}')
         echo "$battery"
   '';
+  ccusage-opencode-script = pkgs.writeShellScript "ccusage-opencode-waybar" ''
+    RAW="$(${pkgs.llm-agents.ccusage-opencode}/bin/ccusage-opencode daily --json 2>/dev/null | tr -d '\n')" \
+      ${pkgs.python3}/bin/python3 - <<'PY'
+    import json
+    import os
+
+    raw = (os.environ.get("RAW") or "").strip()
+    start = raw.find("{")
+    if start == -1:
+        print(json.dumps({"text": "", "tooltip": "No OpenCode usage"}))
+        raise SystemExit(0)
+
+    data = json.loads(raw[start:])
+    daily = data.get("daily") or []
+    if not daily:
+        print(json.dumps({"text": "", "tooltip": "No OpenCode usage"}))
+        raise SystemExit(0)
+
+    latest = daily[-1]
+    date = latest.get("date", "")
+    total_cost = latest.get("totalCost", 0)
+    total_tokens = latest.get("totalTokens", 0)
+    text = "OC $" + f"{total_cost:.2f}"
+    tooltip = f"OpenCode {date} - {total_tokens:,} tokens"
+    print(json.dumps({"text": text, "tooltip": tooltip}))
+    PY
+  '';
 in {
   programs.waybar = {
     enable = true;
@@ -44,6 +71,7 @@ in {
         ];
         modules-right = [
           "tray"
+          "custom/ccusage-opencode"
           "custom/notification"
           "bluetooth"
           "network"
@@ -68,14 +96,13 @@ in {
             "6" = "6";
             "7" = "7";
             "8" = "8";
-            "9" = "9";
-            "10" = "0";
+            "9" = "9: 󰭹";
+            "10" = "0: ";
             urgent = "!";
             focused = "*";
             default = "";
-            special = "S";
-            "special:slack" = "SLACK";
-            "special:notes" = "NOTES";
+            slack = "";
+            notes = "";
           };
           show-special = true;
         };
@@ -188,6 +215,13 @@ in {
           tooltip = true;
           interval = 3600;
           exec = "wttrbar --location Bucharest";
+          return-type = "json";
+        };
+        "custom/ccusage-opencode" = {
+          format = "{}";
+          tooltip = true;
+          interval = 300;
+          exec = "${ccusage-opencode-script}";
           return-type = "json";
         };
         "custom/razer-battery" = {

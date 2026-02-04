@@ -3,7 +3,7 @@ vim.g.maplocalleader = ","
 vim.g.lazyvim_picker = "snacks"
 
 local opt = vim.opt
-opt.signcolumn = "no"
+opt.signcolumn = "yes"
 opt.tabstop = 4
 opt.softtabstop = 4
 opt.swapfile = false

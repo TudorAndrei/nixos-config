@@ -18,6 +18,7 @@ with pkgs; [
   jq
   pandoc
   scrcpy
+  android-tools
   libnotify
   lsof
   viu

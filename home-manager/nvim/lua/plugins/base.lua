@@ -1,5 +1,18 @@
 return {
-  { "Mofiqul/dracula.nvim" },
+  {
+    "Mofiqul/dracula.nvim",
+    opts = {
+      overrides = function(colors)
+        return {
+          -- Fix diff colors for better readability in git diff views
+          DiffAdd = { fg = colors.green, bg = "#1a2b1a" },
+          DiffDelete = { fg = colors.red, bg = "#2b1a1a" },
+          DiffChange = { fg = colors.orange, bg = "#2b251a" },
+          DiffText = { fg = colors.fg, bg = "#3d2d1a", bold = true },
+        }
+      end,
+    },
+  },
   {
     "LazyVim/LazyVim",
     opts = {

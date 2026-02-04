@@ -1,15 +1,7 @@
-local pypath = vim.g.current_python_path
 local nixos_dir = "~/nixos-config/"
 
 vim.diagnostic.config({
-  signs = {
-    Text = " ",
-    Num = " ",
-    Error = "x",
-    Warn = "!",
-    Hint = "i",
-    Info = ">",
-  },
+  signs = false,
 })
 
 return {
