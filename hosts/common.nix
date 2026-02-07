@@ -50,11 +50,6 @@ in {
 
   nixpkgs.config.allowUnfree = true;
 
-  sops = {
-    defaultSopsFile = ../secrets/secrets.yaml;
-    age.keyFile = "/home/tudor/.config/sops/age/keys.txt";
-  };
-
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;

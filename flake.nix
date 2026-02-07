@@ -25,10 +25,6 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     cursor = {
       url = "github:TudorAndrei/cursor-nixos-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -74,7 +70,6 @@
         modules = [
           ./hosts/sparta/configuration.nix
           inputs.stylix.nixosModules.stylix
-          inputs.sops-nix.nixosModules.sops
         ];
       };
       ark = nixpkgs.lib.nixosSystem {
@@ -83,7 +78,6 @@
         modules = [
           ./hosts/ark/configuration.nix
           inputs.stylix.nixosModules.stylix
-          inputs.sops-nix.nixosModules.sops
         ];
       };
     };

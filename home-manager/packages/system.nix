@@ -10,7 +10,7 @@ with pkgs; [
   killall
 
   # System monitoring and management
-  nvitop
+  nvtopPackages.nvidia
   htop-vim
   gnome-disk-utility
 
