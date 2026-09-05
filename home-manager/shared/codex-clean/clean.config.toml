@@ -1,0 +1,54 @@
+default_permissions = "repo-only"
+approval_policy = "never"
+allow_login_shell = false
+personality = "none"
+project_doc_fallback_filenames = []
+
+[history]
+persistence = "none"
+
+[features]
+apps = false
+hooks = false
+memories = false
+plugins = false
+skill_search = false
+
+[permissions.repo-only]
+description = "Read and write the active repository only."
+
+[permissions.repo-only.filesystem]
+":minimal" = "read"
+":tmpdir" = "deny"
+":slash_tmp" = "deny"
+"/private/tmp" = "deny"
+
+[permissions.repo-only.filesystem.":workspace_roots"]
+"." = "write"
+
+[permissions.repo-only.network]
+enabled = false
+
+[[skills.config]]
+path = "/Users/tudor/.codex-clean/skills/.system/imagegen/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/tudor/.codex-clean/skills/.system/openai-docs/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/tudor/.codex-clean/skills/.system/plugin-creator/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/tudor/.codex-clean/skills/.system/review-agent/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/tudor/.codex-clean/skills/.system/skill-creator/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/tudor/.codex-clean/skills/.system/skill-installer/SKILL.md"
+enabled = false

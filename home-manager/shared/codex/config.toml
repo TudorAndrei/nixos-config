@@ -1,0 +1,502 @@
+model = "gpt-5.6-luna"
+model_reasoning_effort = "medium"
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+approvals_reviewer = "auto_review"
+default_mode_request_user_input = true
+
+service_tier = "default"
+
+personality = "pragmatic"
+
+
+notify = ["/Users/tudor/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+
+[projects."/Users/tudor/cave/openflow"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/acc-applications"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/transcriptions"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/certsud_website"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/ouro"]
+trust_level = "trusted"
+
+[projects."/Users/tudor"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/certsud-crm"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/arbit"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/xhoard"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/barrs"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/.ssh"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/skills"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/company"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/criv"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/website"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/codekraft"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/wallet-rs"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/muzik"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/littlebrain"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/claude-elixir-phoenix"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/kidbox"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/tbench-view"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/graph-db-test"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/agentmarkup"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/footprints-wiki"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/footprintsai-3.1-core"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/4.0-core"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/fai-4.0/footprintsai-3.1-core"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/fai-4.0"]
+trust_level = "trusted"
+
+[projects."/Users/andrei/Projects/footprints/footprintsai-3.1-reporting"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/amux"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/dotfiles/nvim"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/fai-4.0/migration"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/pythia/aware"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/aether"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/LazyTmux"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/footprintsai-3.1-reporting"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/fai-4.0/footprintsai-3.1-reporting-pgbranch"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/SkillManager"]
+trust_level = "trusted"
+
+[projects."/private/tmp/xhoard-codex-smoke-tIc5H6"]
+trust_level = "trusted"
+
+[projects."/private/tmp/xhoard-codex-spark-smoke-u6eLZm"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/fai-3.2"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/fai-3.2/reporting"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/pythia/aware/aware-monorepo"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/agent-browser"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/random"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/fai-3.1/core"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/fai-3.1"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/fgo-cli"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/fai-3.1/integrations-platform"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/wiki"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/coolify-notifications"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/playground/rpi-nix-os-home"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/playground"]
+trust_level = "trusted"
+
+[projects."/private/tmp"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/data-platform"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/hermes-agent"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/live_shadcn"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/gtm-skill"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/SlopFactory"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/company/ventures/flowcopilot/flow-ventures/ideas/aether"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/sim-prog"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/cave/footprints/fai-data"]
+trust_level = "trusted"
+
+[projects."/Users/tudor/Documents/Codex/2026-09-05/realtime-voice-chat"]
+trust_level = "trusted"
+
+[plugins."linear@openai-curated"]
+enabled = false
+
+[plugins."google-drive@openai-curated"]
+enabled = false
+
+[plugins."browser@openai-bundled"]
+enabled = false
+
+[plugins."visualize@openai-bundled"]
+enabled = false
+
+[plugins."documents@openai-primary-runtime"]
+enabled = false
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = false
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = false
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = false
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = false
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[mcp_servers.deepwiki]
+url = "https://mcp.deepwiki.com/mcp"
+
+[mcp_servers.deepwiki.tools.ask_question]
+approval_mode = "approve"
+
+[mcp_servers.deepwiki.tools.read_wiki_contents]
+approval_mode = "approve"
+
+[mcp_servers.deepwiki.tools.read_wiki_structure]
+approval_mode = "approve"
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/tudor/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+CODEX_HOME = "/Users/tudor/.codex"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.901.41600"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/tudor/.codex/plugins/cache/openai-bundled/browser/26.901.41600/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+SKY_CUA_SERVICE_PATH = "/Users/tudor/.codex/computer-use/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+
+[mcp_servers.computer-use]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+args = ["mcp"]
+cwd = "."
+enabled = false
+
+[notice]
+hide_rate_limit_model_nudge = true
+
+[apps.asdk_app_69a089a326dc8191b32a3f2553f5be2c.tools."linear mcp server_save_issue"]
+approval_mode = "approve"
+
+[apps.asdk_app_69a089a326dc8191b32a3f2553f5be2c.tools."linear mcp server_save_comment"]
+approval_mode = "approve"
+
+[apps.asdk_app_69a089a326dc8191b32a3f2553f5be2c.tools.linear_save_issue]
+approval_mode = "approve"
+
+[apps.asdk_app_69a089a326dc8191b32a3f2553f5be2c.tools.linear_save_comment]
+approval_mode = "approve"
+
+[tui]
+notifications = []
+theme = "dracula"
+status_line = [
+  "model-with-reasoning",
+  "current-dir",
+  "project-name",
+  "git-branch",
+  "thread-title",
+  "context-used",
+  "weekly-limit",
+  "task-progress",
+]
+status_line_use_colors = true
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+"gpt-5.6-sol" = 4
+gpt-6-astra = 3
+
+[features]
+hooks = true
+apps = false
+terminal_resize_reflow = true
+goals = true
+js_repl = false
+
+[hooks.state]
+
+[hooks.state."/Users/tudor/cave/openflow/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:07c95ddc9756dafdd37d1737d5a78bfefcd225e870814f87469a0aa06c26960f"
+enabled = true
+
+[hooks.state."/Users/tudor/cave/openflow/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:7fe3eb3f44912f39f9b0cd4726b3ec73ad056f7916e4cea0b940d58d3a531f40"
+
+[hooks.state."/Users/tudor/cave/openflow/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:743aee67bfc1f65f1a3b9ab804354d6b22c4d09f82a7236fcd8dee103a46ecd9"
+
+[hooks.state."/Users/tudor/cave/openflow/.codex/hooks.json:post_tool_use:1:0"]
+trusted_hash = "sha256:44212b7eedc2f0c7f058a74f2f6f77edffcc662e86c93c06e4fb3b84db7a9361"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:permission_request:0:0"]
+trusted_hash = "sha256:71e69e8186ddc9d53c0104dc904d7b91c281ade7cb8cd0b67befede4c59f0109"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:663154bde3b1561bb2985a6fc7fc682470cde2857045ea0753f931a1e69166b1"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:5eee6f42653d11fa4da0a0a189dd6fa7ae1a567955cbc53822a2b3cabe3d7942"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:144e13a5c4594b336cc41f6c394bfbde8541952aa7a2c4700fae3db860b5b39e"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:71180e64478392026a7d7c1d346d775e77e6ec66969e591c2654d35332790c62"
+
+[hooks.state."/Users/tudor/cave/openflow/.codex/hooks.json:stop:0:1"]
+trusted_hash = "sha256:e32e67503bc1dc40b8347941fa11430b7ac35f9a03fc6e861416567fe665ef39"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:4ee797c080934e29ef1132a67b0b5f47dd841c6d2a0821f1e178aee1e4e12f6f"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:pre_compact:0:0"]
+trusted_hash = "sha256:1222f61f52fa7bbe91cb0281a919ecb79248e2c5490b40444b615bbbb886b579"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:post_compact:0:0"]
+trusted_hash = "sha256:be9ea469391fef0ce53c9be8c3b77518c7d4f02ae6cc1050b1e78eb789a282d9"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:session_end:0:0"]
+trusted_hash = "sha256:b0ea80c0bb960789c9a79d4d85ec8c6842a3b9e28ddda71fc5ea49cd0b1564e5"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:session_start:1:0"]
+trusted_hash = "sha256:e9feb3273216f957b5919f0fd6c6f4f7935444f25a553463f2b6890409aeb4bc"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:pre_tool_use:1:0"]
+trusted_hash = "sha256:e8f45b6a52fb00c89368da42e782d4ffe43851db7df46d172a8ba8f69533edef"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:permission_request:1:0"]
+trusted_hash = "sha256:d1daef5652e3b781716c749af5a4469b4696ce69eac1517a9083b676ab591565"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:post_tool_use:1:0"]
+trusted_hash = "sha256:0dae99a0532d6fae666f9c42c99b63b1fd72335d3ed22974c6c964635ce79caf"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:session_start:2:0"]
+trusted_hash = "sha256:eba05464207c0a79309250e47057a3ba06a26d440804f0f542fc6c99b22069f2"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:user_prompt_submit:1:0"]
+trusted_hash = "sha256:51c7150fda24f776b5b62ee2b2ef3a250e364b3455889797641fe2090abf22ee"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:subagent_start:0:0"]
+trusted_hash = "sha256:2f912af985e1cfe3d45ce981272a8f0192987f7a4f1ba537d506cedc8a9dda9a"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:subagent_stop:0:0"]
+trusted_hash = "sha256:95228e82dfaaf946113c7affe95f9dc42d07d12be25d57e46befd96b0be99c43"
+
+[hooks.state."/Users/tudor/.codex/hooks.json:stop:1:0"]
+trusted_hash = "sha256:74cfcf67dc46fbd4618b2442732fc0947e0ed974422e6c6a281ee9cb45eea832"
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = "/Users/tudor/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = "/Users/tudor/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[desktop]
+keepRemoteControlAwakeWhilePluggedIn = true
+followUpQueueMode = "queue"
+dock-icon-preference = "codex-system"
+conversationDetailMode = "STEPS_COMMANDS"
+
+[shell_environment_policy.set]
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,e13fd947e846d3d306e9249dd3c73d14931b6494803dbafb16cef85e6add9506"
+
+[[skills.config]]
+name = "openai-templates:artifact-template-analytics-dashboard"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-business-review"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-design-report"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-three-statement-forecast"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-team-alignment"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-system-design"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-strategy-memorandum"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-simple-light-mode"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-simple-dark-mode"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-sales-pipeline"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-project-tracker"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-project-kickoff"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-operating-calendar"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-operating-review"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-minimal-letterhead"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-market-trends-report"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-legal-memorandum"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-investment-committee-memo"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-financial-budget"
+enabled = false
+
+[[skills.config]]
+name = "openai-templates:artifact-template-experiment-analysis"
+enabled = false
+
+[[skills.config]]
+path = "/Users/tudor/.codex/skills/cloudflare-one-migrations/SKILL.md"
+enabled = false

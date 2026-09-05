@@ -15,10 +15,9 @@ in {
     inputs.stylix.homeModules.stylix
     inputs.nur.modules.homeManager.default
     inputs.vicinae.homeManagerModules.default
+    ./shared
     ./programs/waybar
-    ./programs/starship
     ./programs/terminal
-    ./programs/tmux
     ./programs/hyprland
     ./programs/gammastep
     ./programs/kanshi
@@ -26,14 +25,9 @@ in {
     ./programs/swaynotificationcenter
     ./programs/helium
     ./programs/vscode
-    ./programs/git
-    ./programs/zsh
     ./programs/btop
     ./programs/direnv
-    ./programs/fzf
-    ./programs/zoxide
     ./programs/syncthing
-    ./programs/neovim
     ./programs/spicetify
     ./programs/systemd
   ];
@@ -87,37 +81,6 @@ in {
     associations.added = associations;
     defaultApplications = associations;
   };
-  xdg.configFile = {
-    "nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home-manager/nvim";
-      recursive = true;
-    };
-    "nvim/init.lua".enable = false; # Never Change
-  };
-
-  home.file."pythia/.gitconfig-pythia" = {
-    text = ''
-      [user]
-          name = TudorAndrei-Pythia
-          email = tudor@pythia.social
-      [url "pythia"]
-          insteadOf = "git@github.com"
-      [github]
-          user = "TudorAndrei-Pythia"
-    '';
-  };
-  home.file."work/.gitconfig-cognisync" = {
-    text = ''
-      [user]
-          user = tudordumitrascu-cognisync
-          email = tudor.dumitrascu@cogni-sync.com
-      [url "cognisync"]
-          insteadOf = "git@github.com"
-      [github]
-          user = "tudordumitrascu-cognisync"
-    '';
-  };
-
   programs.home-manager.enable = true;
   programs.zen-browser.enable = true;
   programs.zen-browser.nativeMessagingHosts = [pkgs.vdhcoapp];
@@ -169,7 +132,12 @@ in {
         name = theme.fonts.emoji.name;
       };
     };
-    targets.zen-browser.profileNames = ["Default"];
+    targets = {
+      zen-browser.profileNames = ["Default"];
+      ghostty.enable = false;
+      starship.enable = false;
+      tmux.enable = false;
+    };
   };
 
   home.sessionVariables = {
