@@ -9,4 +9,3 @@
 ++ (import ./system.nix {inherit pkgs;})
 ++ (import ./dev-tools.nix {inherit pkgs inputs system;})
 ++ (import ./games.nix {inherit pkgs;})
-++ (import ./nvim-cli.nix {inherit pkgs;})

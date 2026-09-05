@@ -4,11 +4,8 @@
   system,
 }:
 with pkgs; [
-  # Programming languages and runtimes
-  go
-  nodejs_20
+  # Toolchains and libraries
   python3
-  lua
   gcc
   stdenv.cc.cc
   zlib
@@ -16,19 +13,12 @@ with pkgs; [
 
   # Development utilities
   delta
-  unstable.bun
   unstable.devenv
-  unstable.pnpm
-  llm-agents.claude-code
-  llm-agents.codex
   fnm
-  unstable.uv
-  cargo
   nixd
   alejandra
 
   # IDEs and development tools
-  # inputs.cursor.packages.${system}.cursor
   unstable.code-cursor-fhs
   unstable.zed-editor-fhs
   llm-agents.opencode
@@ -40,7 +30,6 @@ with pkgs; [
 
   # Container and virtualization
   distrobox
-  unstable.lazydocker
   docker-buildx
   unstable.antigravity-fhs
   awsume
@@ -52,25 +41,11 @@ with pkgs; [
   # learn
   exercism
 
-  # Neovim LSP servers and formatters
+  # Language servers and formatters that mise does not carry
   basedpyright
-  hadolint
-  unstable.vscode-json-languageserver
-  lua-language-server
+  biome
   docker-compose-language-service
   dockerfile-language-server
-  djlint
-  biome
-  rustywind
-  jinja-lsp
-  marksman
-  stylua
-  selene
-  taplo
-  rust-analyzer
-  tailwindcss-language-server
   unstable.prettier
   prettierd
-  yamlfmt
-  markdownlint-cli2
 ]

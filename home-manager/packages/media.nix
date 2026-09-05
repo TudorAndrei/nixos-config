@@ -9,7 +9,6 @@ with pkgs; [
   vlc
   picard
   nicotine-plus
-  yt-dlp
   imagemagick
   opustags
   obs-studio

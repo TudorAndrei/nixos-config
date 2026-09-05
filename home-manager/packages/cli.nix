@@ -3,7 +3,9 @@
   inputs,
 }:
 with pkgs; [
-  fd
+  gnupg
+  sops
+  age
   tree
   zip
   unzip
@@ -11,12 +13,8 @@ with pkgs; [
   brightnessctl
   feh
   pamixer
-  fastfetch
-  eza
-  dust
   slurp
   jq
-  pandoc
   scrcpy
   android-tools
   libnotify
@@ -24,7 +22,5 @@ with pkgs; [
   viu
   chafa
   ueberzugpp
-  lazygit
   tectonic
-  mermaid-cli
 ]

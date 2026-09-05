@@ -6,7 +6,6 @@ with pkgs; [
   wget
   curl
   vim
-  ripgrep
   killall
 
   # System monitoring and management
