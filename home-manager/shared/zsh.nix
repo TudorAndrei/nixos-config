@@ -64,6 +64,7 @@ in {
         oc = "opencode";
         cterra = "codex -m gpt-5.6-terra";
         csol = "codex -m gpt-5.6-sol";
+        castral = ''codex -m gpt-6-astra -c model_reasoning_effort="low"'';
         copus = "claude --model opus";
         cfab = "claude --model fable";
         cson = "claude --model sonnet";
