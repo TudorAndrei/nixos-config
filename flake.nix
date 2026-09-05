@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
 
     nur = {
       url = "github:nix-community/NUR";
@@ -14,6 +15,24 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
+    };
+    lix-module = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    amux = {
+      url = "github:TudorAndrei/amux";
+      flake = false;
+    };
+
     stylix.url = "github:danth/stylix/release-25.11";
     vicinae.url = "github:vicinaehq/vicinae";
     spicetify-nix = {
@@ -43,7 +62,7 @@
       # "aarch64-linux"
       # "i686-linux"
       "x86_64-linux"
-      # "aarch64-darwin"
+      "aarch64-darwin"
       # "x86_64-darwin"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
@@ -78,6 +97,28 @@
         modules = [
           ./hosts/ark/configuration.nix
           inputs.stylix.nixosModules.stylix
+        ];
+      };
+    };
+    darwinConfigurations = {
+      piticu = inputs.nix-darwin.lib.darwinSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/piticu/configuration.nix
+          inputs.lix-module.darwinModules.default
+          home-manager.darwinModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = "hm-bak";
+              extraSpecialArgs = {
+                inherit inputs outputs;
+                system = "aarch64-darwin";
+              };
+              users.tudor = import ./home-manager/darwin.nix;
+            };
+          }
         ];
       };
     };
